@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    tools:openDrawer="start">
+
+    <!-- Utilizamos 'single' para apenas uma função poder ser selecionada-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/menu_inicio" />
+        <item
+            android:id="@+id/nav_meus_pacientes"
+            android:icon="@drawable/ic_groups_black_24dp"
+            android:title="@string/menu_meus_pacientes" />
+        <item
+            android:id="@+id/nav_reports"
+            android:icon="@drawable/ic_relatorios"
+            android:title="@string/menu_relatorios" />
+
+        <item
+            android:id="@+id/nav_exercicios"
+            android:icon="@drawable/ic_exercise"
+            android:title="@string/menu_exercicios" />
+    </group>
+
+    <!-- Criamos usa seção separada, essa ação pode abrir um dialog ou fragment falando sobre nós e o projeto -->
+    <item android:title="Informação">
+        <menu>
+            <item
+                android:id="@+id/nav_aboutus"
+                android:title="@string/menu_sobrenos" />
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/dashboardFragment">
+
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_relatoriosFragment"
+            app:destination="@id/relatoriosFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_configurarAppFragment"
+            app:destination="@id/configurarAppFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/relatoriosFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.RelatoriosFragment"
+        android:label="fragment_relatorios"
+        tools:layout="@layout/fragment_relatorios" />
+    <fragment
+        android:id="@+id/configurarAppFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.ConfigurarAppFragment"
+        android:label="fragment_configurar_app"
+        tools:layout="@layout/fragment_configurar_app" />
+
+</navigation>
