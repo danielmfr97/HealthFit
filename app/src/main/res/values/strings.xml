@@ -14,4 +14,5 @@
     <string name="avisoBluetoothDesabilitado">Verificamos que seu bluetooth está desativado. Para executar as funções do HealthFit é necessário ativar o bluetooth. Deseja ativar o bluetooth?</string>
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="no_data_available">Sem dados disponíveis</string>
 </resources>

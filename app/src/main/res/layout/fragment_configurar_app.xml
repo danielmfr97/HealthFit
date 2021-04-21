@@ -31,6 +31,7 @@
                     android:layout_height="match_parent"
                     android:textAlignment="center"
                     style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+                    android:text="Dispositivos bluetooth pareados"
                     tools:text="Dispositivos bluetooth pareados"/>
 
                 <View
@@ -62,6 +63,7 @@
                     android:layout_height="match_parent"
                     android:textAlignment="center"
                     style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+                    android:text="Dispositivos bluetooth encontrados"
                     tools:text="Dispositivos bluetooth encontrados"/>
 
                 <View
