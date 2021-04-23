@@ -12,6 +12,12 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/testeEnvio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviar texto: teste666999"/>
+
+        <Button
             android:id="@+id/buscarDispositivos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -18,11 +18,15 @@ import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
+import java.util.*
 
 
 //TODO: Adicionar progress bar para indicar a busca por dispositivos bluetooth
 class ConfigurarAppFragment : Fragment() {
     private val TAG = "ConfigurarAppFragment"
+
+    private val MY_UUID_INSECURE =
+        UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66")
 
     private var _binding: FragmentConfigurarAppBinding? = null
     private val binding get() = _binding!!
@@ -44,13 +48,12 @@ class ConfigurarAppFragment : Fragment() {
         inicializarPresenter()
         configurarBotoes()
         configurarRecyclerView()
+        inicializarBroadcasts()
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        inicializarBroadcasts()
-
         //TODO: Criar lista de dispositivos disponiveis e dispositivos pareados
         atualizarDispositivosPareados()
     }
@@ -69,6 +72,9 @@ class ConfigurarAppFragment : Fragment() {
         binding.buscarDispositivos.setOnClickListener {
             btAdapter.cancelDiscovery()
             getListDispositivosDisponiveis()
+        }
+
+        binding.testeEnvio.setOnClickListener {
         }
     }
 
@@ -120,6 +126,45 @@ class ConfigurarAppFragment : Fragment() {
         binding.rvDispositivosBlue.adapter!!.notifyDataSetChanged()
     }
 
+    private fun habilitarDiscoverableBluetooth() {
+        val intent = Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE)
+        intent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300)
+        MainActivity.context.startActivity(intent)
+        val intentFilter = IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)
+        MainActivity.context.registerReceiver(broadcastDiscoverable, intentFilter)
+    }
+
+    private val broadcastDiscoverable: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val action = intent.action
+            if (action == BluetoothAdapter.ACTION_SCAN_MODE_CHANGED) {
+                val mode =
+                    intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE, BluetoothAdapter.ERROR)
+                when (mode) {
+                    BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE -> Log.d(
+                        TAG,
+                        "mBroadcastReceiver2: Discoverability Enabled."
+                    )
+                    BluetoothAdapter.SCAN_MODE_CONNECTABLE -> Log.d(
+                        TAG,
+                        "mBroadcastReceiver2: Discoverability Disabled. Able to receive connections."
+                    )
+                    BluetoothAdapter.SCAN_MODE_NONE -> Log.d(
+                        TAG,
+                        "mBroadcastReceiver2: Discoverability Disabled. Not able to receive connections."
+                    )
+                    BluetoothAdapter.STATE_CONNECTING -> Log.d(
+                        TAG,
+                        "mBroadcastReceiver2: Connecting...."
+                    )
+                    BluetoothAdapter.STATE_CONNECTED -> Log.d(
+                        TAG,
+                        "mBroadcastReceiver2: Connected."
+                    )
+                }
+            }
+        }
+    }
     private val broadcastDiscoverBTDevices: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
@@ -152,12 +197,14 @@ class ConfigurarAppFragment : Fragment() {
                 when (device!!.bondState) {
                     BluetoothDevice.BOND_BONDED -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_BONDED")
+                        //TODO: Editar
                         mPairedDeviceList.add(device)
                         atualizarDispositivosPareados()
-                        deviceListAdapter.removerItemPorMAC(device.address)
+                        presenter.startClient(device, MY_UUID_INSECURE)
                     }
                     BluetoothDevice.BOND_BONDING -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_BONDING")
+                        habilitarDiscoverableBluetooth()
                     }
                     BluetoothDevice.BOND_NONE -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_DONE")
@@ -166,5 +213,4 @@ class ConfigurarAppFragment : Fragment() {
             }
         }
     }
-
 }
