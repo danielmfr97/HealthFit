@@ -25,8 +25,6 @@ import java.util.*
 class ConfigurarAppFragment : Fragment() {
     private val TAG = "ConfigurarAppFragment"
 
-    private val MY_UUID_INSECURE =
-        UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66")
 
     private var _binding: FragmentConfigurarAppBinding? = null
     private val binding get() = _binding!!
@@ -200,11 +198,11 @@ class ConfigurarAppFragment : Fragment() {
                         //TODO: Editar
                         mPairedDeviceList.add(device)
                         atualizarDispositivosPareados()
-                        presenter.startClient(device, MY_UUID_INSECURE)
+//                        presenter.startClient(device, MY_UUID_INSECURE)
                     }
                     BluetoothDevice.BOND_BONDING -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_BONDING")
-                        habilitarDiscoverableBluetooth()
+//                        habilitarDiscoverableBluetooth()
                     }
                     BluetoothDevice.BOND_NONE -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_DONE")
