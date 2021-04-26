@@ -41,7 +41,6 @@ class DeviceListPairedAdapter(private val context: Context, private var deviceLi
         holder.textAddress.text = deviceInfoModel.address
         holder.deviceInfoLayout.setOnClickListener {
             val blueComm = (MainActivity.context.applicationContext as MyApplication).myBlueComm
-
             blueComm.startClient(deviceList[position], MY_UUID_INSECURE)
         }
     }

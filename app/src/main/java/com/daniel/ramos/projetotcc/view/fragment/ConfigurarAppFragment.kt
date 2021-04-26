@@ -13,12 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.databinding.FragmentConfigurarAppBinding
 import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
-import java.util.*
 
 
 //TODO: Adicionar progress bar para indicar a busca por dispositivos bluetooth
@@ -57,7 +57,7 @@ class ConfigurarAppFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        MainActivity.context.unregisterReceiver(broadcastDiscoverBTDevices)
+//        MainActivity.context.unregisterReceiver(broadcastDiscoverBTDevices)
         MainActivity.context.unregisterReceiver(broadcastBondStateBT)
         super.onDestroy()
     }
@@ -73,6 +73,9 @@ class ConfigurarAppFragment : Fragment() {
         }
 
         binding.testeEnvio.setOnClickListener {
+            val bytes: ByteArray = "teste2".toByteArray()
+            (MainActivity.context.applicationContext as MyApplication).myBlueComm.write(bytes)
+            Log.d(TAG, "Dados enviados $bytes ")
         }
     }
 
@@ -198,7 +201,6 @@ class ConfigurarAppFragment : Fragment() {
                         //TODO: Editar
                         mPairedDeviceList.add(device)
                         atualizarDispositivosPareados()
-//                        presenter.startClient(device, MY_UUID_INSECURE)
                     }
                     BluetoothDevice.BOND_BONDING -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_BONDING")
