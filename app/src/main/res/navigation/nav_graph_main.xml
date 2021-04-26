@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_configurarAppFragment"
             app:destination="@id/configurarAppFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_meusPacientesFragment"
+            app:destination="@id/meusPacientesFragment" />
     </fragment>
     <fragment
         android:id="@+id/relatoriosFragment"
@@ -28,5 +31,10 @@
         android:name="com.daniel.ramos.projetotcc.view.fragment.ConfigurarAppFragment"
         android:label="fragment_configurar_app"
         tools:layout="@layout/fragment_configurar_app" />
+    <fragment
+        android:id="@+id/meusPacientesFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.MeusPacientesFragment"
+        android:label="fragment_meus_pacientes"
+        tools:layout="@layout/fragment_meus_pacientes" />
 
 </navigation>
