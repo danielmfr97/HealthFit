@@ -11,6 +11,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initRealm()
         inicializarBluetoothComm()
         //TODO: Configurar realm ou Room
         //TODO: Inicializar firebase
