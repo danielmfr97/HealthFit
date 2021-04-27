@@ -26,15 +26,17 @@
         android:name="com.daniel.ramos.projetotcc.view.fragment.RelatoriosFragment"
         android:label="fragment_relatorios"
         tools:layout="@layout/fragment_relatorios" />
+
     <fragment
         android:id="@+id/configurarAppFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.ConfigurarAppFragment"
         android:label="fragment_configurar_app"
         tools:layout="@layout/fragment_configurar_app" />
+
     <fragment
         android:id="@+id/meusPacientesFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.MeusPacientesFragment"
-        android:label="fragment_meus_pacientes"
+        android:label="Meus Pacientes"
         tools:layout="@layout/fragment_meus_pacientes" />
 
 </navigation>
