@@ -6,7 +6,7 @@ import io.realm.RealmResults
 import io.realm.exceptions.RealmMigrationNeededException
 import java.lang.IllegalArgumentException
 
-open class RealmRepository<T: RealmObject>(var clazz: Class<T>?) {
+open class RealmRepository<T : RealmObject>(var clazz: Class<T>?) {
 
     lateinit var realm: Realm
 
@@ -43,8 +43,14 @@ open class RealmRepository<T: RealmObject>(var clazz: Class<T>?) {
         }
     }
 
-    fun novo(primaryKey: String): T {
-        return if(primaryKey == null) realm.createObject(clazz) else realm.createObject(clazz, primaryKey)
+    fun novo(primaryKey: String?): T {
+        return if (primaryKey == null)
+            realm.createObject(clazz)
+        else
+            realm.createObject(
+                clazz,
+                primaryKey
+            )
     }
 
     fun atualizarObject(atualizarListener: AtualizarListener) {
@@ -58,7 +64,7 @@ open class RealmRepository<T: RealmObject>(var clazz: Class<T>?) {
     }
 
     fun procurarPorId(id: String?): T? {
-        return realm.where(clazz).equalTo("id",id).findFirst()
+        return realm.where(clazz).equalTo("id", id).findFirst()
     }
 
     fun deletar(id: String?) {
