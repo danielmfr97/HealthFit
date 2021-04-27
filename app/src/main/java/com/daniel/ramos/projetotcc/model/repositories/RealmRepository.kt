@@ -8,21 +8,7 @@ import java.lang.IllegalArgumentException
 
 open class RealmRepository<T : RealmObject>(var clazz: Class<T>?) {
 
-    lateinit var realm: Realm
-
-    init {
-        init()
-    }
-
-    private fun init() {
-        try {
-            realm = Realm.getDefaultInstance()
-        } catch (e: RealmMigrationNeededException) {
-            e.printStackTrace()
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-        }
-    }
+    val realm: Realm = Realm.getDefaultInstance()
 
     fun salvar(`object`: T) {
         realm.executeTransaction { realm: Realm ->
