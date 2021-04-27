@@ -11,7 +11,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        initRealm()
+        Realm.init(this)
         inicializarBluetoothComm()
         //TODO: Configurar realm ou Room
         //TODO: Inicializar firebase
@@ -23,10 +23,12 @@ class MyApplication : Application() {
         myBlueComm = BlueComm()
     }
 
-    private fun initRealm() {
-        Realm.init(this)
-        val configuration = RealmConfiguration.Builder()
-            .name("projetotcc.realm").build()
-        Realm.setDefaultConfiguration(configuration)
+
+    companion object {
+        fun configurarRealm() {
+            val configuration = RealmConfiguration.Builder()
+                .name("projetotcc.realm").build()
+            Realm.setDefaultConfiguration(configuration)
+        }
     }
 }
