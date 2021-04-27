@@ -21,4 +21,13 @@
     <string name="sexoFeminino">FEMININO</string>
     <string name="adicionarPaciente">Adicionar Paciente</string>
     <string name="addPacienteTitle">Adicionar paciente</string>
+    <string name="idadePaciente">%1s Anos</string>
+    <string name="tituloRelatorio">Relatórios</string>
+    <string name="subtituloRelatorio">Consulte os dados coletados para cada perfil criado no sistemas</string>
+    <string name="tituloPacientes">Meus Pacientes</string>
+    <string name="subtituloPacientes">Visualize o progresso de seus pacientes e adicione novos pacientes</string>
+    <string name="tituloExercicios">Exercícios</string>
+    <string name="subtituloExercicio">Configure e inicie exercícios para um paciente selecionado</string>
+    <string name="tituloConfigurar">Configurar aplicação</string>
+    <string name="subtituloConfigurar">Faça a configuração do aplicativo com o dispositivo de treino</string>
 </resources>
