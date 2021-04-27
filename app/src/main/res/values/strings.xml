@@ -15,4 +15,10 @@
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
     <string name="no_data_available">Sem dados disponíveis</string>
+    <string name="informeNome">Informe seu nome</string>
+    <string name="informeDataNascimento">Data de nascimento</string>
+    <string name="sexoMasculino">MASCULINO</string>
+    <string name="sexoFeminino">FEMININO</string>
+    <string name="adicionarPaciente">Adicionar Paciente</string>
+    <string name="addPacienteTitle">Adicionar paciente</string>
 </resources>
