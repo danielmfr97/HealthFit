@@ -1,10 +1,9 @@
-package com.daniel.ramos.projetotcc.model
+package com.daniel.ramos.projetotcc.model.entities
 
-import androidx.room.PrimaryKey
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class Paciente : RealmObject() {
-
     @PrimaryKey
     var id: String = ""
     var nome: String = ""
