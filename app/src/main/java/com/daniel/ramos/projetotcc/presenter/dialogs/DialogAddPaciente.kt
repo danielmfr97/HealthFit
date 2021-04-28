@@ -1,6 +1,5 @@
 package com.daniel.ramos.projetotcc.presenter.dialogs
 
-import androidx.appcompat.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import com.daniel.ramos.projetotcc.R
@@ -22,7 +21,7 @@ class DialogAddPaciente(private val onPacienteAdicionado: OnPacienteAdicionado) 
             onPacienteAdicionado.novoPaciente(paciente)
         }
         if (which == DialogInterface.BUTTON_NEGATIVE) {
-
+            dialog.dismiss()
         }
     }
 
