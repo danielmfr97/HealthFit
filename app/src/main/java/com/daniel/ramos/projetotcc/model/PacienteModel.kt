@@ -8,6 +8,8 @@ import java.util.*
 class PacienteModel {
     private val pacienteRepository = PacienteRepository()
 
+    val all get() = pacienteRepository.procurarTodos()
+
     fun salvarPaciente(pacienteDados: Paciente) {
         pacienteRepository.atualizarObject(object : RealmRepository.AtualizarListener {
             override fun atualizar() {

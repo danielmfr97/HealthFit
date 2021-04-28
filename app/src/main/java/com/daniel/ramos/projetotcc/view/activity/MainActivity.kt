@@ -19,6 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.ActivityMainBinding
 import com.daniel.ramos.projetotcc.presenter.MainPresenter
@@ -72,6 +73,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun init() {
         val view = binding.root
+        MyApplication.configurarRealm()
         setContentView(view)
         configureToolbar()
         configureDrawer()
