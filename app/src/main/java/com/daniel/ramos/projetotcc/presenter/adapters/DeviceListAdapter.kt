@@ -38,7 +38,7 @@ class DeviceListAdapter(
         holder.textName.text = deviceInfoModel.name
         holder.textAddress.text = deviceInfoModel.address
         holder.deviceInfoLayout.setOnClickListener {
-//            bluetoothAdapter.cancelDiscovery()
+            bluetoothAdapter.cancelDiscovery()
             deviceList[position].createBond()
         }
     }

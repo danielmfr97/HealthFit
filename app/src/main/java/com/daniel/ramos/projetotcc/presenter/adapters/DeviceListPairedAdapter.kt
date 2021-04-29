@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.databinding.RowPairedDeviceInfoBinding
+import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
+import com.daniel.ramos.projetotcc.presenter.BluetoothServices
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import java.util.*
 
@@ -40,8 +42,10 @@ class DeviceListPairedAdapter(private val context: Context, private var deviceLi
         holder.textName.text = deviceInfoModel.name
         holder.textAddress.text = deviceInfoModel.address
         holder.deviceInfoLayout.setOnClickListener {
-            val blueComm = (MainActivity.context.applicationContext as MyApplication).myBlueComm
-            blueComm.startClient(deviceList[position], MY_UUID_INSECURE)
+            val uuid = UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66")
+            BluetoothServiceA().init(deviceList[position], uuid)
+//            val blueComm = (MainActivity.context.applicationContext as MyApplication).myBlueComm
+//            blueComm.startClient(deviceList[position], MY_UUID_INSECURE)
         }
     }
 }

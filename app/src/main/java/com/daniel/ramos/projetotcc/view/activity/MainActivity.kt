@@ -2,14 +2,15 @@ package com.daniel.ramos.projetotcc.view.activity
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -17,12 +18,15 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.ActivityMainBinding
+import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
+import com.daniel.ramos.projetotcc.presenter.BluetoothServices
+import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.MainPresenter
 import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -73,10 +77,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun init() {
         val view = binding.root
         setContentView(view)
+        inicializarServiceBluetooth()
         configureToolbar()
         configureDrawer()
         configureNavController()
         inicializarPresenter()
+    }
+
+    private fun inicializarServiceBluetooth() {
+        startService(Intent(this, BluetoothServiceA::class.java))
     }
 
     private fun inicializarPresenter() {
@@ -149,6 +158,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         fun openToastLong(text: String) {
             Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService(Intent(this, BluetoothServiceA::class.java))
+        ConfigurarAppPresenter(null).apply {
+            unregisterReceiver(broadcastBondStateBT)
+            unregisterReceiver(broadcastDiscoverBTDevices)
+            unregisterReceiver(broadcastDiscoverable)
         }
     }
 }

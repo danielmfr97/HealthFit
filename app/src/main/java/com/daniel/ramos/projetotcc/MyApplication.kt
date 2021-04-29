@@ -11,15 +11,8 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        inicializarBluetoothComm()
         //TODO: Configurar realm ou Room
         //TODO: Inicializar firebase
-    }
-
-    // Desta forma eu crio uma instância da comunicação bluetooth que não será destruida em uma fragmento/activity
-    // Como é um objeto público bastara acessar seus metodos recuperando o applicationContenxt
-    private fun inicializarBluetoothComm() {
-        myBlueComm = BlueComm()
     }
 
     private fun initRealm() {
