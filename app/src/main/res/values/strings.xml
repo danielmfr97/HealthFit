@@ -30,4 +30,5 @@
     <string name="subtituloExercicio">Configure e inicie exercícios para um paciente selecionado</string>
     <string name="tituloConfigurar">Configurar aplicação</string>
     <string name="subtituloConfigurar">Faça a configuração do aplicativo com o dispositivo de treino</string>
+    <string name="deletarPaciente">Deseja deletar este paciente?</string>
 </resources>
