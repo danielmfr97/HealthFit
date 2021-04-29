@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.DashboardFragment"
-        android:label="fragment_dashboard"
+        android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_relatoriosFragment"
@@ -21,16 +21,17 @@
             android:id="@+id/action_dashboardFragment_to_meusPacientesFragment"
             app:destination="@id/meusPacientesFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/relatoriosFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.RelatoriosFragment"
-        android:label="fragment_relatorios"
+        android:label="Relatórios"
         tools:layout="@layout/fragment_relatorios" />
 
     <fragment
         android:id="@+id/configurarAppFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.ConfigurarAppFragment"
-        android:label="fragment_configurar_app"
+        android:label="Configuração"
         tools:layout="@layout/fragment_configurar_app" />
 
     <fragment
