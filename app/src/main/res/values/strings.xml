@@ -9,8 +9,6 @@
 
     <string name="navigation_drawer_open">Abra o navigation drawer</string>
     <string name="navigation_drawer_close">Fecha o navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="avisoBluetoothDesabilitado">Verificamos que seu bluetooth está desativado. Para executar as funções do HealthFit é necessário ativar o bluetooth. Deseja ativar o bluetooth?</string>
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
