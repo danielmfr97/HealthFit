@@ -106,7 +106,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         when (v) {
 //            binding.cvRelatorios -> findNavController().navigate(R.id.action_dashboardFragment_to_relatoriosFragment)
             binding.cvPacientes -> findNavController().navigate(R.id.action_dashboardFragment_to_meusPacientesFragment)
-//            binding.cvExercicios -> findNavController().navigate(R.id.action_dashboardFragment_to_relatoriosFragment)
+            binding.cvExercicios -> findNavController().navigate(R.id.action_dashboardFragment_to_exerciciosFragment)
             binding.cvConfigurarApp -> {
                 if (!verificarBluetoothAtivo())
                     exibirDialogInializarBluetooth()
