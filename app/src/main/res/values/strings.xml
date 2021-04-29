@@ -14,4 +14,21 @@
     <string name="avisoBluetoothDesabilitado">Verificamos que seu bluetooth está desativado. Para executar as funções do HealthFit é necessário ativar o bluetooth. Deseja ativar o bluetooth?</string>
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="no_data_available">Sem dados disponíveis</string>
+    <string name="informeNome">Informe seu nome</string>
+    <string name="informeDataNascimento">Data de nascimento</string>
+    <string name="sexoMasculino">MASCULINO</string>
+    <string name="sexoFeminino">FEMININO</string>
+    <string name="adicionarPaciente">Adicionar Paciente</string>
+    <string name="addPacienteTitle">Adicionar paciente</string>
+    <string name="idadePaciente">%1s Anos</string>
+    <string name="tituloRelatorio">Relatórios</string>
+    <string name="subtituloRelatorio">Consulte os dados coletados para cada perfil criado no sistemas</string>
+    <string name="tituloPacientes">Meus Pacientes</string>
+    <string name="subtituloPacientes">Visualize o progresso de seus pacientes e adicione novos pacientes</string>
+    <string name="tituloExercicios">Exercícios</string>
+    <string name="subtituloExercicio">Configure e inicie exercícios para um paciente selecionado</string>
+    <string name="tituloConfigurar">Configurar aplicação</string>
+    <string name="subtituloConfigurar">Faça a configuração do aplicativo com o dispositivo de treino</string>
+    <string name="deletarPaciente">Deseja deletar este paciente?</string>
 </resources>

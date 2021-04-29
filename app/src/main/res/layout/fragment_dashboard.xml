@@ -46,6 +46,7 @@
                     app:layout_constraintStart_toEndOf="@id/ivRelatorios"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.75"
+                    android:text="@string/tituloRelatorio"
                     tools:text="Relatórios" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -75,6 +76,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/subtituloRelatorio"
                     tools:text="Consulte os dados coletados para cada perfil criado no sistemas"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -115,6 +117,7 @@
                     app:layout_constraintStart_toEndOf="@id/ivPacientes"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.75"
+                    android:text="@string/tituloPacientes"
                     tools:text="Meus Pacientes" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -144,6 +147,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/subtituloPacientes"
                     tools:text="Visualize o progresso de seus pacientes e adicione novos pacientes"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -184,6 +188,7 @@
                     app:layout_constraintStart_toEndOf="@id/ivExercicios"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.75"
+                    android:text="@string/tituloExercicios"
                     tools:text="Exercícios" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -213,6 +218,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/subtituloExercicio"
                     tools:text="Configure e inicie exercícios para um paciente selecionado"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -253,6 +259,7 @@
                     app:layout_constraintStart_toEndOf="@id/ivConfigurar"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.75"
+                    android:text="@string/tituloConfigurar"
                     tools:text="Configurar aplicação" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -282,6 +289,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/subtituloConfigurar"
                     tools:text="Faça a configuração do aplicativo com o dispositivo de treino"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

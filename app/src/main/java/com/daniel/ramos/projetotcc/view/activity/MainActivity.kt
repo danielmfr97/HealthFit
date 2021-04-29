@@ -19,6 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.ActivityMainBinding
 import com.daniel.ramos.projetotcc.presenter.MainPresenter
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var presenter: MainPresenter
+
+    init {
+        instance = this
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +49,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.CALL_PHONE,
             Manifest.permission.SEND_SMS,
-            Manifest.permission.RECEIVE_SMS
+            Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.BLUETOOTH,
+            Manifest.permission.BLUETOOTH_ADMIN
         )
 
         var isAllPermissionsGranted = true
@@ -66,6 +73,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun init() {
         val view = binding.root
+        MyApplication.configurarRealm()
         setContentView(view)
         configureToolbar()
         configureDrawer()
