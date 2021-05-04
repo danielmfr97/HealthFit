@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -18,13 +19,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
-import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.ActivityMainBinding
 import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
@@ -32,7 +31,6 @@ import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.MainPresenter
 import com.daniel.ramos.projetotcc.presenter.factory.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.utils.Constants
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.android.material.navigation.NavigationView
 
 
@@ -65,7 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onResume() {
         super.onResume()
-        bluetoothServiceInst!!.start(mHandler)
+        bluetoothServiceInst!!.start()
     }
 
     override fun onDestroy() {
@@ -143,6 +141,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setupChat() {
         // Initialize the BluetoothChatService to perform bluetooth connections
         bluetoothServiceInst = ModelFactory.getBluetoothServiceA
+        bluetoothServiceInst!!.setmHandler(mHandler)
     }
 
     private fun inicializarPresenter() {
@@ -221,12 +220,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val writeBuf = msg.obj as ByteArray
                     // construct a string from the buffer
                     val writeMessage = String(writeBuf)
-                    openToastShort("Mensagem: $writeMessage")
+                    openToastShort("TESTANDO: Write: $writeMessage")
+                    Log.i("TESTANDO", "Write: $writeMessage")
                 }
                 Constants.MESSAGE_READ -> {
                     val readBuf = msg.obj as ByteArray
                     // construct a string from the valid bytes in the buffer
                     val readMessage = String(readBuf, 0, msg.arg1)
+                    openToastShort("TESTANDO: Read: $readMessage")
+                    Log.i("TESTANDO", "Read: $readMessage")
                 }
                 Constants.MESSAGE_DEVICE_NAME -> {
                 }

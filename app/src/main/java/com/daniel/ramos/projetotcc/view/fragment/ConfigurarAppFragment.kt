@@ -69,7 +69,7 @@ class ConfigurarAppFragment : Fragment() {
         }
 
         binding.testeEnvio.setOnClickListener {
-            val bytes: ByteArray = "teste2".toByteArray()
+            val bytes: ByteArray = "Testando Comunicacao".toByteArray()
             bluetoothService.write(bytes)
             Log.d(TAG, "Dados enviados $bytes ")
         }
