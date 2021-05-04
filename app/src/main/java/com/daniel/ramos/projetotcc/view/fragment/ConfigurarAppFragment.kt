@@ -2,8 +2,6 @@ package com.daniel.ramos.projetotcc.view.fragment
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -13,13 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.databinding.FragmentConfigurarAppBinding
 import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
-import com.daniel.ramos.projetotcc.presenter.BluetoothServices
 import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
+import com.daniel.ramos.projetotcc.presenter.factory.ModelFactory
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 
 
@@ -40,7 +37,7 @@ class ConfigurarAppFragment : Fragment() {
     lateinit var mBTDevice: BluetoothDevice
     val btAdapter = BluetoothAdapter.getDefaultAdapter()
 
-    private val bluetoothService = BluetoothServiceA()
+    private val bluetoothService = ModelFactory.getBluetoothServiceA
 
 
     override fun onCreateView(

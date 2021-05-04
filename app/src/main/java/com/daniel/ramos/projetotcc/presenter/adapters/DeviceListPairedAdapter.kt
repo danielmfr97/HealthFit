@@ -7,19 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.databinding.RowPairedDeviceInfoBinding
 import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
-import com.daniel.ramos.projetotcc.presenter.BluetoothServices
-import com.daniel.ramos.projetotcc.view.activity.MainActivity
+import com.daniel.ramos.projetotcc.presenter.factory.ModelFactory
 import java.util.*
 
 class DeviceListPairedAdapter(private val context: Context, private var deviceList: List<BluetoothDevice>) : RecyclerView.Adapter<DeviceListPairedAdapter.ViewHolder>() {
     private var _binding: RowPairedDeviceInfoBinding? = null
     private val binding get() = _binding!!
-    private val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-    private val MY_UUID_INSECURE =
-        UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66")
+    private val bluetoothServiceA = ModelFactory.getBluetoothServiceA
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textName = binding.textViewDeviceName
@@ -43,7 +39,7 @@ class DeviceListPairedAdapter(private val context: Context, private var deviceLi
         holder.textAddress.text = deviceInfoModel.address
         holder.deviceInfoLayout.setOnClickListener {
             val uuid = UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66")
-            BluetoothServiceA().init(deviceList[position], uuid)
+            bluetoothServiceA.startClient(deviceList[position], uuid)
 //            val blueComm = (MainActivity.context.applicationContext as MyApplication).myBlueComm
 //            blueComm.startClient(deviceList[position], MY_UUID_INSECURE)
         }
