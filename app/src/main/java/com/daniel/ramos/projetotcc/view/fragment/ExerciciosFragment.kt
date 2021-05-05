@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.FragmentExerciciosBinding
@@ -44,7 +45,7 @@ class ExerciciosFragment : Fragment() {
 
     private fun configurarFabAddExercicio() {
         binding.fabAddExercicio.setOnClickListener {
-            //TODO: Configurar para abrir um novo fragment para adicionar as configurações e salva-las
+            findNavController().navigate(R.id.action_exerciciosFragment_to_novoExercicioFragment)
         }
     }
 

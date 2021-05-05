@@ -46,6 +46,15 @@
         android:id="@+id/exerciciosFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.ExerciciosFragment"
         android:label="fragment_exercicios"
-        tools:layout="@layout/fragment_exercicios" />
+        tools:layout="@layout/fragment_exercicios" >
+        <action
+            android:id="@+id/action_exerciciosFragment_to_novoExercicioFragment"
+            app:destination="@id/novoExercicioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novoExercicioFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.NovoExercicioFragment"
+        android:label="fragment_novo_exercicio"
+        tools:layout="@layout/fragment_novo_exercicio" />
 
 </navigation>
