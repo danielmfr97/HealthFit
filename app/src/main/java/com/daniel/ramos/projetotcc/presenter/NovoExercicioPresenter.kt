@@ -11,7 +11,7 @@ import com.daniel.ramos.projetotcc.view.fragment.NovoExercicioFragment
 class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
 
     fun getAdapterTipoExercicio(): ArrayAdapter<String> {
-        val items = listOf<String>(TipoExercicio.ALEATORIO.nome, TipoExercicio.SEQUENCIA.nome)
+        val items = listOf<String>(TipoExercicio.ALEATORIO.nome)
         val adapter = ArrayAdapter(view.requireContext(), R.layout.support_simple_spinner_dropdown_item, items)
         return adapter
     }
