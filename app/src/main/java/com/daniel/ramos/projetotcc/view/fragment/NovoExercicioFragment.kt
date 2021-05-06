@@ -29,7 +29,7 @@ class NovoExercicioFragment : Fragment() {
         _binding = FragmentNovoExercicioBinding.inflate(layoutInflater, container, false)
         inicializarPresenter()
         configurarTipoExercicio()
-        configurarSelecaoCor()
+//        configurarSelecaoCor()
         return binding.root
     }
 
@@ -45,19 +45,19 @@ class NovoExercicioFragment : Fragment() {
         }
     }
 
-    private fun configurarSelecaoCor() {
-        registerForContextMenu((binding.menuSelecionarCor.editText as? AutoCompleteTextView)!!)
-        (binding.menuSelecionarCor.editText as? AutoCompleteTextView)?.apply {
-            setAdapter(presenter.getAdapterSelecionarCor())
-            onItemClickListener = onCorSelecionada
-        }
-    }
+//    private fun configurarSelecaoCor() {
+//        registerForContextMenu((binding.menuSelecionarCor.editText as? AutoCompleteTextView)!!)
+//        (binding.menuSelecionarCor.editText as? AutoCompleteTextView)?.apply {
+//            setAdapter(presenter.getAdapterSelecionarCor())
+//            onItemClickListener = onCorSelecionada
+//        }
+//    }
 
     private val onExercicioSelecionado =
         AdapterView.OnItemClickListener { _, _, position, _ -> binding.menuTipoExercicio.helperText = TipoExercicio.values()[position].descricao }
 
-    private val onCorSelecionada =
-        AdapterView.OnItemClickListener { _, _, position, _ ->
-            binding.menuSelecionarCor.helperText = "O dispositivo utilizará a cor ${Cores.values()[position].nome} para sinalização"
-        }
+//    private val onCorSelecionada =
+//        AdapterView.OnItemClickListener { _, _, position, _ ->
+//            binding.menuSelecionarCor.helperText = "O dispositivo utilizará a cor ${Cores.values()[position].nome} para sinalização"
+//        }
 }
