@@ -31,4 +31,11 @@
     <string name="deletarPaciente">Deseja deletar este paciente?</string>
     <string name="labelTipoExercicio">Tipo Exercício</string>
     <string name="labelCor">Selecione uma cor</string>
+    <string name="labelDuracaoExercicio">Duração exercício (segundos)</string>
+    <string name="helpDelayContarErro">Esta opção é utilizada para informar quanto tempo o paciente tem para concluir totalmente a ação antes de detectar uma ação como erro</string>
+    <string name="save_and_init">Salvar e iniciar</string>
+    <string name="save">Salvar</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="labelTimeout">Informar tempo para desligar FitSpot</string>
 </resources>
