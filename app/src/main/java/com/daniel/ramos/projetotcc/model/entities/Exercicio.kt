@@ -20,9 +20,6 @@ open class Exercicio : RealmObject() {
     // Tempo que o usuario conta erro, ou seja se demorar mt tempo com pé em cima so conta erro dps
     var delayContarErro: Long? = null // threshold para erro do usuario
 
-    //
-    var start: Boolean = false // Setado para true quando quiser iniciar o exercicio
-
     // Numero de dispositivos usados para atividade
     var sensoresUsados: Int? = null // Se enviar 4 reduza um para enviar o dado no json
 
