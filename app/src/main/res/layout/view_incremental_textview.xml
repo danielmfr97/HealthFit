@@ -13,20 +13,22 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingEnd="8dp"
         app:layout_constraintWidth_percent="0.6">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textSize="16sp"
             tools:text="Texto" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSubtitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="10sp"
             tools:text="Texto" />
     </LinearLayout>
 

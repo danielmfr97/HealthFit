@@ -1,14 +1,19 @@
 package com.daniel.ramos.projetotcc.presenter
 
-import android.view.ContextMenu
 import android.widget.ArrayAdapter
 import com.daniel.ramos.projetotcc.R
+import com.daniel.ramos.projetotcc.model.entities.Exercicio
+import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.adapters.ColorArrayAdapter
 import com.daniel.ramos.projetotcc.presenter.enums.Cores
 import com.daniel.ramos.projetotcc.presenter.enums.TipoExercicio
+import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.fragment.NovoExercicioFragment
+import io.realm.RealmResults
 
 class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
+
+    private val exercicioModel = ModelFactory.getExercicioModel
 
     fun getAdapterTipoExercicio(): ArrayAdapter<String> {
         val items = listOf<String>(TipoExercicio.ALEATORIO.nome)
@@ -22,4 +27,16 @@ class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
         return adapter
     }
 
+    fun salvarExercicio() {
+       val exercicioDado = Exercicio()
+        exercicioDado.nomeExercicio = view.getNomeExercicio()
+        exercicioDado.tipoExericicio = view.getTipoExercicio()
+        exercicioDado.exercicioDuracao = view.getDuracaoExercicio()
+        exercicioDado.timeOutSensor = view.getTimeoutOption()
+        exercicioDado.timeout = view.getTimeout()
+        exercicioDado.delayContarErro = view.getDelayContarError()
+        exercicioDado.sensoresUsados = view.getNumeroFitSpots()
+        exercicioModel.salvarExercicio(exercicioDado)
+        MainActivity.openToastShort("Exercício salvo")
+    }
 }
