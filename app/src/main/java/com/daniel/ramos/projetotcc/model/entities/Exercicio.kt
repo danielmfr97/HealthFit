@@ -8,6 +8,8 @@ open class Exercicio : RealmObject() {
     @PrimaryKey
     var id: String = ""
 
+    var nomeExercicio: String = ""
+
     // TEmpo que o exercicio irá duras
     var exercicioDuracao: Long? = null // milli seconds
 

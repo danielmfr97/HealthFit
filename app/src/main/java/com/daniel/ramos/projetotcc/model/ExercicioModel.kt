@@ -16,7 +16,8 @@ class ExercicioModel {
             override fun atualizar() {
                 try {
                     val exercicio = exercicioRepository.novo(UUID.randomUUID().toString())
-                    exercicio.exercicioDuracao =  exercicioDado.exercicioDuracao
+                    exercicio.nomeExercicio = exercicioDado.nomeExercicio
+                    exercicio.exercicioDuracao = exercicioDado.exercicioDuracao
                     exercicio.timeOutSensor =  exercicioDado.timeOutSensor
                     exercicio.timeout =  exercicioDado.timeout
                     exercicio.delayContarErro =  exercicioDado.delayContarErro
