@@ -82,14 +82,33 @@
                 android:textAlignment="center" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/iniciarExercicio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/iniciar_exercicio"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_play"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llData" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/ivDelete"
-            app:layout_constraintTop_toBottomOf="@id/llData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:icon="@drawable/ic_delete"
+            android:layout_marginEnd="16dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="@string/remover_exercicio"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iniciarExercicio"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingEnd="6dp"
-            android:src="@drawable/ic_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toEndOf="@id/iniciarExercicio"
+            app:layout_constraintTop_toBottomOf="@id/llData" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

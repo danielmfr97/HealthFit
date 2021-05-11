@@ -45,7 +45,7 @@
     <fragment
         android:id="@+id/exerciciosFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.ExerciciosFragment"
-        android:label="fragment_exercicios"
+        android:label="Meus Exercícios"
         tools:layout="@layout/fragment_exercicios" >
         <action
             android:id="@+id/action_exerciciosFragment_to_novoExercicioFragment"

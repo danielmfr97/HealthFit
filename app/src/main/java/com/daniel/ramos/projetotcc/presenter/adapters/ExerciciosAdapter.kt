@@ -28,6 +28,8 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
         var tipoExercicio = binding.tipoExercicio
         var duracaoExercicio = binding.duracaoExercicio
         var timeoutDelay = binding.timeoutDelay
+        var deletarItem = binding.ivDelete
+        var iniciarExercicio = binding.iniciarExercicio
     }
 
 
@@ -51,6 +53,12 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
             exercicio.timeout
         )
         else "Desabilitado"
+        holder.deletarItem.setOnClickListener{
+            openDialogDeletarExercicio(exercicio.nomeExercicio, position)
+        }
+        holder.iniciarExercicio.setOnClickListener {
+            //TODO: CONFIGURAr dialog para selecionar um paciente e entao iniciar
+        }
     }
 
     override fun getItemCount(): Int {

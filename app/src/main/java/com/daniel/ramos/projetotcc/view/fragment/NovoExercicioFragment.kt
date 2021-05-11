@@ -111,7 +111,7 @@ class NovoExercicioFragment : Fragment() {
     }
 
     fun getDuracaoExercicio(): Long {
-        return binding.duracaoExercicio.editText!!.text.toString().toLong() * 60
+        return binding.duracaoExercicio.editText!!.text.toString().toLong()
     }
 
     fun getTimeoutOption(): Boolean {
@@ -121,12 +121,12 @@ class NovoExercicioFragment : Fragment() {
     fun getTimeout(): Long? {
         var tempoInMs: Long? = null
         if (!binding.timeOut.editText!!.text.toString().isEmpty())
-            tempoInMs = binding.timeOut.editText!!.text.toString().toLong() * 60
+            tempoInMs = binding.timeOut.editText!!.text.toString().toLong()
         return tempoInMs
     }
 
     fun getDelayContarError(): Long {
-        return binding.delayContarError.editText!!.text.toString().toLong() * 60
+        return binding.delayContarError.editText!!.text.toString().toLong()
     }
 
     fun getNumeroFitSpots(): Int {
