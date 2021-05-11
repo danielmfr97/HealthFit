@@ -38,8 +38,7 @@ class ExerciciosFragment : Fragment() {
         binding.rvExercicios.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(MainActivity.instance)
-            //TODO: Configurar adapter
-//            adapter = presenter.getAdapterExercicios()
+            adapter = presenter.getAdapterExercicios()
         }
     }
 

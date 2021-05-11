@@ -38,4 +38,14 @@
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="labelTimeout">Informar tempo para desligar FitSpot</string>
+    <string name="hintTimeout">Tempo para desligar FitSpot (segundos)</string>
+    <string name="hintDelayContarError">Tempo para ignorar ação (segundos)</string>
+    <string name="headerNumeroDispositivos">Número de FitSpots</string>
+    <string name="subtitleNumeroDispositivos">Número de dispositivos FitSpot utilizados no exercício</string>
+    <string name="informacoes_invalidas">Informações inválidas</string>
+    <string name="labelNomeExercicio">Nome do exercício</string>
+    <string name="tipoExercicio">Exercício: %1s</string>
+    <string name="numeroDeFitSpots">%1d FitSpots</string>
+    <string name="timeoutDelay">Delay %1d segundos</string>
+    <string name="duracaoExercicio">Duração: %1d segundos</string>
 </resources>
