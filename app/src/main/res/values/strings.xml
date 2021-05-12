@@ -9,8 +9,6 @@
 
     <string name="navigation_drawer_open">Abra o navigation drawer</string>
     <string name="navigation_drawer_close">Fecha o navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="avisoBluetoothDesabilitado">Verificamos que seu bluetooth está desativado. Para executar as funções do HealthFit é necessário ativar o bluetooth. Deseja ativar o bluetooth?</string>
     <string name="confirmar">Confirmar</string>
     <string name="cancelar">Cancelar</string>
@@ -31,4 +29,27 @@
     <string name="tituloConfigurar">Configurar aplicação</string>
     <string name="subtituloConfigurar">Faça a configuração do aplicativo com o dispositivo de treino</string>
     <string name="deletarPaciente">Deseja deletar este paciente?</string>
+    <string name="labelTipoExercicio">Tipo Exercício</string>
+    <string name="labelCor">Selecione uma cor</string>
+    <string name="labelDuracaoExercicio">Duração exercício (segundos)</string>
+    <string name="helpDelayContarErro">Esta opção é utilizada para informar quanto tempo o paciente tem para concluir totalmente a ação antes de detectar uma ação como erro</string>
+    <string name="save_and_init">Salvar e iniciar</string>
+    <string name="save">Salvar</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="labelTimeout">Informar tempo para desligar FitSpot</string>
+    <string name="hintTimeout">Tempo para desligar FitSpot (segundos)</string>
+    <string name="hintDelayContarError">Tempo para ignorar ação (segundos)</string>
+    <string name="headerNumeroDispositivos">Número de FitSpots</string>
+    <string name="subtitleNumeroDispositivos">Número de dispositivos FitSpot utilizados no exercício</string>
+    <string name="informacoes_invalidas">Informações inválidas</string>
+    <string name="labelNomeExercicio">Nome do exercício</string>
+    <string name="tipoExercicio">Exercício: %1s</string>
+    <string name="numeroDeFitSpots">%1d FitSpots</string>
+    <string name="timeoutDelay">Delay %1d segundos</string>
+    <string name="duracaoExercicio">Duração: %1d segundos</string>
+    <string name="iniciar_exercicio">Iniciar</string>
+    <string name="remover_exercicio">Remover</string>
+    <string name="titleIniciarExecicio">Iniciar exercício</string>
+    <string name="selecionePaciente">Selecione um paciente</string>
 </resources>

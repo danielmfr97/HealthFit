@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_meusPacientesFragment"
             app:destination="@id/meusPacientesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_exerciciosFragment"
+            app:destination="@id/exerciciosFragment" />
     </fragment>
 
     <fragment
@@ -39,5 +42,19 @@
         android:name="com.daniel.ramos.projetotcc.view.fragment.MeusPacientesFragment"
         android:label="Meus Pacientes"
         tools:layout="@layout/fragment_meus_pacientes" />
+    <fragment
+        android:id="@+id/exerciciosFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.ExerciciosFragment"
+        android:label="Meus Exercícios"
+        tools:layout="@layout/fragment_exercicios" >
+        <action
+            android:id="@+id/action_exerciciosFragment_to_novoExercicioFragment"
+            app:destination="@id/novoExercicioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novoExercicioFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.NovoExercicioFragment"
+        android:label="fragment_novo_exercicio"
+        tools:layout="@layout/fragment_novo_exercicio" />
 
 </navigation>
