@@ -50,4 +50,6 @@
     <string name="duracaoExercicio">Duração: %1d segundos</string>
     <string name="iniciar_exercicio">Iniciar</string>
     <string name="remover_exercicio">Remover</string>
+    <string name="titleIniciarExecicio">Iniciar exercício</string>
+    <string name="selecionePaciente">Selecione um paciente</string>
 </resources>
