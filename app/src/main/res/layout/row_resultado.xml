@@ -31,20 +31,19 @@
             android:id="@+id/labelAcertos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@string/labelAcertos"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/labelErros"
             app:layout_constraintEnd_toStartOf="@id/labelErros"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tipoExercicio"
-            android:text="@string/labelAcertos" />
+            app:layout_constraintTop_toBottomOf="@id/tipoExercicio" />
 
         <TextView
             android:id="@+id/numAcertos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:drawableStart="@drawable/ic_check"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/labelAcertos"
@@ -56,19 +55,18 @@
             android:id="@+id/labelErros"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@string/labelErros"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/labelAcertos"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/labelAcertos"
-            app:layout_constraintTop_toTopOf="@id/labelAcertos"
-            android:text="@string/labelErros"/>
+            app:layout_constraintTop_toTopOf="@id/labelAcertos" />
 
         <TextView
             android:id="@+id/numErros"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_miss"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -83,17 +81,16 @@
             android:id="@+id/labelVelAcaoMed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@string/labelVelocidadeAcaoMedia"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@id/labelData"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/numAcertos"
-            android:text="@string/labelVelocidadeAcaoMedia" />
+            app:layout_constraintTop_toBottomOf="@id/numAcertos" />
 
         <TextView
             android:id="@+id/velAcaoMedia"
             android:layout_width="0dp"
-            android:drawableStart="@drawable/ic_velocidade"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="16sp"
@@ -107,12 +104,12 @@
             android:id="@+id/labelData"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@string/labelData"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/labelVelAcaoMed"
-            app:layout_constraintTop_toTopOf="@id/labelVelAcaoMed"
-            android:text="@string/labelData"/>
+            app:layout_constraintTop_toTopOf="@id/labelVelAcaoMed" />
 
         <TextView
             android:id="@+id/dataCriado"
@@ -121,7 +118,6 @@
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:drawableStart="@drawable/ic_calendar"
             app:layout_constraintBottom_toBottomOf="@id/velAcaoMedia"
             app:layout_constraintEnd_toEndOf="@id/labelData"
             app:layout_constraintStart_toEndOf="@id/velAcaoMedia"
