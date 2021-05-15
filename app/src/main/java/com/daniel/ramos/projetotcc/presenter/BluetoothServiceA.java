@@ -16,11 +16,11 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.daniel.ramos.projetotcc.presenter.utils.Constants;
+import com.daniel.ramos.projetotcc.view.activity.MainActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 import java.util.UUID;
 
 public class BluetoothServiceA extends Service {
@@ -238,9 +238,8 @@ public class BluetoothServiceA extends Service {
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
+        MainActivity.Companion.openToastShort("Conexão perdida com FitSpot");
         mState = STATE_NONE;
-        // Update UI title
-//        updateUserInterfaceTitle();
 
         // Start the service over to restart listening mode
         BluetoothServiceA.this.start();

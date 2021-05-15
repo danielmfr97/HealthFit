@@ -56,4 +56,5 @@
     <string name="labelAcertos">Acertos</string>
     <string name="labelErros">Erros</string>
     <string name="labelData">Data realização</string>
+    <string name="scan_devices">Procurar dispositivos</string>
 </resources>

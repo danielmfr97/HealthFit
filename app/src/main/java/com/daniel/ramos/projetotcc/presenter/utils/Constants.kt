@@ -8,6 +8,7 @@ interface Constants {
         const val MESSAGE_WRITE = 3
         const val MESSAGE_DEVICE_NAME = 4
         const val MESSAGE_TOAST = 5
+        const val MESSAGE_DEVICE_OFFLINE = 6
 
         // Key names received from the BluetoothChatService Handler
         const val DEVICE_NAME = "device_name"

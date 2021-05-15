@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -47,6 +48,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var presenter: MainPresenter
     private var bluetoothServiceInst: BluetoothServiceA? = null
 
+    private var menuInflater: Menu? = null
+
     init {
         instance = this
     }
@@ -69,7 +72,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onDestroy() {
         super.onDestroy()
-        stopService(Intent(this, BluetoothServiceA::class.java))
+        //TODO: ALTERAR
+//        stopService(Intent(this, BluetoothServiceA::class.java))
         ConfigurarAppPresenter(null).apply {
             unregisterReceiver(broadcastBondStateBT)
             unregisterReceiver(broadcastDiscoverBTDevices)
@@ -117,7 +121,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun inicializarServiceBluetooth() {
-        startService(Intent(this, BluetoothServiceA::class.java))
         initBluetooth()
     }
 
@@ -204,16 +207,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater = menu
+        val menuInflater = getMenuInflater()
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
     private val mHandler: Handler = @SuppressLint("HandlerLeak")
-    object : Handler() {
+   object : Handler() {
         override fun handleMessage(msg: Message) {
             val activity = this
             when (msg.what) {
                 Constants.MESSAGE_STATE_CHANGE -> when (msg.arg1) {
                     BluetoothServiceA.STATE_CONNECTED -> {
+                        menuInflater?.getItem(0)?.icon = ContextCompat.getDrawable(context, R.drawable.ic_bluetooth_on)
                         openToastShort("Device conectado")
+
                     }
-                    BluetoothServiceA.STATE_CONNECTING -> openToastShort("conectando")
+                    BluetoothServiceA.STATE_CONNECTING -> openToastShort("conectando...")
                     BluetoothServiceA.STATE_LISTEN, BluetoothServiceA.STATE_NONE -> openToastShort(
                         "Não conectado"
                     )
@@ -234,7 +246,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 Constants.MESSAGE_DEVICE_NAME -> {
                 }
-                Constants.MESSAGE_TOAST -> if (null != activity) {
+                Constants.MESSAGE_TOAST -> {
+                    openToastShort("Impossivel conectar'")
+                }
+                Constants.MESSAGE_DEVICE_OFFLINE -> {
+                    menuInflater?.getItem(0)?.icon = ContextCompat.getDrawable(context, R.drawable.ic_bluetooth_off)
                 }
             }
         }

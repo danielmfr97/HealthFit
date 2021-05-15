@@ -140,6 +140,7 @@
                 android:id="@+id/btnSalvar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:text="@string/save" />
 
@@ -147,6 +148,7 @@
                 android:id="@+id/btnSalvarEIniciar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:text="@string/save_and_init" />
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayoutDeviceInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,18 +19,26 @@
 
         <TextView
             android:id="@+id/textViewDeviceName"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="Texto"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Texto" />
 
         <TextView
             android:id="@+id/textViewDeviceAddress"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Texto"/>
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="@id/textViewDeviceName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDeviceName"
+            tools:text="Texto" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:id="@+id/divider"

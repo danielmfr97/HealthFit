@@ -67,12 +67,6 @@ class ConfigurarAppFragment : Fragment() {
             btAdapter.cancelDiscovery()
             getListDispositivosDisponiveis()
         }
-
-        binding.testeEnvio.setOnClickListener {
-            val bytes: ByteArray = "Testando Comunicacao".toByteArray()
-            bluetoothService.write(bytes)
-            Log.d(TAG, "Dados enviados $bytes ")
-        }
     }
 
     private fun configurarRecyclerView() {
