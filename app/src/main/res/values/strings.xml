@@ -44,10 +44,10 @@
     <string name="subtitleNumeroDispositivos">Número de dispositivos FitSpot utilizados no exercício</string>
     <string name="informacoes_invalidas">Informações inválidas</string>
     <string name="labelNomeExercicio">Nome do exercício</string>
-    <string name="tipoExercicio">Exercício: %1s</string>
+    <string name="tipoExercicio">Tipo: %1s</string>
     <string name="numeroDeFitSpots">%1d FitSpots</string>
-    <string name="timeoutDelay">Delay %1d segundos</string>
-    <string name="duracaoExercicio">Duração: %1d segundos</string>
+    <string name="timeoutDelay">Timeout: %1d segundos</string>
+    <string name="numeroDeCiclos">Ciclos: %1d </string>
     <string name="iniciar_exercicio">Iniciar</string>
     <string name="remover_exercicio">Remover</string>
     <string name="titleIniciarExecicio">Iniciar exercício</string>
@@ -57,4 +57,11 @@
     <string name="labelErros">Erros</string>
     <string name="labelData">Data realização</string>
     <string name="scan_devices">Procurar dispositivos</string>
+    <string name="FirstFitSpot">FitSpot 01</string>
+    <string name="SecondFitSpot">FitSpot 02</string>
+    <string name="ThirdFitSpot">FitSpot 03</string>
+    <string name="FourthFitSpot">FitSpot 04</string>
+    <string name="selecioneFitSpots">Selecione quais FitSpots usará neste exercício</string>
+    <string name="headerCiclos">Número de ciclos</string>
+    <string name="subtitleCiclos">"Um ciclo é representado pelo número total de FitSpots "</string>
 </resources>
