@@ -10,8 +10,8 @@ open class Exercicio : RealmObject() {
 
     var nomeExercicio: String = ""
 
-    // TEmpo que o exercicio irá duras
-    var exercicioDuracao: Long? = null // milli seconds
+    // Ao contar todos os sensores é concluido um ciclo
+    var ciclosExercicio: Int? = null
 
     // True or False se terá timeout
     var timeOutSensor: Boolean? = null //
@@ -19,12 +19,9 @@ open class Exercicio : RealmObject() {
     // Tempo para o dispostiivo desligar a luz
     var timeout: Long? = null // ms, caso timeOutSensor false -> return 0
 
-    // Tempo que o usuario conta erro, ou seja se demorar mt tempo com pé em cima so conta erro dps
-    var delayContarErro: Long? = null // threshold para erro do usuario
+    // lista com os sensores ativos
+    var sensoresUsados: String? = null
 
-    // Numero de dispositivos usados para atividade
-    var sensoresUsados: Int? = null // Se enviar 4 reduza um para enviar o dado no json
-
-    // A priori será sempre RANDOM
-    var tipoExericicio: String? = null // Tipo de exercicio
+    // A priori será sempre RANDOM e Sequencial
+    var tipoExercicio: String? = null // Tipo de exercicio
 }
