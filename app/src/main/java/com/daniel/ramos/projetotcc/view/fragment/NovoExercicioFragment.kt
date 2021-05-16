@@ -1,26 +1,26 @@
 package com.daniel.ramos.projetotcc.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
-import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.FragmentNovoExercicioBinding
 import com.daniel.ramos.projetotcc.presenter.NovoExercicioPresenter
 import com.daniel.ramos.projetotcc.presenter.enums.TipoExercicio
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class NovoExercicioFragment : Fragment() {
     private var _binding: FragmentNovoExercicioBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: NovoExercicioPresenter
 
-    private var numeroDispositivos = 0
+    private var numeroCiclos = 0
+    private var listaSensores = mutableListOf<Boolean>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +30,7 @@ class NovoExercicioFragment : Fragment() {
         inicializarPresenter()
         configurarTipoExercicio()
         configurarTimeout()
-        configurarNumDispositivos()
+        configurarNumCiclos()
         configurarBotoes()
         return binding.root
     }
@@ -50,7 +50,51 @@ class NovoExercicioFragment : Fragment() {
     private val onExercicioSelecionado =
         AdapterView.OnItemClickListener { _, _, position, _ ->
             binding.menuTipoExercicio.helperText = TipoExercicio.values()[position].descricao
+            limparCamposComuns()
+            if (TipoExercicio.values()[position].nome == TipoExercicio.ALEATORIO.nome) {
+                configurarExercicioAleatorio()
+            }
+            if (TipoExercicio.values()[position].nome == TipoExercicio.SEQUENCIA.nome) {
+                configurarExercicioSequencia()
+            }
         }
+
+    private fun limparCamposComuns() {
+        binding.nomeExercicio.editText?.text?.clear()
+        numeroCiclos = 0
+    }
+
+    private fun configurarExercicioAleatorio() {
+        desabilitarRadioGroup(false)
+        habilitarTodosFitSpots(false)
+    }
+
+    private fun configurarExercicioSequencia() {
+        desabilitarRadioGroup(true)
+        habilitarTodosFitSpots(true)
+    }
+
+    private fun desabilitarRadioGroup(b: Boolean) {
+        val radio = binding.rgTimeout
+        radio.clearCheck()
+        binding.rbNao.isChecked = b
+        for (i in 0 until radio.childCount) {
+            radio.getChildAt(i).isClickable = !b
+        }
+    }
+
+    private fun habilitarTodosFitSpots(b: Boolean) {
+        val llFitSpots = binding.llFitSpots
+        for (i in 0 until llFitSpots.childCount) {
+            val child = llFitSpots.getChildAt(i)
+            when (child) {
+                is SwitchMaterial -> {
+                    child.isChecked = b
+                    child.isClickable = !b
+                }
+            }
+        }
+    }
 
     private fun configurarTimeout() {
         binding.rgTimeout.setOnCheckedChangeListener { group, checkedId ->
@@ -61,24 +105,25 @@ class NovoExercicioFragment : Fragment() {
                 binding.rbNao.id -> {
                     binding.timeOut.visibility = View.GONE
                 }
+                else -> binding.timeOut.visibility = View.GONE
             }
         }
     }
 
-    private fun configurarNumDispositivos() {
-        val numDispositivos = binding.numDispositivos
-        numDispositivos.integerNumber.text = numeroDispositivos.toString()
-        numDispositivos.tvHeader.setText(R.string.headerNumeroDispositivos)
-        numDispositivos.tvSubtitle.setText(R.string.subtitleNumeroDispositivos)
-        numDispositivos.increase.setOnClickListener {
-            if (numeroDispositivos in 0..3)
-                numeroDispositivos += 1
-            numDispositivos.integerNumber.text = numeroDispositivos.toString()
+    private fun configurarNumCiclos() {
+        val numCiclos = binding.ciclosExercicio
+        numCiclos.integerNumber.text = numeroCiclos.toString()
+        numCiclos.tvHeader.setText(R.string.headerCiclos)
+        numCiclos.tvSubtitle.setText(R.string.subtitleCiclos)
+        numCiclos.increase.setOnClickListener {
+            if (numeroCiclos in 0..3)
+                numeroCiclos += 1
+            numCiclos.integerNumber.text = numeroCiclos.toString()
         }
-        numDispositivos.decrease.setOnClickListener {
-            if (numeroDispositivos in 1..4)
-                numeroDispositivos -= 1
-            numDispositivos.integerNumber.text = numeroDispositivos.toString()
+        numCiclos.decrease.setOnClickListener {
+            if (numeroCiclos in 1..4)
+                numeroCiclos -= 1
+            numCiclos.integerNumber.text = numeroCiclos.toString()
         }
     }
 
@@ -86,19 +131,13 @@ class NovoExercicioFragment : Fragment() {
         binding.btnSalvar.setOnClickListener {
             salvarDados()
         }
-
-        binding.btnSalvarEIniciar.setOnClickListener {
-            salvarDados()
-            //TODO: Iniciar exercicio
-        }
     }
 
     private fun salvarDados() {
         if (isDadosValidos()) {
             presenter.salvarExercicio()
             MainActivity.instance!!.onBackPressed()
-        }
-        else
+        } else
             MainActivity.openToastShort("Informações inválidas")
     }
 
@@ -110,8 +149,8 @@ class NovoExercicioFragment : Fragment() {
         return binding.autocompelteTipoExercicio.text.toString()
     }
 
-    fun getDuracaoExercicio(): Long {
-        return binding.duracaoExercicio.editText!!.text.toString().toLong()
+    fun getNumeroCiclos(): Int {
+        return numeroCiclos
     }
 
     fun getTimeoutOption(): Boolean {
@@ -125,16 +164,17 @@ class NovoExercicioFragment : Fragment() {
         return tempoInMs
     }
 
-    fun getDelayContarError(): Long {
-        return binding.delayContarError.editText!!.text.toString().toLong()
-    }
-
-    fun getNumeroFitSpots(): Int {
-        return numeroDispositivos
+    fun getFitSpots(): MutableList<Boolean> {
+        listaSensores.add(binding.firstFitSpot.isChecked)
+        listaSensores.add(binding.secondFitSpot.isChecked)
+        listaSensores.add(binding.thirdFitSpot.isChecked)
+        listaSensores.add(binding.fourthFitSpot.isChecked)
+        return listaSensores
     }
 
     private fun isDadosValidos(): Boolean {
         var isValido = true
+        var fitSpotsAtivos = 0
 
         // Validar Nome Exercicio
         if (binding.nomeExercicio.editText!!.text.isNullOrEmpty()) {
@@ -148,10 +188,10 @@ class NovoExercicioFragment : Fragment() {
             binding.menuTipoExercicio.error = "Informe o tipo de exercício"
         }
 
-        // Validar duração exercicio
-        if (binding.duracaoExercicio.editText!!.text.isNullOrEmpty()) {
-            isValido = true
-            binding.duracaoExercicio.error = "Informe a duração do exercício"
+        // Validar número de ciclos
+        if (getNumeroCiclos() == 0) {
+            isValido = false
+            binding.ciclosExercicio.tvHeader.error = "Informe um valor maior que 0"
         }
 
         // Validar timeout
@@ -164,16 +204,14 @@ class NovoExercicioFragment : Fragment() {
             }
         }
 
-        // Validar tempo ignora ação
-        if (binding.delayContarError.editText!!.text.isNullOrEmpty()) {
-            isValido = false
-            binding.delayContarError.error = "Informe o limiar"
+        // Validar sensores (pelo menos dois devem estar selecionados
+        getFitSpots().forEach {
+            if (it)
+                fitSpotsAtivos++
         }
-
-        // Validar numero de dispositivos
-        if (numeroDispositivos == 0){
+        if (fitSpotsAtivos < 2) {
             isValido = false
-            binding.numDispositivos.tvHeader.error = "Impossível salvar exercício com 0 FitSpots"
+            MainActivity.openToastShort("Selecione pelo menos 2 FitSpots")
         }
 
         return isValido
