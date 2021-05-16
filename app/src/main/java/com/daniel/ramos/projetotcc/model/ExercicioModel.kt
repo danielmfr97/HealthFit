@@ -17,12 +17,11 @@ class ExercicioModel {
                 try {
                     val exercicio = exercicioRepository.novo(UUID.randomUUID().toString())
                     exercicio.nomeExercicio = exercicioDado.nomeExercicio
-                    exercicio.exercicioDuracao = exercicioDado.exercicioDuracao
-                    exercicio.timeOutSensor =  exercicioDado.timeOutSensor
-                    exercicio.timeout =  exercicioDado.timeout
-                    exercicio.delayContarErro =  exercicioDado.delayContarErro
-                    exercicio.sensoresUsados =  exercicioDado.sensoresUsados
-                    exercicio.tipoExericicio =  exercicioDado.tipoExericicio
+                    exercicio.ciclosExercicio = exercicioDado.ciclosExercicio
+                    exercicio.tipoExercicio = exercicioDado.tipoExercicio
+                    exercicio.timeOutSensor = exercicioDado.timeOutSensor
+                    exercicio.timeout = exercicioDado.timeout
+                    exercicio.sensoresUsados = exercicioDado.sensoresUsados
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
