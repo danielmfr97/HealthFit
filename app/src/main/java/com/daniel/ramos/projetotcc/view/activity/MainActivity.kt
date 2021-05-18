@@ -28,10 +28,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.daniel.ramos.projetotcc.MyApplication
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.ActivityMainBinding
+import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
 import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.MainPresenter
-import com.daniel.ramos.projetotcc.presenter.factory.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.utils.Constants
 import com.google.android.material.navigation.NavigationView
 
