@@ -20,4 +20,8 @@ class PacienteModel {
             }
         })
     }
+
+    fun getPacientePorId(pacienteId: String?): Paciente? {
+        return pacienteRepository.procurarPorId(pacienteId)
+    }
 }

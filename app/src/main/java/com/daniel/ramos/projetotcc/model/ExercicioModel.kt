@@ -29,4 +29,8 @@ class ExercicioModel {
             }
         })
     }
+
+    fun getExercicioPorId(exercicioId: String?): Exercicio? {
+        return exercicioRepository.procurarPorId(exercicioId)
+    }
 }
