@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.daniel.ramos.projetotcc.databinding.RowPairedDeviceInfoBinding
-import com.daniel.ramos.projetotcc.presenter.factory.ModelFactory
+import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 
 class DeviceListPairedAdapter(private val context: Context, private var deviceList: List<BluetoothDevice>) : RecyclerView.Adapter<DeviceListPairedAdapter.ViewHolder>() {
     private var _binding: RowPairedDeviceInfoBinding? = null
