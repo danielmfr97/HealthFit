@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.daniel.ramos.projetotcc.databinding.RowResultadoBinding
 import com.daniel.ramos.projetotcc.model.entities.Resultado
+import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.model.repositories.ResultadoRepository
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import io.realm.RealmRecyclerViewAdapter
@@ -17,12 +18,13 @@ class ResultadosAdapter(private val resultados: RealmResults<Resultado>, autoUpd
     private var _binding: RowResultadoBinding? = null
     private val binding get() = _binding!!
     private val resultadoRepository = ResultadoRepository()
+    private val exercicioModel = ModelFactory.getExercicioModel
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tipoExercicio = binding.tipoExercicio
+        var nomeExercicio = binding.nomeExercicio
         var numAcertos = binding.numAcertos
         var numErros = binding.numErros
-        var velAcaoMedia = binding.velAcaoMedia
+        var tempoTotal = binding.tempoTotal
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,13 +35,22 @@ class ResultadosAdapter(private val resultados: RealmResults<Resultado>, autoUpd
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val resultado: Resultado? = getItem(position)
-        holder.tipoExercicio.text = resultado!!.tipo_exercicio
+        changeVisibilityViews(resultado!!)
+        val exercicio = exercicioModel.getExercicioPorId(resultado.exercicio_id)
+        holder.nomeExercicio.text = exercicio?.nomeExercicio
         holder.numAcertos.text = resultado.acertos
         holder.numErros.text = resultado.erros
-        holder.velAcaoMedia.text = resultado.velocidade_acao_media
+        holder.tempoTotal.text = resultado.tempo_total
     }
 
     override fun getItemCount(): Int {
         return resultados.size
+    }
+
+    private fun changeVisibilityViews(resultado: Resultado) {
+        binding.labelAcertos.visibility = if(resultado.acertos != null) View.VISIBLE else View.GONE
+        binding.numAcertos.visibility = if(resultado.acertos != null) View.VISIBLE else View.GONE
+        binding.labelErros.visibility = if(resultado.erros != null) View.VISIBLE else View.GONE
+        binding.numErros.visibility = if(resultado.erros != null) View.VISIBLE else View.GONE
     }
 }

@@ -1,5 +1,6 @@
 package com.daniel.ramos.projetotcc.presenter
 
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.model.entities.Paciente
@@ -8,15 +9,20 @@ import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.adapters.PacientesArrayAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.ResultadosAdapter
 import com.daniel.ramos.projetotcc.presenter.listeners.OnPacienteSelecionado
+import com.daniel.ramos.projetotcc.presenter.utils.RegexUtils
 import com.daniel.ramos.projetotcc.view.fragment.RelatoriosFragment
 import java.util.*
 
+private const val TAG = "RelatoriosPresenter"
 class RelatoriosPresenter(private val view: RelatoriosFragment) {
     private val pacienteModel = ModelFactory.getPacienteModel
     private val resultadoModel = ModelFactory.getResultadoModel
 
     init {
         popularResultados()
+        val stringArray = "Daniel,Fabricio,Fernando,Teste,Foo,Bar,Loo"
+        Log.i(TAG, "String Atual: $stringArray")
+        Log.i(TAG, "String Atual: ${RegexUtils.removerVirgulasAsStringArray(stringArray)}")
     }
 
     private fun popularResultados() {
@@ -24,11 +30,11 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
             val resultado = Resultado()
             resultado.id = UUID.randomUUID().toString()
             resultado.created = Date()
-            resultado.tipo_exercicio = "Aleatorio"
             resultado.acertos = 25.toString()
             resultado.erros = 5.toString()
             resultado.paciente_id = "b2331c99-410f-442b-b184-deef41226e3e"
-            resultado.velocidade_acao_media = 2.5.toString()
+            resultado.exercicio_id = "b2331c99-410f-442b-b184-deef41226e3e"
+            resultado.tempo_total = 2.5.toString()
             resultadoModel.salvarResultado(resultado)
         }
     }

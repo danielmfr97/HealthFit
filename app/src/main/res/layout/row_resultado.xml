@@ -12,10 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="6dp">
-        <!--        Header Tipo Exercicio-->
 
         <TextView
-            android:id="@+id/tipoExercicio"
+            android:id="@+id/nomeExercicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -24,7 +23,7 @@
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Tipo exercício" />
+            tools:text="Exercicio Assol" />
 
         <!--        Número de Acertos e Erros-->
         <TextView
@@ -37,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="@id/labelErros"
             app:layout_constraintEnd_toStartOf="@id/labelErros"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tipoExercicio" />
+            app:layout_constraintTop_toBottomOf="@id/nomeExercicio" />
 
         <TextView
             android:id="@+id/numAcertos"
@@ -78,10 +77,10 @@
         <!--       Velocidade ação média e Data criação-->
 
         <TextView
-            android:id="@+id/labelVelAcaoMed"
+            android:id="@+id/labelTempoTotal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/labelVelocidadeAcaoMedia"
+            android:text="@string/labelTempoTotal"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@id/labelData"
@@ -89,16 +88,16 @@
             app:layout_constraintTop_toBottomOf="@id/numAcertos" />
 
         <TextView
-            android:id="@+id/velAcaoMedia"
+            android:id="@+id/tempoTotal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/dataCriado"
-            app:layout_constraintStart_toStartOf="@id/labelVelAcaoMed"
-            app:layout_constraintTop_toBottomOf="@id/labelVelAcaoMed"
-            tools:text="25" />
+            app:layout_constraintStart_toStartOf="@id/labelTempoTotal"
+            app:layout_constraintTop_toBottomOf="@id/labelTempoTotal"
+            tools:text="00:09:54" />
 
         <TextView
             android:id="@+id/labelData"
@@ -108,8 +107,8 @@
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/labelVelAcaoMed"
-            app:layout_constraintTop_toTopOf="@id/labelVelAcaoMed" />
+            app:layout_constraintStart_toEndOf="@id/labelTempoTotal"
+            app:layout_constraintTop_toTopOf="@id/labelTempoTotal" />
 
         <TextView
             android:id="@+id/dataCriado"
@@ -118,9 +117,9 @@
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/velAcaoMedia"
+            app:layout_constraintBottom_toBottomOf="@id/tempoTotal"
             app:layout_constraintEnd_toEndOf="@id/labelData"
-            app:layout_constraintStart_toEndOf="@id/velAcaoMedia"
+            app:layout_constraintStart_toEndOf="@id/tempoTotal"
             app:layout_constraintTop_toBottomOf="@id/labelData"
             tools:text="27/12/1990" />
 
