@@ -50,11 +50,21 @@
         <action
             android:id="@+id/action_exerciciosFragment_to_novoExercicioFragment"
             app:destination="@id/novoExercicioFragment" />
+        <action
+            android:id="@+id/action_exerciciosFragment_to_exercicioIniciadoFragment"
+            app:destination="@id/exercicioIniciadoFragment" />
     </fragment>
     <fragment
         android:id="@+id/novoExercicioFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.NovoExercicioFragment"
         android:label="fragment_novo_exercicio"
         tools:layout="@layout/fragment_novo_exercicio" />
+    <fragment
+        android:id="@+id/exercicioIniciadoFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.ExercicioIniciadoFragment"
+        android:label="fragment_exercicio_iniciado"
+        tools:layout="@layout/fragment_exercicio_iniciado">
+
+    </fragment>
 
 </navigation>

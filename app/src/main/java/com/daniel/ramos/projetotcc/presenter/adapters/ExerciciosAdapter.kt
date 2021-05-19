@@ -10,6 +10,8 @@ import com.daniel.ramos.projetotcc.databinding.RowExercicioBinding
 import com.daniel.ramos.projetotcc.model.entities.Exercicio
 import com.daniel.ramos.projetotcc.model.repositories.ExercicioRepository
 import com.daniel.ramos.projetotcc.model.repositories.RealmRepository
+import com.daniel.ramos.projetotcc.presenter.dialogs.DialogIniciarExercicio
+import com.daniel.ramos.projetotcc.presenter.listeners.OnExercicioIniciado
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.realm.RealmRecyclerViewAdapter
@@ -17,6 +19,11 @@ import io.realm.RealmResults
 
 class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpdate: Boolean) :
     RealmRecyclerViewAdapter<Exercicio, ExerciciosAdapter.ViewHolder>(exercicios, autoUpdate) {
+    lateinit var onExercicioIniciado: OnExercicioIniciado
+
+    constructor(exercicios: RealmResults<Exercicio>, autoUpdate: Boolean, onExercicioIniciado: OnExercicioIniciado): this(exercicios, autoUpdate) {
+        this.onExercicioIniciado = onExercicioIniciado
+    }
 
     private var _binding: RowExercicioBinding? = null
     private val binding get() = _binding!!
@@ -24,14 +31,13 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nomeExercicio = binding.tvExercicioNome
-        var numFitSpots = binding.numFitSpots
         var tipoExercicio = binding.tipoExercicio
-        var duracaoExercicio = binding.duracaoExercicio
+        var numCiclos = binding.numeroCiclos
         var timeoutDelay = binding.timeoutDelay
+        var fitSpots = binding.timeoutDelay
         var deletarItem = binding.ivDelete
         var iniciarExercicio = binding.iniciarExercicio
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         _binding =
@@ -42,12 +48,10 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exercicio: Exercicio? = getItem(position)
         holder.nomeExercicio.text = exercicio!!.nomeExercicio
-        holder.numFitSpots.text =
-            MainActivity.instance!!.getString(R.string.numeroDeFitSpots, exercicio.sensoresUsados)
         holder.tipoExercicio.text =
-            MainActivity.instance!!.getString(R.string.tipoExercicio, exercicio.tipoExericicio)
-        holder.duracaoExercicio.text =
-            MainActivity.instance!!.getString(R.string.duracaoExercicio, exercicio.exercicioDuracao)
+            MainActivity.instance!!.getString(R.string.tipoExercicio, exercicio.tipoExercicio)
+        holder.numCiclos.text = MainActivity.instance!!.getString(R.string.numeroDeCiclos, exercicio.ciclosExercicio)
+//        holder.fitSpots
         holder.timeoutDelay.text = if (exercicio.timeOutSensor!!) MainActivity.instance!!.getString(
             R.string.timeoutDelay,
             exercicio.timeout
@@ -57,7 +61,7 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
             openDialogDeletarExercicio(exercicio.nomeExercicio, position)
         }
         holder.iniciarExercicio.setOnClickListener {
-            //TODO: CONFIGURAr dialog para selecionar um paciente e entao iniciar
+            openDialogIniciarExercicio(exercicio)
         }
     }
 
@@ -84,5 +88,9 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
             .setCancelable(false)
             .create()
         dialog.show()
+    }
+
+    private fun openDialogIniciarExercicio(exercicio: Exercicio) {
+        DialogIniciarExercicio(exercicio, onExercicioIniciado).exibir()
     }
 }
