@@ -52,7 +52,7 @@
     <string name="remover_exercicio">Remover</string>
     <string name="titleIniciarExecicio">Iniciar exercício</string>
     <string name="selecionePaciente">Selecione um paciente</string>
-    <string name="labelVelocidadeAcaoMedia">Vel. Ação Média</string>
+    <string name="labelTempoTotal">Tempo decorrido</string>
     <string name="labelAcertos">Acertos</string>
     <string name="labelErros">Erros</string>
     <string name="labelData">Data realização</string>
@@ -64,4 +64,7 @@
     <string name="selecioneFitSpots">Selecione quais FitSpots usará neste exercício</string>
     <string name="headerCiclos">Número de ciclos</string>
     <string name="subtitleCiclos">"Um ciclo é representado pelo número total de FitSpots "</string>
+    <string name="parar">PARAR</string>
+    <string name="labelCronometro"><CRONÔMETRO></CRONÔMETRO></string>
+    <string name="labelTemporizador">TEMPORIZADOR</string>
 </resources>

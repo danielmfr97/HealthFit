@@ -26,13 +26,14 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
     }
 
     private fun popularResultados() {
-        if (resultadoModel.all.size < 2) {
+        for (i in 0 until pacienteModel.all.size) {
+            val paciente = pacienteModel.all[i]
             val resultado = Resultado()
             resultado.id = UUID.randomUUID().toString()
             resultado.created = Date()
-            resultado.acertos = 25.toString()
-            resultado.erros = 5.toString()
-            resultado.paciente_id = "b2331c99-410f-442b-b184-deef41226e3e"
+            resultado.acertos = null
+            resultado.erros = null
+            resultado.paciente_id = paciente!!.id
             resultado.exercicio_id = "b2331c99-410f-442b-b184-deef41226e3e"
             resultado.tempo_total = 2.5.toString()
             resultadoModel.salvarResultado(resultado)
