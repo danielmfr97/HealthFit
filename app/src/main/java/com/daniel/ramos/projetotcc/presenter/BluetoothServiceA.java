@@ -28,18 +28,19 @@ public class BluetoothServiceA extends Service {
     private static final String TAG = "BluetoothChatService";
 
     // Name for the SDP record when creating server socket
-    private static final String NAME_SECURE = "HC-05";
-    private static final String NAME_INSECURE = "HC-05";
+    private static final String NAME_SECURE = "BluetoothChatSecure";
+    private static final String NAME_INSECURE = "BluetoothChatInsecure";
 
     // Unique UUID for this application
     private static final UUID MY_UUID_SECURE =
             UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private static final UUID MY_UUID_INSECURE =
-            UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+            UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
 
     // Member fields
     private final BluetoothAdapter mAdapter;
-    private  Handler mHandler;
+    private Handler mHandler;
+    private Handler mHandlerDados;
     private AcceptThread mSecureAcceptThread;
     private AcceptThread mInsecureAcceptThread;
     private ConnectThread mConnectThread;
@@ -61,6 +62,10 @@ public class BluetoothServiceA extends Service {
 
     public void setmHandler(Handler mHandler) {
         this.mHandler = mHandler;
+    }
+
+    public void setmHandlerSecundario(Handler mHandler) {
+        this.mHandlerDados = mHandler;
     }
 
     private final IBinder mBinder = new BluetoothServiceA.LocalBinder();
@@ -237,8 +242,6 @@ public class BluetoothServiceA extends Service {
         bundle.putString(Constants.TOAST, "Device connection was lost");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
-
-        MainActivity.Companion.openToastShort("Conexão perdida com FitSpot");
         mState = STATE_NONE;
 
         // Start the service over to restart listening mode
@@ -372,6 +375,7 @@ public class BluetoothServiceA extends Service {
                     Log.e(TAG, "unable to close() " + mSocketType +
                             " socket during connection failure", e2);
                 }
+                e.printStackTrace();
                 connectionFailed();
                 return;
             }
@@ -420,18 +424,21 @@ public class BluetoothServiceA extends Service {
 
         public void run() {
             Log.i(TAG, "BEGIN mConnectedThread");
-            byte[] buffer = new byte[1024];
-            int bytes;
+            int bytes; // bytes returned from read()
+            int availableBytes = 0;
 
             // Keep listening to the InputStream while connected
             while (mState == STATE_CONNECTED) {
                 try {
-                    // Read from the InputStream
-                    bytes = mmInStream.read(buffer);
-
-                    // Send the obtained bytes to the UI Activity
-                    mHandler.obtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer)
-                            .sendToTarget();
+                    availableBytes = mmInStream.available();
+                    if(availableBytes>0){
+                        byte[] buffer = new byte[availableBytes];  // buffer store for the stream
+                        // Read from InputStream
+                        bytes = mmInStream.read(buffer); // Get number of bytes and message in "buffer"
+                        if (bytes>0){
+                            mHandlerDados.obtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer).sendToTarget();     // Send to message queue Handler
+                        }
+                    }
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
@@ -450,6 +457,7 @@ public class BluetoothServiceA extends Service {
                 mmOutStream.write(buffer);
 
                 // Share the sent message back to the UI Activity
+                mHandlerDados.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer).sendToTarget();
                 mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
                         .sendToTarget();
             } catch (IOException e) {
@@ -465,7 +473,6 @@ public class BluetoothServiceA extends Service {
             }
         }
     }
-
 
 
 }

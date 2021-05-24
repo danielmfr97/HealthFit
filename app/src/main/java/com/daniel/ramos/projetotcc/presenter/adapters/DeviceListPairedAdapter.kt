@@ -35,7 +35,7 @@ class DeviceListPairedAdapter(private val context: Context, private var deviceLi
         holder.textName.text = deviceInfoModel.name
         holder.textAddress.text = deviceInfoModel.address
         holder.deviceInfoLayout.setOnClickListener {
-            bluetoothServiceA.connect(deviceList[position], false)
+            bluetoothServiceA.connect(deviceList[position], true)
         }
     }
 }
