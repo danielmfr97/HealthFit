@@ -21,7 +21,10 @@ class ExercicioModel {
                     exercicio.tipoExercicio = exercicioDado.tipoExercicio
                     exercicio.timeOutSensor = exercicioDado.timeOutSensor
                     exercicio.timeout = exercicioDado.timeout
-                    exercicio.sensoresUsados = exercicioDado.sensoresUsados
+                    exercicio.sensor1 = exercicioDado.sensor1
+                    exercicio.sensor2 = exercicioDado.sensor2
+                    exercicio.sensor3 = exercicioDado.sensor3
+                    exercicio.sensor4 = exercicioDado.sensor4
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }

@@ -20,7 +20,10 @@ open class Exercicio : RealmObject() {
     var timeout: Long? = null // ms, caso timeOutSensor false -> return 0
 
     // lista com os sensores ativos
-    var sensoresUsados: String? = null
+    var sensor1: Boolean? = null
+    var sensor2: Boolean? = null
+    var sensor3: Boolean? = null
+    var sensor4: Boolean? = null
 
     // A priori será sempre RANDOM e Sequencial
     var tipoExercicio: String? = null // Tipo de exercicio

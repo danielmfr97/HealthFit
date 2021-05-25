@@ -130,6 +130,7 @@ class NovoExercicioFragment : Fragment() {
     private fun configurarBotoes() {
         binding.btnSalvar.setOnClickListener {
             salvarDados()
+            listaSensores.clear()
         }
     }
 
@@ -164,12 +165,17 @@ class NovoExercicioFragment : Fragment() {
         return tempoInMs
     }
 
-    fun getFitSpots(): MutableList<Boolean> {
-        listaSensores.add(binding.firstFitSpot.isChecked)
-        listaSensores.add(binding.secondFitSpot.isChecked)
-        listaSensores.add(binding.thirdFitSpot.isChecked)
-        listaSensores.add(binding.fourthFitSpot.isChecked)
-        return listaSensores
+    fun getSensor1(): Boolean {
+        return binding.firstFitSpot.isChecked
+    }
+    fun getSensor2(): Boolean {
+        return binding.secondFitSpot.isChecked
+    }
+    fun getSensor3(): Boolean {
+        return binding.thirdFitSpot.isChecked
+    }
+    fun getSensor4(): Boolean {
+        return binding.fourthFitSpot.isChecked
     }
 
     private fun isDadosValidos(): Boolean {
@@ -205,7 +211,7 @@ class NovoExercicioFragment : Fragment() {
         }
 
         // Validar sensores (pelo menos dois devem estar selecionados
-        getFitSpots().forEach {
+        getFitSpotsList().forEach {
             if (it)
                 fitSpotsAtivos++
         }
@@ -215,5 +221,13 @@ class NovoExercicioFragment : Fragment() {
         }
 
         return isValido
+    }
+
+    fun getFitSpotsList(): List<Boolean> {
+        listaSensores.add(getSensor1())
+        listaSensores.add(getSensor2())
+        listaSensores.add(getSensor3())
+        listaSensores.add(getSensor4())
+        return listaSensores
     }
 }

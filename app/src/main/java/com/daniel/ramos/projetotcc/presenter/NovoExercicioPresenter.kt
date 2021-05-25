@@ -26,17 +26,6 @@ class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
         return adapter
     }
 
-    private fun getFitSpotsAsString(listaSensores: List<Boolean>) : String {
-        val listIterator = listaSensores.iterator()
-        val sensoresString = ""
-        while (listIterator.hasNext()) {
-            sensoresString.plus("${listIterator.next()}")
-            if (listIterator.hasNext())
-                sensoresString.plus(",")
-        }
-        return sensoresString
-    }
-
     fun salvarExercicio() {
        val exercicioDado = Exercicio()
         exercicioDado.nomeExercicio = view.getNomeExercicio()
@@ -44,7 +33,10 @@ class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
         exercicioDado.tipoExercicio = view.getTipoExercicio()
         exercicioDado.timeOutSensor = view.getTimeoutOption()
         exercicioDado.timeout = view.getTimeout()
-        exercicioDado.sensoresUsados = getFitSpotsAsString(view.getFitSpots())
+        exercicioDado.sensor1 = view.getSensor1()
+        exercicioDado.sensor2 = view.getSensor2()
+        exercicioDado.sensor3 = view.getSensor3()
+        exercicioDado.sensor4 = view.getSensor4()
         exercicioModel.salvarExercicio(exercicioDado)
         MainActivity.openToastShort("Exercício salvo")
     }
