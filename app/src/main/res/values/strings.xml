@@ -69,5 +69,5 @@
     <string name="title_connecting">connecting...</string>
     <string name="title_connected_to">connected to %1$s</string>
     <string name="title_not_connected">Conecte-se a um FitSpot</string>
-    <string name="bluetoothStatus">%1$s</string>
+    <string name="bluetoothStatus">Desconectado</string>
 </resources>

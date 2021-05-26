@@ -1,5 +1,6 @@
 package com.daniel.ramos.projetotcc.presenter;
 
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -47,6 +48,7 @@ public class BluetoothServiceA extends Service {
     private ConnectedThread mConnectedThread;
     private int mState;
     private int mNewState;
+    private static ProgressDialog progressDialog;
 
     // Constants that indicate the current connection state
     public static final int STATE_NONE = 0;       // we're doing nothing
@@ -58,6 +60,40 @@ public class BluetoothServiceA extends Service {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mState = STATE_NONE;
         mNewState = mState;
+    }
+
+    /**
+     * Update UI title according to the current state of the chat connection
+     */
+    private synchronized void updateUserInterfaceTitle() {
+        mState = getState();
+        Log.d(TAG, "updateUserInterfaceTitle() " + mNewState + " -> " + mState);
+        mNewState = mState;
+
+        // Give the new state to the Handler so the UI Activity can update
+        mHandler.obtainMessage(Constants.MESSAGE_STATE_CHANGE, mNewState, -1).sendToTarget();
+    }
+
+    /**
+     * Return the current connection state.
+     */
+    public synchronized int getState() {
+        return mState;
+    }
+
+    private void enableDisableProgress(boolean show) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(MainActivity.getInstance());
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage("Conectando...");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setIndeterminate(true);
+        }
+        if (show) {
+            progressDialog.show();
+        } else {
+            progressDialog.dismiss();
+        }
     }
 
     public void setmHandler(Handler mHandler) {
@@ -113,7 +149,7 @@ public class BluetoothServiceA extends Service {
             mInsecureAcceptThread.start();
         }
         // Update UI title
-//        updateUserInterfaceTitle();
+        updateUserInterfaceTitle();
     }
 
     public synchronized void connect(BluetoothDevice device, boolean secure) {
@@ -137,7 +173,9 @@ public class BluetoothServiceA extends Service {
         mConnectThread = new ConnectThread(device, secure);
         mConnectThread.start();
         // Update UI title
-//        updateUserInterfaceTitle();
+        updateUserInterfaceTitle();
+        // Apresentar dialog de carregamento
+        enableDisableProgress(true);
     }
 
     public synchronized void connected(BluetoothSocket socket, BluetoothDevice
@@ -177,7 +215,8 @@ public class BluetoothServiceA extends Service {
         msg.setData(bundle);
         mHandler.sendMessage(msg);
         // Update UI title
-//        updateUserInterfaceTitle();
+        updateUserInterfaceTitle();
+        enableDisableProgress(false);
     }
 
     public synchronized void stop() {
@@ -204,7 +243,7 @@ public class BluetoothServiceA extends Service {
         }
         mState = STATE_NONE;
         // Update UI title
-//        updateUserInterfaceTitle();
+        updateUserInterfaceTitle();
     }
 
     public void write(byte[] out) {
@@ -229,7 +268,9 @@ public class BluetoothServiceA extends Service {
 
         mState = STATE_NONE;
         // Update UI title
-//        updateUserInterfaceTitle();
+        updateUserInterfaceTitle();
+
+        enableDisableProgress(false);
 
         // Start the service over to restart listening mode
         BluetoothServiceA.this.start();
@@ -458,8 +499,6 @@ public class BluetoothServiceA extends Service {
 
                 // Share the sent message back to the UI Activity
                 mHandlerDados.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer).sendToTarget();
-                mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
-                        .sendToTarget();
             } catch (IOException e) {
                 Log.e(TAG, "Exception during write", e);
             }

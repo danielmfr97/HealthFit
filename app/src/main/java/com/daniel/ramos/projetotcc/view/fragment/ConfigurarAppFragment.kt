@@ -35,9 +35,6 @@ class ConfigurarAppFragment : Fragment() {
     lateinit var mBTDevice: BluetoothDevice
     val btAdapter = BluetoothAdapter.getDefaultAdapter()
 
-    private val bluetoothService = ModelFactory.getBluetoothServiceA
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -122,6 +119,4 @@ class ConfigurarAppFragment : Fragment() {
         val intentFilter = IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)
         MainActivity.context.registerReceiver(presenter.broadcastDiscoverable, intentFilter)
     }
-
-
 }

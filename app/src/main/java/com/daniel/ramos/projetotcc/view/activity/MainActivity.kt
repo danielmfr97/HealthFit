@@ -10,7 +10,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var presenter: MainPresenter
     private var bluetoothServiceInst: BluetoothServiceA? = null
+    private var deviceName = ""
 
     private var menuInflater: Menu? = null
 
@@ -214,51 +214,46 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    private fun setStatus(subTitle: CharSequence) {
+        binding.toolbarMain.subtitle = subTitle
+    }
+
     private val mHandler: Handler = @SuppressLint("HandlerLeak")
-   object : Handler() {
+    object : Handler() {
         override fun handleMessage(msg: Message) {
             val activity = this
             when (msg.what) {
                 Constants.MESSAGE_STATE_CHANGE -> when (msg.arg1) {
-                    BluetoothServiceA.STATE_CONNECTED -> {
-                        menuInflater?.getItem(0)?.icon = ContextCompat.getDrawable(context, R.drawable.ic_bluetooth_on)
-                        openToastShort("Device conectado")
-
-                    }
-                    BluetoothServiceA.STATE_CONNECTING -> openToastShort("conectando...")
-                    BluetoothServiceA.STATE_LISTEN, BluetoothServiceA.STATE_NONE -> openToastShort(
-                        "Não conectado"
+                    BluetoothServiceA.STATE_CONNECTED -> setStatus(
+                        getString(
+                            R.string.title_connected_to,
+                            deviceName
+                        )
                     )
-                }
-                Constants.MESSAGE_WRITE -> {
-                    val writeBuf = msg.obj as ByteArray
-                    // construct a string from the buffer
-                    val writeMessage = String(writeBuf)
-                    openToastShort("TESTANDO: Write: $writeMessage")
-                    Log.i("TESTANDO", "Write: $writeMessage")
-                }
-                Constants.MESSAGE_READ -> {
-                    val readBuf = msg.obj as ByteArray
-                    // construct a string from the valid bytes in the buffer
-                    val readMessage = String(readBuf, 0, msg.arg1)
-                    openToastShort("TESTANDO: Read: $readMessage")
-                    Log.i("TESTANDO", "Read: $readMessage")
+                    BluetoothServiceA.STATE_CONNECTING -> setStatus(getString(R.string.title_connecting))
+                    BluetoothServiceA.STATE_LISTEN, BluetoothServiceA.STATE_NONE -> setStatus(getString(R.string.title_not_connected))
                 }
                 Constants.MESSAGE_DEVICE_NAME -> {
+                    deviceName = msg.data.getString(Constants.DEVICE_NAME).toString()
+                    binding.toolbarMain.menu.getItem(0).title = "Conectado a $deviceName"
                 }
                 Constants.MESSAGE_TOAST -> {
                     openToastShort("Impossivel conectar'")
                 }
                 Constants.MESSAGE_DEVICE_OFFLINE -> {
-                    menuInflater?.getItem(0)?.icon = ContextCompat.getDrawable(context, R.drawable.ic_bluetooth_off)
+                    menuInflater?.getItem(0)?.icon =
+                        ContextCompat.getDrawable(context, R.drawable.ic_bluetooth_off)
+                    binding.toolbarMain.menu.getItem(0).title = "Desconectado"
                 }
             }
         }
     }
 
     companion object {
+        @JvmStatic
         var instance: MainActivity? = null
 
+        @JvmStatic
         val context: Context
             get() = instance!!.baseContext
 
