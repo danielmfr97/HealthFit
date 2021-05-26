@@ -45,7 +45,6 @@
     <string name="informacoes_invalidas">Informações inválidas</string>
     <string name="labelNomeExercicio">Nome do exercício</string>
     <string name="tipoExercicio">Tipo: %1s</string>
-    <string name="numeroDeFitSpots">%1d FitSpots</string>
     <string name="timeoutDelay">Timeout: %1d segundos</string>
     <string name="numeroDeCiclos">Ciclos: %1d </string>
     <string name="iniciar_exercicio">Iniciar</string>

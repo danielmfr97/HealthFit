@@ -1,5 +1,6 @@
 package com.daniel.ramos.projetotcc.presenter.adapters
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,7 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
         var tipoExercicio = binding.tipoExercicio
         var numCiclos = binding.numeroCiclos
         var timeoutDelay = binding.timeoutDelay
-        var fitSpots = binding.timeoutDelay
+        var fitSpots = binding.numFitSpotsAtivos
         var deletarItem = binding.ivDelete
         var iniciarExercicio = binding.iniciarExercicio
     }
@@ -45,13 +46,14 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
         return ViewHolder(binding.root)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exercicio: Exercicio? = getItem(position)
         holder.nomeExercicio.text = exercicio!!.nomeExercicio
         holder.tipoExercicio.text =
             MainActivity.instance!!.getString(R.string.tipoExercicio, exercicio.tipoExercicio)
         holder.numCiclos.text = MainActivity.instance!!.getString(R.string.numeroDeCiclos, exercicio.ciclosExercicio)
-//        holder.fitSpots
+        holder.fitSpots.text = "FitSpots: 1-${sensorOnOrOff(exercicio.sensor1!!)} 2-${sensorOnOrOff(exercicio.sensor2!!)} 3-${sensorOnOrOff(exercicio.sensor3!!)} 4-${sensorOnOrOff(exercicio.sensor4!!)}"
         holder.timeoutDelay.text = if (exercicio.timeOutSensor!!) MainActivity.instance!!.getString(
             R.string.timeoutDelay,
             exercicio.timeout
@@ -63,6 +65,13 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
         holder.iniciarExercicio.setOnClickListener {
             openDialogIniciarExercicio(exercicio)
         }
+    }
+
+    private fun sensorOnOrOff(boolean: Boolean): String {
+        var result = "On"
+        if (!boolean)
+            result = "Off"
+        return result
     }
 
     override fun getItemCount(): Int {
