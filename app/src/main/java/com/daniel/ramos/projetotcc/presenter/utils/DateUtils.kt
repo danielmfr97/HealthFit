@@ -10,7 +10,9 @@ class DateUtils {
     companion object{
         private fun getLocaleBR(): Locale {return Locale("pt", "BR")}
 
-        fun convertDateToString(date: Date): String {
+        fun convertDateToString(date: Date?): String {
+            if (date == null)
+                return "N/A"
             return SimpleDateFormat("dd/MM/yyyy", getLocaleBR()).format(date)
         }
 

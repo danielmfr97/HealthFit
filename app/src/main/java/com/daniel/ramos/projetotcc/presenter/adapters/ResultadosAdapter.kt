@@ -8,6 +8,7 @@ import com.daniel.ramos.projetotcc.databinding.RowResultadoBinding
 import com.daniel.ramos.projetotcc.model.entities.Resultado
 import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.model.repositories.ResultadoRepository
+import com.daniel.ramos.projetotcc.presenter.utils.DateUtils
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
@@ -25,6 +26,7 @@ class ResultadosAdapter(private val resultados: RealmResults<Resultado>, autoUpd
         var numAcertos = binding.numAcertos
         var numErros = binding.numErros
         var tempoTotal = binding.tempoTotal
+        var dataCriado = binding.dataCriado
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,6 +43,7 @@ class ResultadosAdapter(private val resultados: RealmResults<Resultado>, autoUpd
         holder.numAcertos.text = resultado.acertos
         holder.numErros.text = resultado.erros
         holder.tempoTotal.text = resultado.tempo_total
+        holder.dataCriado.text =  DateUtils.convertDateToString(resultado?.created)
     }
 
     override fun getItemCount(): Int {

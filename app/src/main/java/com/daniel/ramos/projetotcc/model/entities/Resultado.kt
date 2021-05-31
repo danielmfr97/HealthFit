@@ -9,8 +9,8 @@ open class Resultado : RealmObject() {
     var id: String = ""
     var paciente_id: String = ""
     var exercicio_id: String = ""
-    var acertos: String? = null
-    var erros: String? = null
+    var acertos: String? = "N/A"
+    var erros: String? = "N/A"
     var tempo_total: String = ""
     var created : Date? = null
 }

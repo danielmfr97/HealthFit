@@ -20,9 +20,6 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
 
     init {
         popularResultados()
-        val stringArray = "Daniel,Fabricio,Fernando,Teste,Foo,Bar,Loo"
-        Log.i(TAG, "String Atual: $stringArray")
-        Log.i(TAG, "String Atual: ${RegexUtils.removerVirgulasAsStringArray(stringArray)}")
     }
 
     private fun popularResultados() {
@@ -31,11 +28,10 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
             val resultado = Resultado()
             resultado.id = UUID.randomUUID().toString()
             resultado.created = Date()
-            resultado.acertos = null
-            resultado.erros = null
             resultado.paciente_id = paciente!!.id
             resultado.exercicio_id = "b2331c99-410f-442b-b184-deef41226e3e"
             resultado.tempo_total = 2.5.toString()
+            resultado.created = Date()
             resultadoModel.salvarResultado(resultado)
         }
     }
