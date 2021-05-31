@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        configureNavController()
         requestUserPermissions()
     }
 
@@ -111,12 +113,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun init() {
-        val view = binding.root
         MyApplication.configurarRealm()
-        setContentView(view)
         configureToolbar()
         configureDrawer()
-        configureNavController()
         inicializarPresenter()
     }
 
@@ -207,10 +206,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode) {
+            101 -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    init()
+                } else {
+                    closeNow()
+                }
+            }
+        }
+    }
+
+    private fun closeNow() {
+        finishAffinity()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater = menu
         val menuInflater = getMenuInflater()
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
     }
 

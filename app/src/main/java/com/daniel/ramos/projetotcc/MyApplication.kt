@@ -2,9 +2,10 @@ package com.daniel.ramos.projetotcc
 
 import android.app.Application
 import android.content.Intent
+import com.daniel.ramos.projetotcc.model.database.RealmUpgrade
 import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
 import io.realm.Realm
-import io.realm.RealmConfiguration
+import io.realm.android.BuildConfig
 
 class MyApplication : Application() {
 
@@ -22,8 +23,10 @@ class MyApplication : Application() {
 
     companion object {
         fun configurarRealm() {
-            val configuration = RealmConfiguration.Builder()
-                .name("projetotcc.realm").build()
+            val configuration = if (BuildConfig.DEBUG) {
+                RealmUpgrade.getRealmConfigNoMigration()
+            }
+            else RealmUpgrade.getRealmConfig()
             Realm.setDefaultConfiguration(configuration)
         }
     }
