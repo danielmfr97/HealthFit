@@ -57,12 +57,12 @@
     <fragment
         android:id="@+id/novoExercicioFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.NovoExercicioFragment"
-        android:label="fragment_novo_exercicio"
+        android:label="Novo Exercício"
         tools:layout="@layout/fragment_novo_exercicio" />
     <fragment
         android:id="@+id/exercicioIniciadoFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.ExercicioIniciadoFragment"
-        android:label="fragment_exercicio_iniciado"
+        android:label="Iniciar Exercício"
         tools:layout="@layout/fragment_exercicio_iniciado">
 
     </fragment>

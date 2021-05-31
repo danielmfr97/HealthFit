@@ -60,7 +60,6 @@ class NovoExercicioFragment : Fragment() {
         }
 
     private fun limparCamposComuns() {
-        binding.nomeExercicio.editText?.text?.clear()
         numeroCiclos = 0
     }
 

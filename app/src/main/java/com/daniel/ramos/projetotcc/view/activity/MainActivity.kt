@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        configureToolbar()
+        configureDrawer()
         configureNavController()
         requestUserPermissions()
     }
@@ -114,8 +116,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun init() {
         MyApplication.configurarRealm()
-        configureToolbar()
-        configureDrawer()
         inicializarPresenter()
     }
 
@@ -213,7 +213,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     ) {
         when(requestCode) {
             101 -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     init()
                 } else {
                     closeNow()
