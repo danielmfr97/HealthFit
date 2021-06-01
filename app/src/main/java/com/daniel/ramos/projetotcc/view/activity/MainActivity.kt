@@ -33,6 +33,7 @@ import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.MainPresenter
 import com.daniel.ramos.projetotcc.presenter.utils.Constants
 import com.google.android.material.navigation.NavigationView
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -200,7 +201,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-//            R.id.nav_dashboard -> navController.navigate(R.id.action_open_dashboard_fragment)
+            R.id.nav_dashboard -> navController.navigate(R.id.dashboardFragment)
+            R.id.nav_meus_pacientes -> navController.navigate(R.id.meusPacientesFragment)
+            R.id.nav_reports -> navController.navigate(R.id.relatoriosFragment)
+            R.id.nav_exercicios -> navController.navigate(R.id.exerciciosFragment)
+//            R.id.nav_aboutus -> navController.navigate(R.id.)
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
@@ -253,7 +258,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 Constants.MESSAGE_DEVICE_NAME -> {
                     deviceName = msg.data.getString(Constants.DEVICE_NAME).toString()
-                    binding.toolbarMain.menu.getItem(0).title = "Conectado a $deviceName"
+                    supportActionBar?.title = "Conectado a $deviceName"
                 }
                 Constants.MESSAGE_TOAST -> {
                     openToastShort("Impossivel conectar'")

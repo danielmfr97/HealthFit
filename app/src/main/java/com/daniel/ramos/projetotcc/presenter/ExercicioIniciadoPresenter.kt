@@ -6,11 +6,16 @@ import android.os.Message
 import android.util.Log
 import com.daniel.ramos.projetotcc.model.entities.Exercicio
 import com.daniel.ramos.projetotcc.model.entities.Paciente
+import com.daniel.ramos.projetotcc.model.entities.Resultado
 import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.enums.TipoExercicio
 import com.daniel.ramos.projetotcc.presenter.utils.Constants
+import com.daniel.ramos.projetotcc.presenter.utils.DateUtils
+import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.fragment.ExercicioIniciadoFragment
 import org.json.JSONObject
+import java.lang.Exception
+import java.util.*
 
 
 class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
@@ -46,6 +51,7 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
                     if (endOfLineIndex > 0) {                                            // if end-of-line,
                         val sbprint = sb.substring(0, endOfLineIndex) // extract string
                         Log.i("TESTANDO", "Read: $sbprint")
+                        stopAndSaveResult(sbprint)
                         sb.delete(0, sb.length)
                     }
                 }
@@ -68,8 +74,8 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
 
     fun inicializarExercicio() {
         when (exercicio!!.tipoExercicio) {
-            TipoExercicio.SEQUENCIA.nome -> iniciarExercicioSequencia()
-            TipoExercicio.ALEATORIO.nome -> iniciarExercicioAleatorio()
+            0 -> iniciarExercicioSequencia()
+            1 -> iniciarExercicioAleatorio()
         }
     }
 
@@ -78,12 +84,10 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
         Log.i("TESTE", "Iniciou o exercicio sequencia")
         val jsonObject = JSONObject()
         val exercicio = exercicioModel.getExercicioPorId(view.exercicioId)!!
-
-        jsonObject.put("paciente_id", view.pacienteId)
-        jsonObject.put("exercicio_id", exercicio.id)
         jsonObject.put("tipoExercicio", exercicio.tipoExercicio)
         jsonObject.put("quantidadeCiclos", exercicio.ciclosExercicio)
         jsonObject.put("tempoRandom", 0)
+        jsonObject.put("timeout", 0)
         jsonObject.put("sensor1", exercicio.sensor1)
         jsonObject.put("sensor2", exercicio.sensor2)
         jsonObject.put("sensor3", exercicio.sensor3)
@@ -98,12 +102,10 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
         Log.i("TESTE", "Iniciou o exercicio aleatorio")
         val jsonObject = JSONObject()
         val exercicio = exercicioModel.getExercicioPorId(view.exercicioId)!!
-
-        jsonObject.put("paciente_id", view.pacienteId)
-        jsonObject.put("exercicio_id", exercicio.id)
         jsonObject.put("tipoExercicio", exercicio.tipoExercicio)
-        jsonObject.put("quantidadeCiclos", exercicio.ciclosExercicio)
-        jsonObject.put("tempoRandom", exercicio.timeout)
+        jsonObject.put("quantidadeCiclos", 0)
+        jsonObject.put("tempoRandom", exercicio.tempoRandom?.times(1000).toString())
+        jsonObject.put("timeout", exercicio.timeout?.times(1000).toString())
         jsonObject.put("sensor1", exercicio.sensor1)
         jsonObject.put("sensor2", exercicio.sensor2)
         jsonObject.put("sensor3", exercicio.sensor3)
@@ -111,5 +113,24 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
         jsonObject.put("start", true)
         myBlue.write(jsonObject.toString().toByteArray())
         view.startCronometro()
+    }
+
+    private fun stopAndSaveResult(sbprint: String) {
+        view.pararContador()
+        MainActivity.instance?.onBackPressed()
+        try {
+            val jsonObject = JSONObject(sbprint)
+            val resultado = Resultado()
+            resultado.id = UUID.randomUUID().toString()
+            resultado.paciente_id = paciente?.id.toString()
+            resultado.exercicio_id = exercicio?.id.toString()
+            resultado.tempo_total = jsonObject.optString("tempoTotal")
+            resultado.acertos = jsonObject.optString("acertos")
+            resultado.erros = jsonObject.optString("erros")
+            resultado.created = Date()
+            resultadoModel.salvarResultado(resultado)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

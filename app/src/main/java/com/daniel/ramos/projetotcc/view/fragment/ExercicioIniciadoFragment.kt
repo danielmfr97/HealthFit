@@ -72,4 +72,8 @@ class ExercicioIniciadoFragment : Fragment() {
         presenter.pararExercicio()
     }
 
+    fun pararContador() {
+        binding.contadorCronometro.stop()
+    }
+
 }

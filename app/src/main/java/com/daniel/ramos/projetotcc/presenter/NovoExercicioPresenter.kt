@@ -30,6 +30,7 @@ class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
        val exercicioDado = Exercicio()
         exercicioDado.nomeExercicio = view.getNomeExercicio()
         exercicioDado.ciclosExercicio = view.getNumeroCiclos()
+        exercicioDado.tempoRandom = view.getTempoRandom()
         exercicioDado.tipoExercicio = view.getTipoExercicio()
         exercicioDado.timeOutSensor = view.getTimeoutOption()
         exercicioDado.timeout = view.getTimeout()

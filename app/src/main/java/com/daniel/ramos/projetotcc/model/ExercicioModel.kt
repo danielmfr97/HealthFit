@@ -20,6 +20,7 @@ class ExercicioModel {
                     exercicio.ciclosExercicio = exercicioDado.ciclosExercicio
                     exercicio.tipoExercicio = exercicioDado.tipoExercicio
                     exercicio.timeOutSensor = exercicioDado.timeOutSensor
+                    exercicio.tempoRandom = exercicioDado.tempoRandom
                     exercicio.timeout = exercicioDado.timeout
                     exercicio.sensor1 = exercicioDado.sensor1
                     exercicio.sensor2 = exercicioDado.sensor2

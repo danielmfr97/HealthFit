@@ -13,6 +13,9 @@ open class Exercicio : RealmObject() {
     // Ao contar todos os sensores é concluido um ciclo
     var ciclosExercicio: Int? = null
 
+    // Tempo total do exercicio randomico
+    var tempoRandom: Long? = null
+
     // True or False se terá timeout
     var timeOutSensor: Boolean? = null //
 
@@ -26,5 +29,5 @@ open class Exercicio : RealmObject() {
     var sensor4: Boolean? = null
 
     // A priori será sempre RANDOM e Sequencial
-    var tipoExercicio: String? = null // Tipo de exercicio
+    var tipoExercicio: Int? = null // Tipo de exercicio
 }

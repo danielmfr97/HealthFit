@@ -285,6 +285,8 @@ public class BluetoothServiceA extends Service {
         mHandler.sendMessage(msg);
         mState = STATE_NONE;
 
+        updateUserInterfaceTitle();
+
         // Start the service over to restart listening mode
         BluetoothServiceA.this.start();
     }

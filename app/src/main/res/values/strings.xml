@@ -47,6 +47,7 @@
     <string name="tipoExercicio">Tipo: %1s</string>
     <string name="timeoutDelay">Timeout: %1d segundos</string>
     <string name="numeroDeCiclos">Ciclos: %1d </string>
+    <string name="tempoRandom">Duração: %1d </string>
     <string name="iniciar_exercicio">Iniciar</string>
     <string name="remover_exercicio">Remover</string>
     <string name="titleIniciarExecicio">Iniciar exercício</string>
@@ -70,4 +71,5 @@
     <string name="title_connected_to">connected to %1$s</string>
     <string name="title_not_connected">Conecte-se a um FitSpot</string>
     <string name="bluetoothStatus">Desconectado</string>
+    <string name="hintTempoTotal">Tempo de duração do exercício (segundos)</string>
 </resources>

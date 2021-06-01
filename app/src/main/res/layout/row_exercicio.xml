@@ -40,23 +40,23 @@
             android:layout_height="wrap_content"
             android:text="@string/tipoExercicio"
             android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@id/numFitSpotsAtivos"
             app:layout_constraintEnd_toStartOf="@+id/numFitSpotsAtivos"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvExercicioNome"
-            app:layout_constraintBottom_toBottomOf="@id/numFitSpotsAtivos"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvExercicioNome" />
 
         <TextView
             android:id="@+id/numFitSpotsAtivos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="FitSpots: 1-On, 2-Off, 3-On, 4-Off"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/tipoExercicio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tipoExercicio"
-            app:layout_constraintTop_toTopOf="@+id/tipoExercicio" />
+            app:layout_constraintTop_toTopOf="@+id/tipoExercicio"
+            tools:text="FitSpots: 1-On, 2-Off, 3-On, 4-Off" />
 
         <LinearLayout
             android:id="@+id/llData"
@@ -73,7 +73,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/numeroDeCiclos"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tempoRandom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tempoRandom"
+                android:textAlignment="center"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/timeoutDelay"
@@ -99,14 +109,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ivDelete"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:icon="@drawable/ic_delete"
             android:layout_marginEnd="16dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="@string/remover_exercicio"
             android:textSize="12sp"
+            app:icon="@drawable/ic_delete"
             app:layout_constraintBottom_toBottomOf="@id/iniciarExercicio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iniciarExercicio"

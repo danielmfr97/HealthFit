@@ -64,11 +64,15 @@ class NovoExercicioFragment : Fragment() {
     }
 
     private fun configurarExercicioAleatorio() {
+        binding.ciclosExercicio.root.visibility = View.GONE
+        binding.tempoRandom.visibility = View.VISIBLE
         desabilitarRadioGroup(false)
         habilitarTodosFitSpots(false)
     }
 
     private fun configurarExercicioSequencia() {
+        binding.ciclosExercicio.root.visibility = View.VISIBLE
+        binding.tempoRandom.visibility = View.GONE
         desabilitarRadioGroup(true)
         habilitarTodosFitSpots(true)
     }
@@ -145,12 +149,24 @@ class NovoExercicioFragment : Fragment() {
         return binding.nomeExercicio.editText!!.text.toString()
     }
 
-    fun getTipoExercicio(): String {
-        return binding.autocompelteTipoExercicio.text.toString()
+    fun getTipoExercicio(): Int {
+        var numeroExercicio = 0
+        when (binding.autocompelteTipoExercicio.text.toString()) {
+            TipoExercicio.ALEATORIO.nome -> numeroExercicio = TipoExercicio.ALEATORIO.valorJSON
+            TipoExercicio.SEQUENCIA.nome -> numeroExercicio = TipoExercicio.SEQUENCIA.valorJSON
+        }
+        return numeroExercicio
     }
 
-    fun getNumeroCiclos(): Int {
+    fun getNumeroCiclos(): Int? {
         return numeroCiclos
+    }
+
+    fun getTempoRandom(): Long? {
+        var tempoInMs: Long? = null
+        if (binding.tempoRandom.editText!!.text.isNotEmpty())
+            tempoInMs = binding.tempoRandom.editText!!.text.toString().toLong()
+        return tempoInMs
     }
 
     fun getTimeoutOption(): Boolean {
@@ -194,9 +210,15 @@ class NovoExercicioFragment : Fragment() {
         }
 
         // Validar número de ciclos
-        if (getNumeroCiclos() == 0) {
+        if (getNumeroCiclos() == 0 && binding.autocompelteTipoExercicio.text.equals(TipoExercicio.SEQUENCIA.nome)) {
             isValido = false
             binding.ciclosExercicio.tvHeader.error = "Informe um valor maior que 0"
+        }
+
+        // Validar tempo random
+        if (binding.tempoRandom.editText?.text.isNullOrEmpty() && binding.autocompelteTipoExercicio.text.equals(TipoExercicio.ALEATORIO.nome)) {
+            isValido = false
+            binding.tempoRandom.error = "Informe o tempo de duração"
         }
 
         // Validar timeout

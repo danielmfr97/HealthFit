@@ -17,6 +17,7 @@ import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
+import kotlinx.coroutines.selects.whileSelect
 
 class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpdate: Boolean) :
     RealmRecyclerViewAdapter<Exercicio, ExerciciosAdapter.ViewHolder>(exercicios, autoUpdate) {
@@ -34,6 +35,7 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
         var nomeExercicio = binding.tvExercicioNome
         var tipoExercicio = binding.tipoExercicio
         var numCiclos = binding.numeroCiclos
+        var tempoRandom = binding.tempoRandom
         var timeoutDelay = binding.timeoutDelay
         var fitSpots = binding.numFitSpotsAtivos
         var deletarItem = binding.ivDelete
@@ -52,7 +54,18 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
         holder.nomeExercicio.text = exercicio!!.nomeExercicio
         holder.tipoExercicio.text =
             MainActivity.instance!!.getString(R.string.tipoExercicio, exercicio.tipoExercicio)
-        holder.numCiclos.text = MainActivity.instance!!.getString(R.string.numeroDeCiclos, exercicio.ciclosExercicio)
+        if (exercicio.ciclosExercicio == null || exercicio.ciclosExercicio == 0) {
+            holder.tempoRandom.visibility = View.VISIBLE
+            holder.tempoRandom.text =
+                MainActivity.instance!!.getString(R.string.tempoRandom, exercicio.tempoRandom)
+        }
+        else {
+            holder.numCiclos.visibility = View.VISIBLE
+            holder.numCiclos.text = MainActivity.instance!!.getString(
+                R.string.numeroDeCiclos,
+                exercicio.ciclosExercicio
+            )
+        }
         holder.fitSpots.text = "FitSpots: 1-${sensorOnOrOff(exercicio.sensor1!!)} 2-${sensorOnOrOff(exercicio.sensor2!!)} 3-${sensorOnOrOff(exercicio.sensor3!!)} 4-${sensorOnOrOff(exercicio.sensor4!!)}"
         holder.timeoutDelay.text = if (exercicio.timeOutSensor!!) MainActivity.instance!!.getString(
             R.string.timeoutDelay,

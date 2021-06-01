@@ -23,10 +23,10 @@ class MyApplication : Application() {
 
     companion object {
         fun configurarRealm() {
-            val configuration = if (BuildConfig.DEBUG) {
-                RealmUpgrade.getRealmConfigNoMigration()
-            }
-            else RealmUpgrade.getRealmConfig()
+            val configuration =
+                if (!BuildConfig.DEBUG)
+                    RealmUpgrade.getRealmConfigNoMigration()
+                else RealmUpgrade.getRealmConfig()
             Realm.setDefaultConfiguration(configuration)
         }
     }
