@@ -44,6 +44,7 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
                     Log.i("TESTANDO", "Write: $writeMessage")
                 }
                 Constants.MESSAGE_READ -> {
+                    //TODO: Quando recbeer 'p' nao contabilizar resultado
                     val readBuf = msg.obj as ByteArray
                     val readMessage = String(readBuf, 0, msg.arg1)
                     sb.append(readMessage)

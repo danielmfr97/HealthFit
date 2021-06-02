@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import com.daniel.ramos.projetotcc.databinding.FragmentExercicioIniciadoBinding
 import com.daniel.ramos.projetotcc.presenter.ExercicioIniciadoPresenter
+import com.daniel.ramos.projetotcc.view.activity.MainActivity
 
 // TODO: Rename parameter arguments, choose names that match
 private const val ARG_PARAM1 = "exercicioId"
@@ -38,6 +41,7 @@ class ExercicioIniciadoFragment : Fragment() {
         _binding = FragmentExercicioIniciadoBinding.inflate(layoutInflater, container, false)
         inicializarPresenter()
         configurarBotaoParada()
+        configurarBackPressed()
         return binding.root
     }
 
@@ -57,6 +61,14 @@ class ExercicioIniciadoFragment : Fragment() {
         }
     }
 
+    private fun configurarBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                paradaForcada()
+            }
+        })
+    }
+
     fun startCronometro() {
         binding.contadorCronometro.apply {
             setOnChronometerTickListener {
@@ -70,10 +82,17 @@ class ExercicioIniciadoFragment : Fragment() {
     fun paradaForcada() {
         binding.contadorCronometro.stop()
         presenter.pararExercicio()
+        MainActivity.openToastShort("Exercício cancelado")
+        findNavController().popBackStack()
     }
 
     fun pararContador() {
         binding.contadorCronometro.stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        paradaForcada()
     }
 
 }
