@@ -3,13 +3,17 @@ package com.daniel.ramos.projetotcc.view.activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -33,9 +37,8 @@ import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.MainPresenter
 import com.daniel.ramos.projetotcc.presenter.utils.Constants
 import com.google.android.material.navigation.NavigationView
-import java.lang.Exception
 
-
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val REQUEST_CONNECT_DEVICE_SECURE = 1
@@ -122,8 +125,51 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun inicializarServiceBluetooth() {
         initBluetooth()
+        val bluetoothFilter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
+        val bluetoothFilter2 = IntentFilter()
+        bluetoothFilter2.apply {
+            addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
+            addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED)
+            addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
+        }
+        context.registerReceiver(broadcastReceiverOnOffBT, bluetoothFilter)
+        context.registerReceiver(broadcastReceiverActionState, bluetoothFilter2)
+    }
+    
+    private val broadcastReceiverOnOffBT = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.action!! == BluetoothAdapter.ACTION_STATE_CHANGED) {
+                when (intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR)) {
+                    BluetoothAdapter.STATE_OFF -> Log.d(TAG, "onReceive: STATE OFF")
+                    BluetoothAdapter.STATE_TURNING_OFF -> Log.d(
+                        TAG,
+                        "mBroadcastReceiver1: STATE TURNING OFF"
+                    )
+                    BluetoothAdapter.STATE_ON -> {
+                        Log.d(TAG, "mBroadcastReceiver1: STATE ON")
+                    }
+                    BluetoothAdapter.STATE_TURNING_ON -> Log.d(
+                        TAG,
+                        "mBroadcastReceiver1: STATE TURNING ON"
+                    )
+                }
+            }
+        }
     }
 
+    private val broadcastReceiverActionState = object:BroadcastReceiver(){
+        override fun onReceive(context: Context, intent: Intent) {
+            val device: BluetoothDevice? = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
+            when (intent.action) {
+                BluetoothDevice.ACTION_ACL_CONNECTED -> Log.d(TAG, "Device connected: $device")
+                BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED -> Log.d(TAG, "Device disconecting: $device")
+                BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
+                    setStatus("Conecte-se a um FitSpot")
+                    Log.d(TAG, "Device disconnected: $device")
+                }
+            }
+        }
+    }
     // If BT is not on, request that it be enabled.
     // setupChat() will then be called during onActivityResult
     private fun initBluetooth() {
@@ -258,10 +304,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 Constants.MESSAGE_DEVICE_NAME -> {
                     deviceName = msg.data.getString(Constants.DEVICE_NAME).toString()
-                    supportActionBar?.title = "Conectado a $deviceName"
+                    supportActionBar?.subtitle = "Conectado a $deviceName"
                 }
                 Constants.MESSAGE_TOAST -> {
-                    openToastShort("Impossivel conectar'")
+                    val string = msg.data.getString(Constants.TOAST).toString()
+                    openToastShort("Falha: $string")
                 }
                 Constants.MESSAGE_DEVICE_OFFLINE -> {
                     menuInflater?.getItem(0)?.icon =
