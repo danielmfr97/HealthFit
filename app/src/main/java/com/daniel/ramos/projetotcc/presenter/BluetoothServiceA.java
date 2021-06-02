@@ -11,6 +11,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
@@ -82,18 +83,25 @@ public class BluetoothServiceA extends Service {
     }
 
     private void enableDisableProgress(boolean show) {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(MainActivity.getInstance());
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage("Conectando...");
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.setIndeterminate(true);
-        }
-        if (show) {
-            progressDialog.show();
-        } else {
-            progressDialog.dismiss();
-        }
+        // Alteração deve ser executada na UI Thread
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                if (progressDialog == null) {
+
+                    progressDialog = new ProgressDialog(MainActivity.getInstance());
+                    progressDialog.setCancelable(false);
+                    progressDialog.setMessage("Conectando...");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.setIndeterminate(true);
+                }
+                if (show) {
+                    progressDialog.show();
+                } else {
+                    progressDialog.dismiss();
+                }
+            }
+        });
     }
 
     public void setmHandler(Handler mHandler) {
