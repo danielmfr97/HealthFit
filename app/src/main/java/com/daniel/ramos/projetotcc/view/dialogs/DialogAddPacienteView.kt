@@ -2,11 +2,14 @@ package com.daniel.ramos.projetotcc.view.dialogs
 
 import android.text.InputType
 import android.view.View
+import android.widget.RadioGroup
 import com.daniel.ramos.projetotcc.databinding.DialogAddPacienteBinding
 import com.daniel.ramos.projetotcc.presenter.utils.DateUtils
+import com.daniel.ramos.projetotcc.presenter.utils.InputValidatorUtils
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
+import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
 
@@ -30,6 +33,9 @@ class DialogAddPacienteView {
             }
         }
 
+        InputValidatorUtils.addTextErrorListener(binding.tilNome)
+        InputValidatorUtils.addTextErrorListener(binding.tilDataNascimento)
+
     }
 
     fun getView(): View {
@@ -38,6 +44,10 @@ class DialogAddPacienteView {
 
     fun getNome(): String {
         return binding.tilNome.editText!!.text.toString()
+    }
+
+    fun getViewNome(): TextInputLayout {
+        return binding.tilNome
     }
 
     fun getSexoSelecionado(): String {
@@ -50,8 +60,16 @@ class DialogAddPacienteView {
         return sexoSelecionado
     }
 
+    fun getViewSexo(): RadioGroup {
+        return binding.rgSexo
+    }
+
     fun getDataNascimento(): String {
         return binding.tieDataNascimento.text.toString()
+    }
+
+    fun getViewDataNascimento(): TextInputLayout {
+        return binding.tilDataNascimento
     }
 
     private val positiveButtonClick =
