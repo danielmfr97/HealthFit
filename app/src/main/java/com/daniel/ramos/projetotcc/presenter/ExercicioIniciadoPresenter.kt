@@ -119,6 +119,7 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
     private fun stopAndSaveResult(sbprint: String) {
         view.pararContador()
         MainActivity.instance?.onBackPressed()
+        MainActivity.openToastShort("Exercício concluído")
         try {
             val jsonObject = JSONObject(sbprint)
             val resultado = Resultado()

@@ -81,18 +81,10 @@ class ExercicioIniciadoFragment : Fragment() {
 
     fun paradaForcada() {
         binding.contadorCronometro.stop()
-        presenter.pararExercicio()
-        MainActivity.openToastShort("Exercício cancelado")
         findNavController().popBackStack()
     }
 
     fun pararContador() {
         binding.contadorCronometro.stop()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        paradaForcada()
-    }
-
 }
