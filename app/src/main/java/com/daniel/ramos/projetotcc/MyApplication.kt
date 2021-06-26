@@ -5,7 +5,6 @@ import android.content.Intent
 import com.daniel.ramos.projetotcc.model.database.RealmUpgrade
 import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
 import io.realm.Realm
-import io.realm.android.BuildConfig
 
 class MyApplication : Application() {
 

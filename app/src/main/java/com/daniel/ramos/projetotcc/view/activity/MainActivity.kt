@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onDestroy() {
         super.onDestroy()
         //TODO: ALTERAR
-//        stopService(Intent(this, BluetoothServiceA::class.java))
         ConfigurarAppPresenter(null).apply {
             unregisterReceiver(broadcastBondStateBT)
             unregisterReceiver(broadcastDiscoverBTDevices)
