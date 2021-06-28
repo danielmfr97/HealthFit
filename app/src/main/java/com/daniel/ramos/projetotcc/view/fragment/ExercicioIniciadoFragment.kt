@@ -81,6 +81,7 @@ class ExercicioIniciadoFragment : Fragment() {
 
     fun paradaForcada() {
         binding.contadorCronometro.stop()
+        presenter.pararExercicio()
         findNavController().popBackStack()
     }
 
