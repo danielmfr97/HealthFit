@@ -72,4 +72,5 @@
     <string name="title_not_connected">Conecte-se a um FitSpot</string>
     <string name="bluetoothStatus">Desconectado</string>
     <string name="hintTempoTotal">Tempo de duração do exercício (segundos)</string>
+    <string name="sem_exercicios_cadastrados">Não existem exercícios cadastrados. Clique no botão de + para criar um novo exercício</string>
 </resources>
