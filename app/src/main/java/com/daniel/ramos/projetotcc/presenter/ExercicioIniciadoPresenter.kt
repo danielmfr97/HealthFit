@@ -8,9 +8,7 @@ import com.daniel.ramos.projetotcc.model.entities.Exercicio
 import com.daniel.ramos.projetotcc.model.entities.Paciente
 import com.daniel.ramos.projetotcc.model.entities.Resultado
 import com.daniel.ramos.projetotcc.model.factories.ModelFactory
-import com.daniel.ramos.projetotcc.presenter.enums.TipoExercicio
 import com.daniel.ramos.projetotcc.presenter.utils.Constants
-import com.daniel.ramos.projetotcc.presenter.utils.DateUtils
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.fragment.ExercicioIniciadoFragment
 import org.json.JSONObject
@@ -47,6 +45,8 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
                     //TODO: Quando recbeer 'p' nao contabilizar resultado
                     val readBuf = msg.obj as ByteArray
                     val readMessage = String(readBuf, 0, msg.arg1)
+                    //TODO: Quando começar com D ignorar
+                    //TODO: Setar flag para caso haja parada ignorar os dados
                     sb.append(readMessage)
                     val endOfLineIndex = sb.indexOf("\n") // determine the end-of-line
                     if (endOfLineIndex > 0) {                                            // if end-of-line,
@@ -106,7 +106,10 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
         jsonObject.put("tipoExercicio", exercicio.tipoExercicio)
         jsonObject.put("quantidadeCiclos", 0)
         jsonObject.put("tempoRandom", exercicio.tempoRandom?.times(1000).toString())
-        jsonObject.put("timeout", exercicio.timeout?.times(1000).toString())
+        jsonObject.put(
+            "timeout", if (exercicio.timeout != null)
+                exercicio.timeout?.times(1000).toString() else "100000"
+        )
         jsonObject.put("sensor1", exercicio.sensor1)
         jsonObject.put("sensor2", exercicio.sensor2)
         jsonObject.put("sensor3", exercicio.sensor3)

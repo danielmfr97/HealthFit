@@ -17,9 +17,8 @@ import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
-import kotlinx.coroutines.selects.whileSelect
 
-class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpdate: Boolean) :
+class ExerciciosAdapter(val exercicios: RealmResults<Exercicio>, autoUpdate: Boolean) :
     RealmRecyclerViewAdapter<Exercicio, ExerciciosAdapter.ViewHolder>(exercicios, autoUpdate) {
     lateinit var onExercicioIniciado: OnExercicioIniciado
 
@@ -48,7 +47,7 @@ class ExerciciosAdapter(private val exercicios: RealmResults<Exercicio>, autoUpd
         return ViewHolder(binding.root)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "StringFormatMatches")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exercicio: Exercicio? = getItem(position)
         holder.nomeExercicio.text = exercicio!!.nomeExercicio

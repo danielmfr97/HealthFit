@@ -9,15 +9,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.FragmentExerciciosBinding
-import com.daniel.ramos.projetotcc.databinding.FragmentRelatoriosBinding
 import com.daniel.ramos.projetotcc.presenter.ExerciciosPresenter
-import com.daniel.ramos.projetotcc.presenter.RelatoriosPresenter
+import com.daniel.ramos.projetotcc.presenter.adapters.ExerciciosAdapter
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 
 class ExerciciosFragment : Fragment() {
     private var _binding: FragmentExerciciosBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: ExerciciosPresenter
+    private lateinit var mAdapter: ExerciciosAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +35,12 @@ class ExerciciosFragment : Fragment() {
     }
 
     private fun configurarRecyclerView() {
-        binding.rvExercicios.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(MainActivity.instance)
-            adapter = presenter.getAdapterExercicios()
-        }
+        mAdapter = presenter.getAdapterExercicios()
+            binding.rvExercicios.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(MainActivity.instance)
+                adapter = mAdapter
+            }
     }
 
     private fun configurarFabAddExercicio() {
