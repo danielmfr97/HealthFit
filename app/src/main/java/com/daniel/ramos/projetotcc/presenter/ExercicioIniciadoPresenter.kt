@@ -17,6 +17,7 @@ import java.util.*
 
 
 class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
+    private var lastMessageWrited: String = ""
     private val myBlue = ModelFactory.getBluetoothServiceA
     private val exercicioModel = ModelFactory.getExercicioModel
     private val pacienteModel = ModelFactory.getPacienteModel
@@ -39,6 +40,7 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
                 Constants.MESSAGE_WRITE -> {
                     val writeBuf = msg.obj as ByteArray
                     val writeMessage = String(writeBuf)
+                    lastMessageWrited = writeMessage
                     Log.i("TESTANDO", "Write: $writeMessage")
                 }
                 Constants.MESSAGE_READ -> {
@@ -52,7 +54,8 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
                     if (endOfLineIndex > 0) {                                            // if end-of-line,
                         val sbprint = sb.substring(0, endOfLineIndex) // extract string
                         Log.i("TESTANDO", "Read: $sbprint")
-                        stopAndSaveResult(sbprint)
+                        if (!sbprint.contains("deserialized") && (lastMessageWrited.isNotEmpty() && !lastMessageWrited.equals("p")))
+                            stopAndSaveResult(sbprint)
                         sb.delete(0, sb.length)
                     }
                 }
