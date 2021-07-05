@@ -1,27 +1,39 @@
 package com.daniel.ramos.projetotcc.view.fragment
 
 import android.bluetooth.BluetoothAdapter
-import android.content.BroadcastReceiver
-import android.content.Context
+import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniel.ramos.projetotcc.databinding.FragmentConfigurarAppBinding
+import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
-import com.daniel.ramos.projetotcc.presenter.listeners.OnBluetoothAtivado
+import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListAdapter
+import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 
+
+//TODO: Adicionar progress bar para indicar a busca por dispositivos bluetooth
 class ConfigurarAppFragment : Fragment() {
     private val TAG = "ConfigurarAppFragment"
+
 
     private var _binding: FragmentConfigurarAppBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: ConfigurarAppPresenter
+
+    private lateinit var deviceListPairedAdapter: DeviceListPairedAdapter
+    private lateinit var deviceListAdapter: DeviceListAdapter
+
+    var mDeviceList = arrayListOf<BluetoothDevice>()
+    var mPairedDeviceList = arrayListOf<BluetoothDevice>()
+    lateinit var mBTDevice: BluetoothDevice
+    val btAdapter = BluetoothAdapter.getDefaultAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,41 +41,82 @@ class ConfigurarAppFragment : Fragment() {
     ): View? {
         _binding = FragmentConfigurarAppBinding.inflate(layoutInflater, container, false)
         inicializarPresenter()
+        configurarBotoes()
+        configurarRecyclerView()
+        inicializarBroadcasts()
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        //TODO: Se o bluetooth estiver desativado temos de informar para o user
+        //TODO: Criar lista de dispositivos disponiveis e dispositivos pareados
+        atualizarDispositivosPareados()
     }
 
     private fun inicializarPresenter() {
         presenter = ConfigurarAppPresenter(this)
     }
 
-    private val broadcastReceiverOnOffBT = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            if (intent.action!! == BluetoothAdapter.ACTION_STATE_CHANGED) {
-                val state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR)
-                when (state) {
-                    BluetoothAdapter.STATE_OFF -> Log.d(TAG, "onReceive: STATE OFF")
-                    BluetoothAdapter.STATE_TURNING_OFF -> Log.d(
-                        TAG,
-                        "mBroadcastReceiver1: STATE TURNING OFF"
-                    )
-                    BluetoothAdapter.STATE_ON -> Log.d(TAG, "mBroadcastReceiver1: STATE ON")
-                    BluetoothAdapter.STATE_TURNING_ON -> Log.d(
-                        TAG,
-                        "mBroadcastReceiver1: STATE TURNING ON"
-                    )
-                }
-            }
+    private fun configurarBotoes() {
+        binding.buscarDispositivos.setOnClickListener {
+            btAdapter.cancelDiscovery()
+            getListDispositivosDisponiveis()
         }
     }
 
-    private val onBluetoothAtivado = object : OnBluetoothAtivado {
-        override fun ativarBroadcastReceiver(bluetoothFilter: IntentFilter) {
-            MainActivity.context.registerReceiver(broadcastReceiverOnOffBT, bluetoothFilter)
+    private fun configurarRecyclerView() {
+        deviceListAdapter = DeviceListAdapter(requireContext(), mDeviceList)
+        deviceListPairedAdapter = DeviceListPairedAdapter(requireContext(), mPairedDeviceList)
+        binding.rvDispositivosPareados.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = deviceListPairedAdapter
         }
+        binding.rvDispositivosBlue.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = deviceListAdapter
+        }
+    }
+
+    fun atualizarDispositivosPareados() {
+        mPairedDeviceList.clear()
+        val pairedDevice: Set<BluetoothDevice> =
+            btAdapter.bondedDevices
+        if (pairedDevice.isNotEmpty()) {
+            for (device in pairedDevice) {
+                mPairedDeviceList.add(device)
+            }
+        }
+        binding.rvDispositivosPareados.recycledViewPool.clear()
+        deviceListPairedAdapter.notifyDataSetChanged()
+    }
+
+    private fun inicializarBroadcasts() {
+        val filterDiscover = IntentFilter().apply {
+            addAction(BluetoothDevice.ACTION_FOUND)
+            addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED)
+            addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
+        }
+        MainActivity.context.registerReceiver(presenter.broadcastDiscoverBTDevices, filterDiscover)
+
+        val filterBondChange = IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
+        MainActivity.context.registerReceiver(presenter.broadcastBondStateBT, filterBondChange)
+    }
+
+    private fun getListDispositivosDisponiveis() {
+        btAdapter.startDiscovery()
+    }
+
+    fun updateAdapterDispositivosEncontrados() {
+        binding.rvDispositivosBlue.adapter!!.notifyDataSetChanged()
+    }
+
+    private fun habilitarDiscoverableBluetooth() {
+        val intent = Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE)
+        intent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300)
+        MainActivity.context.startActivity(intent)
+        val intentFilter = IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)
+        MainActivity.context.registerReceiver(presenter.broadcastDiscoverable, intentFilter)
     }
 }

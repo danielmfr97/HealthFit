@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "429027943220",
+    "project_id": "healthfit-4b193",
+    "storage_bucket": "healthfit-4b193.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429027943220:android:6b748c374147a2f31c3b61",
+        "android_client_info": {
+          "package_name": "com.daniel.ramos.projetotcc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "429027943220-b8m4jiresgnbkgi9jsuq3lgjs43ipmcd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.daniel.ramos.projetotcc",
+            "certificate_hash": "35042223ed488012242ad157d8b018fc88b4ff5a"
+          }
+        },
+        {
+          "client_id": "429027943220-ogjehagqmcirjmin9lf9tqi3nfmuvo3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtCZRPWR-Ajf8LDNZUpqH3jhQxvFAd0ZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "429027943220-ogjehagqmcirjmin9lf9tqi3nfmuvo3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

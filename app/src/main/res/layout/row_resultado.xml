@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/nomeExercicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/labelAcertos"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Exercicio Assol" />
+
+        <!--        Número de Acertos e Erros-->
+        <TextView
+            android:id="@+id/labelAcertos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/labelAcertos"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/labelErros"
+            app:layout_constraintEnd_toStartOf="@id/labelErros"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nomeExercicio" />
+
+        <TextView
+            android:id="@+id/numAcertos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/labelAcertos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelAcertos"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/labelErros"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/labelErros"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/labelAcertos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelAcertos"
+            app:layout_constraintTop_toTopOf="@id/labelAcertos" />
+
+        <TextView
+            android:id="@+id/numErros"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/labelErros"
+            app:layout_constraintTop_toBottomOf="@id/labelErros"
+            tools:text="25" />
+
+        <!--       Velocidade ação média e Data criação-->
+
+        <TextView
+            android:id="@+id/labelTempoTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/labelTempoTotal"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/labelData"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/numAcertos" />
+
+        <TextView
+            android:id="@+id/tempoTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/dataCriado"
+            app:layout_constraintStart_toStartOf="@id/labelTempoTotal"
+            app:layout_constraintTop_toBottomOf="@id/labelTempoTotal"
+            tools:text="00:09:54" />
+
+        <TextView
+            android:id="@+id/labelData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/labelData"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labelTempoTotal"
+            app:layout_constraintTop_toTopOf="@id/labelTempoTotal" />
+
+        <TextView
+            android:id="@+id/dataCriado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tempoTotal"
+            app:layout_constraintEnd_toEndOf="@id/labelData"
+            app:layout_constraintStart_toEndOf="@id/tempoTotal"
+            app:layout_constraintTop_toBottomOf="@id/labelData"
+            tools:text="27/12/1990" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

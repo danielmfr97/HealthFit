@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.DashboardFragment"
-        android:label="fragment_dashboard"
+        android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_relatoriosFragment"
@@ -17,16 +17,54 @@
         <action
             android:id="@+id/action_dashboardFragment_to_configurarAppFragment"
             app:destination="@id/configurarAppFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_meusPacientesFragment"
+            app:destination="@id/meusPacientesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_exerciciosFragment"
+            app:destination="@id/exerciciosFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/relatoriosFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.RelatoriosFragment"
-        android:label="fragment_relatorios"
+        android:label="Relatórios"
         tools:layout="@layout/fragment_relatorios" />
+
     <fragment
         android:id="@+id/configurarAppFragment"
         android:name="com.daniel.ramos.projetotcc.view.fragment.ConfigurarAppFragment"
-        android:label="fragment_configurar_app"
+        android:label="Configuração"
         tools:layout="@layout/fragment_configurar_app" />
+
+    <fragment
+        android:id="@+id/meusPacientesFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.MeusPacientesFragment"
+        android:label="Meus Pacientes"
+        tools:layout="@layout/fragment_meus_pacientes" />
+    <fragment
+        android:id="@+id/exerciciosFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.ExerciciosFragment"
+        android:label="Meus Exercícios"
+        tools:layout="@layout/fragment_exercicios" >
+        <action
+            android:id="@+id/action_exerciciosFragment_to_novoExercicioFragment"
+            app:destination="@id/novoExercicioFragment" />
+        <action
+            android:id="@+id/action_exerciciosFragment_to_exercicioIniciadoFragment"
+            app:destination="@id/exercicioIniciadoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novoExercicioFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.NovoExercicioFragment"
+        android:label="Novo Exercício"
+        tools:layout="@layout/fragment_novo_exercicio" />
+    <fragment
+        android:id="@+id/exercicioIniciadoFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.ExercicioIniciadoFragment"
+        android:label="Iniciar Exercício"
+        tools:layout="@layout/fragment_exercicio_iniciado">
+
+    </fragment>
 
 </navigation>
