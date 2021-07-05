@@ -20,21 +20,6 @@ class DialogAddPaciente(private val onPacienteAdicionado: OnPacienteAdicionado) 
         configureDialog()
     }
 
-//    private val onButtonClick = DialogInterface.OnClickListener { dialog, which ->
-//        if (which == DialogInterface.BUTTON_POSITIVE) {
-//            if (validarCampos()) {
-//                val paciente = Paciente()
-//                paciente.nome = view.getNome()
-//                paciente.sexo = view.getSexoSelecionado()
-//                paciente.dataNascimento = view.getDataNascimento()
-//                onPacienteAdicionado.novoPaciente(paciente)
-//            }
-//        }
-//        if (which == DialogInterface.BUTTON_NEGATIVE) {
-//            dialog.dismiss()
-//        }
-//    }
-
     private fun configureDialog() {
         dialog = AlertDialog.Builder(MainActivity.instance!!)
             .setTitle(R.string.addPacienteTitle)
@@ -52,6 +37,7 @@ class DialogAddPaciente(private val onPacienteAdicionado: OnPacienteAdicionado) 
                     paciente.sexo = view.getSexoSelecionado()
                     paciente.dataNascimento = view.getDataNascimento()
                     onPacienteAdicionado.novoPaciente(paciente)
+                    dialog.dismiss()
                 }
             }
 
