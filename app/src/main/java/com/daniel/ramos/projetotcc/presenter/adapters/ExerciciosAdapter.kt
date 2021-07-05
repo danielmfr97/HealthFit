@@ -17,6 +17,7 @@ import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
+import kotlin.contracts.contract
 
 class ExerciciosAdapter(val exercicios: RealmResults<Exercicio>, autoUpdate: Boolean) :
     RealmRecyclerViewAdapter<Exercicio, ExerciciosAdapter.ViewHolder>(exercicios, autoUpdate) {

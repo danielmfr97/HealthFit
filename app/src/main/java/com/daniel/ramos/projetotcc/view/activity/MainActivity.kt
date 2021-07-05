@@ -39,6 +39,7 @@ import com.daniel.ramos.projetotcc.presenter.utils.Constants
 import com.google.android.material.navigation.NavigationView
 
 private const val TAG = "MainActivity"
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val REQUEST_CONNECT_DEVICE_SECURE = 1
@@ -134,7 +135,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         context.registerReceiver(broadcastReceiverOnOffBT, bluetoothFilter)
         context.registerReceiver(broadcastReceiverActionState, bluetoothFilter2)
     }
-    
+
     private val broadcastReceiverOnOffBT = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action!! == BluetoothAdapter.ACTION_STATE_CHANGED) {
@@ -156,12 +157,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private val broadcastReceiverActionState = object:BroadcastReceiver(){
+    private val broadcastReceiverActionState = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val device: BluetoothDevice? = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
             when (intent.action) {
                 BluetoothDevice.ACTION_ACL_CONNECTED -> Log.d(TAG, "Device connected: $device")
-                BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED -> Log.d(TAG, "Device disconecting: $device")
+                BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED -> Log.d(
+                    TAG,
+                    "Device disconecting: $device"
+                )
                 BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
                     setStatus("Conecte-se a um FitSpot")
                     Log.d(TAG, "Device disconnected: $device")
@@ -169,6 +173,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
+
     // If BT is not on, request that it be enabled.
     // setupChat() will then be called during onActivityResult
     private fun initBluetooth() {
@@ -261,7 +266,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode) {
+        when (requestCode) {
             101 -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     init()
@@ -289,17 +294,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val mHandler: Handler = @SuppressLint("HandlerLeak")
     object : Handler() {
         override fun handleMessage(msg: Message) {
-            val activity = this
             when (msg.what) {
                 Constants.MESSAGE_STATE_CHANGE -> when (msg.arg1) {
-                    BluetoothServiceA.STATE_CONNECTED -> setStatus(
-                        getString(
-                            R.string.title_connected_to,
-                            deviceName
-                        )
-                    )
-                    BluetoothServiceA.STATE_CONNECTING -> setStatus(getString(R.string.title_connecting))
-                    BluetoothServiceA.STATE_LISTEN, BluetoothServiceA.STATE_NONE -> setStatus(getString(R.string.title_not_connected))
+                    BluetoothServiceA.STATE_CONNECTED -> {
+                        setStatus(getString(R.string.title_connected_to, deviceName))
+                        statusBlueDevice = BluetoothServiceA.STATE_CONNECTED
+                    }
+                    BluetoothServiceA.STATE_CONNECTING -> {
+                        setStatus(getString(R.string.title_connecting))
+                        statusBlueDevice = BluetoothServiceA.STATE_CONNECTING
+                    }
+                    BluetoothServiceA.STATE_LISTEN, BluetoothServiceA.STATE_NONE -> {
+                        setStatus(getString(R.string.title_not_connected))
+                        statusBlueDevice = BluetoothServiceA.STATE_LISTEN
+                    }
                 }
                 Constants.MESSAGE_DEVICE_NAME -> {
                     deviceName = msg.data.getString(Constants.DEVICE_NAME).toString()
@@ -321,6 +329,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     companion object {
         @JvmStatic
         var instance: MainActivity? = null
+
+        @JvmStatic
+                /**
+                 * Variável que armazena o status da nossa comunicação Bluetooth
+                 * 0 - Sem conexões ou ações
+                 * 1 - Escutando possíveis conexões
+                 * 2 - Iniciando a comunicação
+                 * 3 - Conectado a um dispositivo
+                 */
+        var statusBlueDevice: Int = 0
 
         @JvmStatic
         val context: Context
