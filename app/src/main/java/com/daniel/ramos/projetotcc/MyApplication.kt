@@ -12,7 +12,6 @@ class MyApplication : Application() {
         super.onCreate()
         Realm.init(this)
         inicializarBluetoothService();
-        //TODO: Configurar realm ou Room
         //TODO: Inicializar firebase
     }
 

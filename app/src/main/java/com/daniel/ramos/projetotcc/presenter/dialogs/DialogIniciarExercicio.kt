@@ -19,7 +19,6 @@ class DialogIniciarExercicio(
 
     private val onButtonClick = DialogInterface.OnClickListener { dialog, which ->
         if (which == DialogInterface.BUTTON_POSITIVE){
-            //TODO: Validar se foi selecionado um paciente
             if (view.isPacienteSelecionado()) {
                 val blueStatus = MainActivity.statusBlueDevice
                 if (blueStatus != BluetoothServiceA.STATE_NONE || blueStatus != BluetoothServiceA.STATE_LISTEN) {

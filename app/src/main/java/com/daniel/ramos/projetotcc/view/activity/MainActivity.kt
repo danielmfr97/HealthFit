@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onDestroy() {
         super.onDestroy()
-        //TODO: ALTERAR
         ConfigurarAppPresenter(null).apply {
             unregisterReceiver(broadcastBondStateBT)
             unregisterReceiver(broadcastDiscoverBTDevices)
