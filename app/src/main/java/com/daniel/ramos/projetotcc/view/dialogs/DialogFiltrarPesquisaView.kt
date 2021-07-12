@@ -41,10 +41,10 @@ class DialogFiltrarPesquisaView {
             setOnItemClickListener { parent, view, position, id ->
                 when (TipoExercicio.values()[position].nome) {
                     TipoExercicio.ALEATORIO.nome -> {
-                        exercicioIdSelecionado = TipoExercicio.ALEATORIO.nome
+                        exercicioIdSelecionado = TipoExercicio.ALEATORIO.id
                     }
                     TipoExercicio.SEQUENCIA.nome -> {
-                        exercicioIdSelecionado = TipoExercicio.SEQUENCIA.nome
+                        exercicioIdSelecionado = TipoExercicio.SEQUENCIA.id
                     }
                 }
             }

@@ -28,6 +28,7 @@ class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
 
     fun salvarExercicio() {
        val exercicioDado = Exercicio()
+        exercicioDado.id = getExercicioId(view.getTipoExercicio())
         exercicioDado.nomeExercicio = view.getNomeExercicio()
         exercicioDado.ciclosExercicio = view.getNumeroCiclos()
         exercicioDado.tempoRandom = view.getTempoRandom()
@@ -40,5 +41,12 @@ class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
         exercicioDado.sensor4 = view.getSensor4()
         exercicioModel.salvarExercicio(exercicioDado)
         MainActivity.openToastShort("Exercício salvo")
+    }
+
+    private fun getExercicioId(numExercicio: Int): String {
+        return when(numExercicio) {
+            TipoExercicio.ALEATORIO.valorJSON -> TipoExercicio.ALEATORIO.id
+            else -> TipoExercicio.SEQUENCIA.id
+        }
     }
 }

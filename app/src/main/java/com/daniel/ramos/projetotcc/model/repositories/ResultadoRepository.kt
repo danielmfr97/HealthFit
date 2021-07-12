@@ -13,6 +13,6 @@ class ResultadoRepository: RealmRepository<Resultado>(Resultado::class.java)  {
         return realm.where(clazz).contains("exercicio_id", queryTipoExercicio)
             .between("created", queryDataInicio, queryDataFim)
             .sort("created", Sort.DESCENDING)
-            .findAllAsync()
+            .findAll()
     }
 }

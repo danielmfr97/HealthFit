@@ -15,7 +15,7 @@ class ExercicioModel {
         exercicioRepository.atualizarObject(object : RealmRepository.AtualizarListener {
             override fun atualizar() {
                 try {
-                    val exercicio = exercicioRepository.novo(UUID.randomUUID().toString())
+                    val exercicio = exercicioRepository.novo(exercicioDado.id)
                     exercicio.nomeExercicio = exercicioDado.nomeExercicio
                     exercicio.ciclosExercicio = exercicioDado.ciclosExercicio
                     exercicio.tipoExercicio = exercicioDado.tipoExercicio

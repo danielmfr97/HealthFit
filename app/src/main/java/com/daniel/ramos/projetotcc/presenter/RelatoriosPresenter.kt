@@ -28,9 +28,9 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
             val resultado = Resultado()
             resultado.id = UUID.randomUUID().toString()
             resultado.paciente_id = paciente!!.id
-            resultado.exercicio_id = "b2331c99-410f-442b-b184-deef41226e3e"
+            resultado.exercicio_id = "a144dcc7-0bca-43d7-91b3-995026f88f16"
             resultado.tempo_total = 2.5.toString()
-            resultado.created = 1503423L
+            resultado.created = 1626095800097L
             resultadoModel.salvarResultado(resultado)
         }
     }
