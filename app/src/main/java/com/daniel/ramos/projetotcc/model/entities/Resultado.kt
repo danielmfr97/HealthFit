@@ -12,5 +12,5 @@ open class Resultado : RealmObject() {
     var acertos: String? = "N/A"
     var erros: String? = "N/A"
     var tempo_total: String = ""
-    var created : Date? = null
+    var created : Long = 0L
 }
