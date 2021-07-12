@@ -1,13 +1,11 @@
 package com.daniel.ramos.projetotcc.presenter.dialogs
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.DialogInterface.OnShowListener
-import android.view.View
 import android.widget.Button
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.model.entities.Paciente
-import com.daniel.ramos.projetotcc.presenter.OnPacienteAdicionado
+import com.daniel.ramos.projetotcc.presenter.listeners.OnPacienteAdicionado
 import com.daniel.ramos.projetotcc.presenter.utils.InputValidatorUtils
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.dialogs.DialogAddPacienteView
