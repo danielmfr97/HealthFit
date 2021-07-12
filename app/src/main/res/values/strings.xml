@@ -73,4 +73,8 @@
     <string name="bluetoothStatus">Desconectado</string>
     <string name="hintTempoTotal">Tempo de duração do exercício (segundos)</string>
     <string name="sem_exercicios_cadastrados">Não existem exercícios cadastrados. Clique no botão de + para criar um novo exercício</string>
+    <string name="selecioneExercicio">Selecione um exercício</string>
+    <string name="title_filtrar_exercicio">Pesquisa avançada</string>
+    <string name="aplicar_filtragem">Aplicar</string>
+    <string name="informeRangePeriodo">Período dos exercícios</string>
 </resources>
