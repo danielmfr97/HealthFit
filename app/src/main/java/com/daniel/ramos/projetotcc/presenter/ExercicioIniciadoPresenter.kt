@@ -54,13 +54,17 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
                     if (endOfLineIndex > 0) {                                            // if end-of-line,
                         val sbprint = sb.substring(0, endOfLineIndex) // extract string
                         Log.i("TESTANDO", "Read: $sbprint")
-                        if (!sbprint.contains("deserialized") && (lastMessageWrited.isNotEmpty() && !lastMessageWrited.equals("p")))
+                        if (isMensagemValida(sbprint))
                             stopAndSaveResult(sbprint)
                         sb.delete(0, sb.length)
                     }
                 }
             }
         }
+    }
+
+    private fun isMensagemValida(sbprint: String) : Boolean {
+        return !sbprint.contains("deserialized") && (lastMessageWrited.isNotEmpty() && !lastMessageWrited.equals("p"))
     }
 
     fun setBluetoothHandler() {
@@ -135,7 +139,7 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
             resultado.tempo_total = jsonObject.optString("tempoTotal")
             resultado.acertos = jsonObject.optString("acertos")
             resultado.erros = jsonObject.optString("erros")
-            resultado.created = Date()
+            resultado.created = Date().time
             resultadoModel.salvarResultado(resultado)
         } catch (e: Exception) {
             e.printStackTrace()
