@@ -17,6 +17,7 @@ class RelatoriosFragment : Fragment() {
     private var _binding: FragmentRelatoriosBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: RelatoriosPresenter
+    private lateinit var mAdapter: ResultadosAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +31,7 @@ class RelatoriosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         configurarSpinnerPaciente()
         configurarRecyclerView()
+        configurarFabFiltro()
     }
 
     private fun inicializarPresenter() {
@@ -49,8 +51,19 @@ class RelatoriosFragment : Fragment() {
         }
     }
 
+    private fun configurarFabFiltro() {
+        binding.fabFiltrarPesquisa.setOnClickListener {
+            presenter.openDialogFiltrarPesquisa()
+        }
+    }
+
+    fun setAdapterFilters(exercicioSelecionado: String, dataInicio: Long, dataFim: Long) {
+        mAdapter.filtrarDados(exercicioSelecionado, dataInicio, dataFim)
+    }
+
     fun setResultadosAdapter(resultadosAdapter: ResultadosAdapter) {
-        binding.rvResultados.adapter = resultadosAdapter
+        mAdapter = resultadosAdapter
+        binding.rvResultados.adapter = mAdapter
     }
 
     fun setAutoCompleteText(nome: String) {

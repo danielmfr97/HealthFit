@@ -1,6 +1,5 @@
 package com.daniel.ramos.projetotcc.presenter
 
-import android.util.Log
 import android.widget.ArrayAdapter
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.model.entities.Paciente
@@ -8,8 +7,9 @@ import com.daniel.ramos.projetotcc.model.entities.Resultado
 import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.adapters.PacientesArrayAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.ResultadosAdapter
+import com.daniel.ramos.projetotcc.presenter.dialogs.DialogFiltrarPesquisa
+import com.daniel.ramos.projetotcc.presenter.listeners.OnFiltroSelecionado
 import com.daniel.ramos.projetotcc.presenter.listeners.OnPacienteSelecionado
-import com.daniel.ramos.projetotcc.presenter.utils.RegexUtils
 import com.daniel.ramos.projetotcc.view.fragment.RelatoriosFragment
 import java.util.*
 
@@ -21,17 +21,16 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
     init {
         popularResultados()
     }
-
+//TODO: Remover popular
     private fun popularResultados() {
         for (i in 0 until pacienteModel.all.size) {
             val paciente = pacienteModel.all[i]
             val resultado = Resultado()
             resultado.id = UUID.randomUUID().toString()
-            resultado.created = Date()
             resultado.paciente_id = paciente!!.id
             resultado.exercicio_id = "b2331c99-410f-442b-b184-deef41226e3e"
             resultado.tempo_total = 2.5.toString()
-            resultado.created = Date()
+            resultado.created = 1503423L
             resultadoModel.salvarResultado(resultado)
         }
     }
@@ -50,6 +49,16 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
     }
 
     fun getResultadosAdapter(paciente: Paciente): ResultadosAdapter {
-        return ResultadosAdapter(resultadoModel.procurarResultadosPorPacienteId(paciente.id), true)
+        return ResultadosAdapter(resultadoModel.procurarResultadosPorPacienteId(paciente.id), false)
+    }
+
+    fun openDialogFiltrarPesquisa() {
+        DialogFiltrarPesquisa(onFiltroSelecionado).exibir()
+    }
+
+    private val onFiltroSelecionado = object : OnFiltroSelecionado {
+        override fun executar(exercicioSelecionado: String, dataInicio: Long, dataFim: Long) {
+            view.setAdapterFilters(exercicioSelecionado, dataInicio, dataFim)
+        }
     }
 }
