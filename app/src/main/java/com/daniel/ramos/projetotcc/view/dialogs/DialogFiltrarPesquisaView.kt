@@ -26,7 +26,6 @@ class DialogFiltrarPesquisaView {
     private var _dataFim: Long? = null
     private var _dataInicio: Long? = null
 
-
     init {
         configurarSpinnerExercicios()
         configurarDateRange()
@@ -39,6 +38,7 @@ class DialogFiltrarPesquisaView {
         (binding.spExercicios.editText as MaterialAutoCompleteTextView).apply {
             setAdapter(adapter)
             setOnItemClickListener { parent, view, position, id ->
+                binding.spExercicios.isErrorEnabled = false
                 when (TipoExercicio.values()[position].nome) {
                     TipoExercicio.ALEATORIO.nome -> {
                         exercicioIdSelecionado = TipoExercicio.ALEATORIO.id
@@ -86,12 +86,17 @@ class DialogFiltrarPesquisaView {
             binding.tiePeriodoExercicios.setText(
                 "De ${DateUtils.convertLongMsToString(_dataInicio!!)} até ${DateUtils.convertLongMsToString(_dataFim!!)}"
             )
+            binding.tilPeriodoExercicios.isErrorEnabled = false
         }
         picker.show(MainActivity.instance!!.supportFragmentManager, null)
     }
 
     fun getExercicioSelecionado(): String? {
         return exercicioIdSelecionado
+    }
+
+    fun setErrorExercicio() {
+        binding.spExercicios.error = "Selecione um exercício"
     }
 
     fun getDataInicio(): Long? {
@@ -102,7 +107,16 @@ class DialogFiltrarPesquisaView {
         return _dataFim
     }
 
+    fun setErrorData() {
+        binding.tilPeriodoExercicios.error = "Informe uma data"
+    }
+
     fun getView(): View {
         return view
+    }
+
+    fun removerErros() {
+        binding.spExercicios.isErrorEnabled = false
+        binding.tilPeriodoExercicios.isErrorEnabled = false
     }
 }
