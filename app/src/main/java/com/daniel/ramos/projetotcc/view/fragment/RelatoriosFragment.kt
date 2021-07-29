@@ -84,9 +84,12 @@ class RelatoriosFragment : Fragment() {
     }
 
     fun showEmptyView() {
-        if (mAdapter.itemCount == 0)
+        if (mAdapter.itemCount == 0) {
             binding.emptyView.visibility = View.VISIBLE
-        else
+            binding.fabFiltrarPesquisa.visibility = View.GONE
+        } else {
             binding.emptyView.visibility = View.GONE
+            binding.fabFiltrarPesquisa.visibility = View.VISIBLE
+        }
     }
 }
