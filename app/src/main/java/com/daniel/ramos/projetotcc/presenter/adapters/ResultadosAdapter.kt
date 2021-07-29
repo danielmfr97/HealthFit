@@ -20,16 +20,17 @@ import kotlin.properties.Delegates
 
 
 class ResultadosAdapter(private var resultados: RealmResults<Resultado>, autoUpdate: Boolean) :
-    RealmRecyclerViewAdapter<Resultado, ResultadosAdapter.ViewHolder>(resultados, autoUpdate), Filterable {
+    RealmRecyclerViewAdapter<Resultado, ResultadosAdapter.ViewHolder>(resultados, autoUpdate),
+    Filterable {
 
     private var _binding: RowResultadoBinding? = null
     private val binding get() = _binding!!
     private val exercicioModel = ModelFactory.getExercicioModel
     private val resultadoRepository = ResultadoRepository()
 
-    private lateinit var queryExercicio:String
-    private var queryDataIni by Delegates.notNull<Long>()
-    private var queryDataFim by Delegates.notNull<Long>()
+    private var queryExercicio: String? = null
+    private var queryDataIni: Long? = null
+    private var queryDataFim: Long? = null
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nomeExercicio = binding.nomeExercicio
@@ -73,13 +74,13 @@ class ResultadosAdapter(private var resultados: RealmResults<Resultado>, autoUpd
     }
 
     private fun changeVisibilityViews(resultado: Resultado) {
-        binding.labelAcertos.visibility = if(resultado.acertos != null) View.VISIBLE else View.GONE
-        binding.numAcertos.visibility = if(resultado.acertos != null) View.VISIBLE else View.GONE
-        binding.labelErros.visibility = if(resultado.erros != null) View.VISIBLE else View.GONE
-        binding.numErros.visibility = if(resultado.erros != null) View.VISIBLE else View.GONE
+        binding.labelAcertos.visibility = if (resultado.acertos != null) View.VISIBLE else View.GONE
+        binding.numAcertos.visibility = if (resultado.acertos != null) View.VISIBLE else View.GONE
+        binding.labelErros.visibility = if (resultado.erros != null) View.VISIBLE else View.GONE
+        binding.numErros.visibility = if (resultado.erros != null) View.VISIBLE else View.GONE
     }
 
-    fun filtrarDados(_queryExercicio: String, _queryDataIni: Long, _queryDataFim: Long) {
+    fun filtrarDados(_queryExercicio: String?, _queryDataIni: Long?, _queryDataFim: Long?) {
         queryExercicio = _queryExercicio
         queryDataIni = _queryDataIni
         queryDataFim = _queryDataFim
@@ -88,9 +89,10 @@ class ResultadosAdapter(private var resultados: RealmResults<Resultado>, autoUpd
 
     private fun filterResults() {
         val data = resultadoRepository.queryResultados(
-            queryExercicio.toLowerCase(Locale.ROOT).trim(),
+            queryExercicio?.toLowerCase(Locale.ROOT)?.trim(),
             queryDataIni,
-            queryDataFim )
+            queryDataFim
+        )
         resultados = data
         notifyDataSetChanged()
     }

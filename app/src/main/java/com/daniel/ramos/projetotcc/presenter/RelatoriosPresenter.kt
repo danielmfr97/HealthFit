@@ -28,7 +28,7 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
             val resultado = Resultado()
             resultado.id = UUID.randomUUID().toString()
             resultado.paciente_id = paciente!!.id
-            resultado.exercicio_id = "a144dcc7-0bca-43d7-91b3-995026f88f16"
+            resultado.exercicio_id = "8fd7b0fc-0c02-4fac-b357-f23aacebac11"
             resultado.tempo_total = 2.5.toString()
             resultado.created = 1626095800097L
             resultadoModel.salvarResultado(resultado)
@@ -37,8 +37,9 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
 
     private val onPacienteSelecionado = object : OnPacienteSelecionado {
         override fun executar(paciente: Paciente) {
+            val adapter = getResultadosAdapter(paciente)
             view.setAutoCompleteText(paciente.nome)
-            view.setResultadosAdapter(getResultadosAdapter(paciente))
+            view.setResultadosAdapter(adapter)
         }
     }
 
@@ -57,7 +58,7 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
     }
 
     private val onFiltroSelecionado = object : OnFiltroSelecionado {
-        override fun executar(exercicioSelecionado: String, dataInicio: Long, dataFim: Long) {
+        override fun executar(exercicioSelecionado: String?, dataInicio: Long?, dataFim: Long?) {
             view.setAdapterFilters(exercicioSelecionado, dataInicio, dataFim)
         }
     }

@@ -29,6 +29,7 @@ class RelatoriosFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        configurarApagarFiltro()
         configurarSpinnerPaciente()
         configurarRecyclerView()
         configurarFabFiltro()
@@ -36,6 +37,10 @@ class RelatoriosFragment : Fragment() {
 
     private fun inicializarPresenter() {
         presenter = RelatoriosPresenter(this)
+    }
+
+    private fun configurarApagarFiltro() {
+        binding.btnFiltro.setOnClickListener { removerFiltros() }
     }
 
     private fun configurarSpinnerPaciente() {
@@ -57,17 +62,31 @@ class RelatoriosFragment : Fragment() {
         }
     }
 
-    fun setAdapterFilters(exercicioSelecionado: String, dataInicio: Long, dataFim: Long) {
+    fun setAdapterFilters(exercicioSelecionado: String?, dataInicio: Long?, dataFim: Long?) {
         mAdapter.filtrarDados(exercicioSelecionado, dataInicio, dataFim)
+        binding.btnFiltro.visibility = View.VISIBLE
+        showEmptyView()
     }
 
     fun setResultadosAdapter(resultadosAdapter: ResultadosAdapter) {
         mAdapter = resultadosAdapter
         binding.rvResultados.adapter = mAdapter
+        showEmptyView()
     }
 
     fun setAutoCompleteText(nome: String) {
         (binding.spinnerPacientes.editText as MaterialAutoCompleteTextView).setText(nome)
     }
 
+    fun removerFiltros() {
+        mAdapter.filtrarDados(null, null, null)
+        binding.btnFiltro.visibility = View.GONE
+    }
+
+    fun showEmptyView() {
+        if (mAdapter.itemCount == 0)
+            binding.emptyView.visibility = View.VISIBLE
+        else
+            binding.emptyView.visibility = View.GONE
+    }
 }

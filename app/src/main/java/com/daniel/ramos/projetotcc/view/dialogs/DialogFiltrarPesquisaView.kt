@@ -22,9 +22,9 @@ class DialogFiltrarPesquisaView {
     )
     val view = binding.root
 
-    private lateinit var exercicioIdSelecionado: String
-    private var _dataFim by Delegates.notNull<Long>()
-    private var _dataInicio by Delegates.notNull<Long>()
+    private var exercicioIdSelecionado: String? = null
+    private var _dataFim: Long? = null
+    private var _dataInicio: Long? = null
 
 
     init {
@@ -84,21 +84,21 @@ class DialogFiltrarPesquisaView {
             _dataInicio = it.first as Long
             _dataFim = it.second as Long
             binding.tiePeriodoExercicios.setText(
-                "De ${DateUtils.convertLongMsToString(_dataInicio)} até ${DateUtils.convertLongMsToString(_dataFim)}"
+                "De ${DateUtils.convertLongMsToString(_dataInicio!!)} até ${DateUtils.convertLongMsToString(_dataFim!!)}"
             )
         }
         picker.show(MainActivity.instance!!.supportFragmentManager, null)
     }
 
-    fun getExercicioSelecionado(): String {
+    fun getExercicioSelecionado(): String? {
         return exercicioIdSelecionado
     }
 
-    fun getDataInicio(): Long {
+    fun getDataInicio(): Long? {
         return _dataInicio
     }
 
-    fun getDataFim(): Long {
+    fun getDataFim(): Long? {
         return _dataFim
     }
 
