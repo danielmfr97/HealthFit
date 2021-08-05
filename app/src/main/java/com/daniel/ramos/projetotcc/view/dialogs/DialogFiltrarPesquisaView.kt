@@ -68,9 +68,6 @@ class DialogFiltrarPesquisaView {
 
     @SuppressLint("SetTextI18n")
     private fun openDateRangePicker() {
-        val constraintsBuilder =
-            CalendarConstraints.Builder()
-                .setValidator(DateValidatorPointForward.now())
         val builder = MaterialDatePicker.Builder.dateRangePicker()
             .setSelection(
                 Pair(
@@ -78,7 +75,6 @@ class DialogFiltrarPesquisaView {
                     MaterialDatePicker.todayInUtcMilliseconds()
                 )
             )
-            .setCalendarConstraints(constraintsBuilder.build())
         val picker = builder.build()
         picker.addOnPositiveButtonClickListener {
             _dataInicio = it.first as Long
