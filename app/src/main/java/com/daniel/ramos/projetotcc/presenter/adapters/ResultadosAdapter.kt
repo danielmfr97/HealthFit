@@ -64,7 +64,7 @@ class ResultadosAdapter(private var resultados: RealmResults<Resultado>, autoUpd
             holder.nomeExercicio.text = exercicio?.nomeExercicio
             holder.numAcertos.text = resultado.acertos
             holder.numErros.text = resultado.erros
-            holder.tempoTotal.text = resultado.tempo_total
+            holder.tempoTotal.text = DateUtils.convertLongMsToSeconds(resultado.tempo_total.toLong())
             holder.dataCriado.text = DateUtils.convertDateToString(Date(resultado.created))
         }
     }

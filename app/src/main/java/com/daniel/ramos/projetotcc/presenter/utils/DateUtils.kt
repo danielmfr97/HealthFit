@@ -29,5 +29,10 @@ class DateUtils {
         fun convertStringToDate(date: String): Date {
             return SimpleDateFormat("dd/MM/yyyy").parse(date)
         }
+
+        fun convertLongMsToSeconds(toLong: Long): String {
+            val time = (toLong/1000).toString()
+            return "$time Segundos"
+        }
     }
 }

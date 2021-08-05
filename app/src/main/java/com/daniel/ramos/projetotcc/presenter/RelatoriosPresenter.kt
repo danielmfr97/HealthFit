@@ -18,22 +18,22 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
     private val pacienteModel = ModelFactory.getPacienteModel
     private val resultadoModel = ModelFactory.getResultadoModel
 
-    init {
-        popularResultados()
-    }
-//TODO: Remover popular
-    private fun popularResultados() {
-        for (i in 0 until pacienteModel.all.size) {
-            val paciente = pacienteModel.all[i]
-            val resultado = Resultado()
-            resultado.id = UUID.randomUUID().toString()
-            resultado.paciente_id = paciente!!.id
-            resultado.exercicio_id = "8fd7b0fc-0c02-4fac-b357-f23aacebac11"
-            resultado.tempo_total = 2.5.toString()
-            resultado.created = 1626095800097L
-            resultadoModel.salvarResultado(resultado)
-        }
-    }
+//    init {
+//        popularResultados()
+//    }
+////TODO: Remover popular
+//    private fun popularResultados() {
+//        for (i in 0 until pacienteModel.all.size) {
+//            val paciente = pacienteModel.all[i]
+//            val resultado = Resultado()
+//            resultado.id = UUID.randomUUID().toString()
+//            resultado.paciente_id = paciente!!.id
+//            resultado.exercicio_id = "8fd7b0fc-0c02-4fac-b357-f23aacebac11"
+//            resultado.tempo_total = 2.5.toString()
+//            resultado.created = 1626095800097L
+//            resultadoModel.salvarResultado(resultado)
+//        }
+//    }
 
     private val onPacienteSelecionado = object : OnPacienteSelecionado {
         override fun executar(paciente: Paciente) {
