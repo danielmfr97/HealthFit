@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjetoTCC</string>
+    <string name="app_name">FitHealth</string>
     <string name="menu_inicio">Inicio</string>
     <string name="menu_relatorios">Relatórios</string>
     <string name="menu_meus_pacientes">Meus pacientes</string>
