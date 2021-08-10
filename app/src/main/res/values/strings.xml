@@ -78,4 +78,5 @@
     <string name="aplicar_filtragem">Aplicar</string>
     <string name="informeRangePeriodo">Período dos exercícios</string>
     <string name="remover_filtros">Remover Filtros</string>
+    <string name="deletarExercicio">Deseja deletar este exercício?</string>
 </resources>
