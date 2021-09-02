@@ -135,7 +135,7 @@ class ExercicioIniciadoPresenter(private val view: ExercicioIniciadoFragment) {
             val resultado = Resultado()
             resultado.id = UUID.randomUUID().toString()
             resultado.paciente_id = paciente?.id.toString()
-            resultado.exercicio_id = exercicio?.id.toString()
+            resultado.exercicio_id = exercicio?.tipoExercicioID.toString()
             resultado.tempo_total = jsonObject.optString("tempoTotal")
             resultado.acertos = jsonObject.optString("acertos")
             resultado.erros = jsonObject.optString("erros")

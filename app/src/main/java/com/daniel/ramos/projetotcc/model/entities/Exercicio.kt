@@ -8,6 +8,8 @@ open class Exercicio : RealmObject() {
     @PrimaryKey
     var id: String = ""
 
+    var tipoExercicioID: String = ""
+
     var nomeExercicio: String = ""
 
     // Ao contar todos os sensores é concluido um ciclo

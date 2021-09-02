@@ -93,7 +93,7 @@ class ExerciciosAdapter(val exercicios: RealmResults<Exercicio>, autoUpdate: Boo
 
     private fun openDialogDeletarExercicio(exercicioNome: String, position: Int) {
         val dialog: Dialog = MaterialAlertDialogBuilder(MainActivity.instance!!)
-            .setTitle(R.string.deletarPaciente)
+            .setTitle(R.string.deletarExercicio)
             .setMessage("O exercício $exercicioNome será deletado. Deseja continuar com esta ação?")
             .setPositiveButton(R.string.confirmar) { dialogInterface, i ->
                 exercicioRepository.atualizarObject(object : RealmRepository.AtualizarListener {

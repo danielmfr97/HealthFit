@@ -28,7 +28,7 @@ class NovoExercicioPresenter(private val view: NovoExercicioFragment) {
 
     fun salvarExercicio() {
        val exercicioDado = Exercicio()
-        exercicioDado.id = getExercicioId(view.getTipoExercicio())
+        exercicioDado.tipoExercicioID = getExercicioId(view.getTipoExercicio())
         exercicioDado.nomeExercicio = view.getNomeExercicio()
         exercicioDado.ciclosExercicio = view.getNumeroCiclos()
         exercicioDado.tempoRandom = view.getTempoRandom()

@@ -22,7 +22,7 @@ class ExerciciosPresenter(private val view: ExerciciosFragment) {
             exercicio: Exercicio,
             pacienteSelecionado: Paciente?
         ) {
-            val bundle = bundleOf("exercicioId" to exercicio.id, "pacienteId" to pacienteSelecionado?.id)
+            val bundle = bundleOf("exercicioId" to exercicio.tipoExercicioID, "pacienteId" to pacienteSelecionado?.id)
             view.findNavController().navigate(R.id.action_exerciciosFragment_to_exercicioIniciadoFragment, bundle)
         }
     }
