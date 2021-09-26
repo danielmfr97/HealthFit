@@ -79,4 +79,7 @@
     <string name="informeRangePeriodo">Período dos exercícios</string>
     <string name="remover_filtros">Remover Filtros</string>
     <string name="deletarExercicio">Deseja deletar este exercício?</string>
+    <string name="start_spotlight">Start Spotlight</string>
+    <string name="close_spotlight">Close Spotlight</string>
+    <string name="next_target">Next Target</string>
 </resources>
