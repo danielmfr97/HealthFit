@@ -81,5 +81,9 @@
     <string name="deletarExercicio">Deseja deletar este exercício?</string>
     <string name="start_spotlight">Start Spotlight</string>
     <string name="close_spotlight">Close Spotlight</string>
-    <string name="next_target">Next Target</string>
+    <string name="next_target">Próximo passo</string>
+    <string name="targetThreeText">Por fim, nesta lista aparecerá seu FitSpot pareado, basta você conectar-se a ele e poderá usar as funcionalidades do nosso aplicativo.</string>
+    <string name="targetTwoText">Neste campo serão apresentados os FitSpots ainda não pareados, para iniciar uma comunicação antes precisamos parear com eles</string>
+    <string name="targetOneText">Primeiramente você deve buscar outros dispositivos ao redor, e se o seu FitSpot estiver ligado aparecerá na lista acima</string>
+    <string name="targetOnetitle">Como conectar-se a um FitSpot</string>
 </resources>
