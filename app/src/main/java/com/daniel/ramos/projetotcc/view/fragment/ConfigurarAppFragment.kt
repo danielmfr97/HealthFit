@@ -1,21 +1,35 @@
 package com.daniel.ramos.projetotcc.view.fragment
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color.argb
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
+import android.widget.FrameLayout
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.makeText
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.FragmentConfigurarAppBinding
-import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
+import com.takusemba.spotlight.OnSpotlightListener
+import com.takusemba.spotlight.OnTargetListener
+import com.takusemba.spotlight.Spotlight
+import com.takusemba.spotlight.Target
+import com.takusemba.spotlight.effet.RippleEffect
+import com.takusemba.spotlight.shape.Circle
 
 
 //TODO: Adicionar progress bar para indicar a busca por dispositivos bluetooth
@@ -49,8 +63,55 @@ class ConfigurarAppFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        //TODO: Criar lista de dispositivos disponiveis e dispositivos pareados
         atualizarDispositivosPareados()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.root.doOnPreDraw {
+            initspotlightTa()
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private fun initspotlightTa() {
+        val targets = ArrayList<Target>()
+
+        val layout = layoutInflater.inflate(R.layout.layout_target, FrameLayout(requireContext()))
+        val target = Target.Builder()
+            .setAnchor(requireView().findViewById<View>(R.id.buscarDispositivos))
+            .setShape(Circle(300f))
+            .setEffect(RippleEffect(100f, 200f, argb(30, 124, 255, 90)))
+            .setOverlay(layout)
+            .setOnTargetListener(object : OnTargetListener {
+                override fun onStarted() {
+                    makeText(requireContext(), "first target is started", LENGTH_SHORT).show()
+                }
+
+                override fun onEnded() {
+                    makeText(requireContext(), "first target is ended", LENGTH_SHORT).show()
+                }
+            })
+            .build()
+
+        targets.add(target)
+        val spotlight = Spotlight.Builder(requireActivity())
+            .setTargets(target)
+            .setBackgroundColor(R.color.spotlightBackground)
+            .setDuration(1000L)
+            .setAnimation(DecelerateInterpolator(2f))
+            .setOnSpotlightListener(object : OnSpotlightListener {
+                override fun onStarted() {
+                    Toast.makeText(requireContext(), "spotlight is started", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                override fun onEnded() {
+                    Toast.makeText(requireContext(), "spotlight is ended", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+            .build()
+        spotlight.start()
     }
 
     private fun inicializarPresenter() {
