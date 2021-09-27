@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.daniel.ramos.projetotcc.databinding.ListPacientesBinding
 import com.daniel.ramos.projetotcc.model.entities.Paciente
 import com.daniel.ramos.projetotcc.presenter.listeners.OnPacienteSelecionado
-import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import io.realm.RealmResults
 
 class PacientesArrayAdapter(
@@ -44,7 +42,6 @@ class PacientesArrayAdapter(
         val paciente: Paciente? = values[position]
 
         holder.binding.parentView.setOnClickListener {
-            Toast.makeText(MainActivity.context, "Paciente selecionado ${paciente!!.nome}", Toast.LENGTH_SHORT).show()
             onPacienteSelecionado.executar(values[position]!!)
         }
         holder.binding.index.text = (position + 1).toString()

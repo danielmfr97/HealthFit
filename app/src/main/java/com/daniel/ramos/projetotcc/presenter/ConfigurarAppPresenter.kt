@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.fragment.ConfigurarAppFragment
 
 private const val TAG = "ConfigurarAppPresenter"
@@ -56,8 +55,6 @@ class ConfigurarAppPresenter(private val view: ConfigurarAppFragment?) {
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED == action) {
                 Log.d(TAG, "Action discovery Finished")
                 view?.enableDisableProgress(false)
-                if (view?.mDeviceList.isNullOrEmpty())
-                    MainActivity.openToastShort("Nenhum dispositivo encontrado. Tente novamente.")
                 //discovery finishes, dismis progress dialog
             } else if (BluetoothDevice.ACTION_FOUND == action) {
                 Log.d(TAG, "Bluetooth encontrado")
