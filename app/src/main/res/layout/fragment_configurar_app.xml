@@ -1,104 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.fragment.ConfigurarAppFragment">
+    android:orientation="vertical">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <LinearLayout
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:cardElevation="8dp"
+            app:strokeColor="@color/stroke_color"
+            app:strokeWidth="1dp">
 
-
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                app:cardElevation="8dp"
-                app:strokeColor="@color/stroke_color"
-                app:strokeWidth="1dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="6dp">
 
-                <LinearLayout
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="6dp">
+                    android:text="Dispositivos bluetooth pareados"
+                    android:textAlignment="center"
+                    tools:text="Dispositivos bluetooth pareados" />
 
-                    <TextView
-                        style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Dispositivos bluetooth pareados"
-                        android:textAlignment="center"
-                        tools:text="Dispositivos bluetooth pareados" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/black" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="3dp"
-                        android:background="@color/black" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDispositivosPareados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvDispositivosPareados"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+            </LinearLayout>
 
-                </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="8dp"
+            app:strokeColor="@color/stroke_color"
+            app:strokeWidth="1dp">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="8dp"
-                app:strokeColor="@color/stroke_color"
-                app:strokeWidth="1dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="6dp">
 
-                <LinearLayout
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="6dp">
+                    android:text="Dispositivos bluetooth encontrados"
+                    android:textAlignment="center"
+                    tools:text="Dispositivos bluetooth encontrados" />
 
-                    <TextView
-                        style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Dispositivos bluetooth encontrados"
-                        android:textAlignment="center"
-                        tools:text="Dispositivos bluetooth encontrados" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/black" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="3dp"
-                        android:background="@color/black" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDispositivosBlue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvDispositivosBlue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+            </LinearLayout>
 
-                </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
-
-            <Button
-                android:id="@+id/buscarDispositivos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/scan_devices" />
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+        <Button
+            android:id="@+id/buscarDispositivos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/scan_devices" />
+    </LinearLayout>
+</ScrollView>
 
 
-</FrameLayout>
