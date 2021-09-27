@@ -28,6 +28,7 @@ import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.presenter.utils.PreferencesClass
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.activity.MainActivity.Companion.instance
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.takusemba.spotlight.OnTargetListener
 import com.takusemba.spotlight.Spotlight
 import com.takusemba.spotlight.Target
@@ -168,11 +169,11 @@ class ConfigurarAppFragment : Fragment() {
             .setDuration(1000L)
             .setAnimation(DecelerateInterpolator(2f))
             .build()
-        targetOneOverlay.findViewById<Button>(R.id.next_target)
+        targetOneOverlay.findViewById<FloatingActionButton>(R.id.next_target)
             .setOnClickListener { spotlight.next() }
-        targetTwoOverlay.findViewById<Button>(R.id.next_target)
+        targetTwoOverlay.findViewById<FloatingActionButton>(R.id.next_target)
             .setOnClickListener { spotlight.next() }
-        targetThreeOverlay.findViewById<Button>(R.id.next_target)
+        targetThreeOverlay.findViewById<FloatingActionButton>(R.id.next_target)
             .setOnClickListener { spotlight.next() }
         spotlight.start()
     }

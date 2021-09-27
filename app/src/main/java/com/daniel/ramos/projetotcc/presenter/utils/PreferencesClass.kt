@@ -21,4 +21,14 @@ class PreferencesClass(val context: Context) {
         editor.putBoolean("firstRunSpotlight", isFirstRun)
         editor.apply()
     }
+
+    fun getFirstRunDashboardSpotlight(): Boolean {
+        return sharedpreferences!!.getBoolean("firstRunDashboardSpotlight", true)
+    }
+
+    fun setFirstRunDashboardSpotlight(isFirstRun: Boolean) {
+        val editor = sharedpreferences!!.edit()
+        editor.putBoolean("firstRunDashboardSpotlight", isFirstRun)
+        editor.apply()
+    }
 }

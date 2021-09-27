@@ -3,14 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/drawable/ic_next.xml" value="0.134375" />
+        <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/dialog_filtrar_pesquisa.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/fragment_configurar_app.xml" value="0.33" />
+        <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/fragment_dashboard.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/layout_target.xml" value="0.5" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/row_device_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/row_paired_device_info.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

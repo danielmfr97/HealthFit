@@ -87,4 +87,14 @@
     <string name="targetOneText">Primeiramente você deve buscar outros dispositivos ao redor, e se o seu FitSpot estiver ligado aparecerá na lista acima</string>
     <string name="targetOnetitle">Como conectar-se a um FitSpot</string>
     <string name="fitspots_pareados">FitSpots pareados</string>
+    <string name="configurarAppTitleSpotlight">Configure seu aplicativo com o FitSpot</string>
+    <string name="configurarAppDescriptionSpotlight">Acesse o menu \'Configurar aplicação\' para poder iniciar a comunicação com seu dispositivo FitSpot.</string>
+    <string name="pacientesAppTitleSpotlight">Adicione seus pacientes</string>
+    <string name="pacientesAppDescriptionSpotlight">Você pode adicionar os dados de cada usuário que fará uso do sistema acessando o menu \'Meus Pacientes\'. Esse cadastro é essencial para podermos iniciar cada exercício.</string>
+    <string name="exerciciosAppTitleSpotlight">Gerencie seus exercícios</string>
+    <string name="exerciciosAppDescriptionSpotlight">No menu \'Exercícios\' você pode gerenciar cada exercício criado e inicia-los, bastando informar o paciente que executará a atividade e pronto, um temporizador aparecerá na tela e o exercício será iniciado.</string>
+    <string name="relatoriosAppTitleSpotlight">Veja seus resultados</string>
+    <string name="relatoriosAppDescriptionSpotlight">No menu \'Relatórios\' você terá acesso aos resultados coletados em cada exercício, separados por paciente. Podendo ainda filtrar por data e tipo de exercício.</string>
+    <string name="toolbarAppTitleSpotlight">Estou conectado?</string>
+    <string name="toolbarAppDescriptionSpotlight">Na barra superior podemos ver o nome da tela que estamos e o status de conexão do aplicativo com o FitSpot. Note que para iniciar um exercício você deve estar conectado a um FitSpot.</string>
 </resources>
