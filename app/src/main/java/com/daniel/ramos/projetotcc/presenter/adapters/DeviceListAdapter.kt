@@ -20,7 +20,7 @@ class DeviceListAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textName = binding.textViewDeviceName
         val textAddress = binding.textViewDeviceAddress
-        val deviceInfoLayout = binding.linearLayoutDeviceInfo
+        val btnParear = binding.btnConectar
     }
 
 
@@ -37,7 +37,7 @@ class DeviceListAdapter(
         val deviceInfoModel = deviceList[position]
         holder.textName.text = deviceInfoModel.name
         holder.textAddress.text = deviceInfoModel.address
-        holder.deviceInfoLayout.setOnClickListener {
+        holder.btnParear.setOnClickListener {
             bluetoothAdapter.cancelDiscovery()
             deviceList[position].createBond()
         }
