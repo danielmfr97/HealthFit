@@ -17,7 +17,7 @@ class DeviceListPairedAdapter(private val context: Context, private var deviceLi
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textName = binding.textViewDeviceName
         val textAddress = binding.textViewDeviceAddress
-        val deviceInfoLayout = binding.linearLayoutDeviceInfo
+        val btnConectar = binding.btnConectar
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceListPairedAdapter.ViewHolder {
@@ -34,7 +34,7 @@ class DeviceListPairedAdapter(private val context: Context, private var deviceLi
         val deviceInfoModel = deviceList[position]
         holder.textName.text = deviceInfoModel.name
         holder.textAddress.text = deviceInfoModel.address
-        holder.deviceInfoLayout.setOnClickListener {
+        holder.btnConectar.setOnClickListener {
             bluetoothServiceA.connect(deviceList[position], true)
         }
     }

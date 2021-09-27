@@ -3,34 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_margin="8dp"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/linearLayoutDeviceInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnConectar"
+        android:id="@+id/textViewDeviceName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Texto"/>
 
-        <TextView
-            android:id="@+id/textViewDeviceName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Texto"/>
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewDeviceName"
+        app:layout_constraintEnd_toStartOf="@id/btnConectar"
+        android:id="@+id/textViewDeviceAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Texto"/>
 
-        <TextView
-            android:id="@+id/textViewDeviceAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="Texto"/>
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnConectar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="Parear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider"
@@ -42,5 +46,5 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutDeviceInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDeviceAddress" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,9 +32,9 @@
                     style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Dispositivos bluetooth pareados"
+                    android:text="@string/fitspots_pareados"
                     android:textAlignment="center"
-                    tools:text="Dispositivos bluetooth pareados" />
+                    tools:text="FitSpots pareados" />
 
                 <View
                     android:layout_width="match_parent"

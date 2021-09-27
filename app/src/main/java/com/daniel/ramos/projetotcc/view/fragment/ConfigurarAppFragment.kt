@@ -1,13 +1,15 @@
 package com.daniel.ramos.projetotcc.view.fragment
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.SharedPreferences
 import android.graphics.Color.argb
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +27,7 @@ import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.presenter.utils.PreferencesClass
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
+import com.daniel.ramos.projetotcc.view.activity.MainActivity.Companion.instance
 import com.takusemba.spotlight.OnTargetListener
 import com.takusemba.spotlight.Spotlight
 import com.takusemba.spotlight.Target
@@ -40,6 +43,7 @@ class ConfigurarAppFragment : Fragment() {
     private var _binding: FragmentConfigurarAppBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: ConfigurarAppPresenter
+    private var progressDialog: ProgressDialog? = null
 
     private lateinit var deviceListPairedAdapter: DeviceListPairedAdapter
     private lateinit var deviceListAdapter: DeviceListAdapter
@@ -205,7 +209,9 @@ class ConfigurarAppFragment : Fragment() {
             btAdapter.bondedDevices
         if (pairedDevice.isNotEmpty()) {
             for (device in pairedDevice) {
-                mPairedDeviceList.add(device)
+                //TODO: Adicionar a validação de ser fitspot
+//                if (device.name.startsWith("FitSpot"))
+                    mPairedDeviceList.add(device)
             }
         }
         binding.rvDispositivosPareados.recycledViewPool.clear()
@@ -238,5 +244,23 @@ class ConfigurarAppFragment : Fragment() {
         MainActivity.context.startActivity(intent)
         val intentFilter = IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)
         MainActivity.context.registerReceiver(presenter.broadcastDiscoverable, intentFilter)
+    }
+
+    fun enableDisableProgress(show: Boolean) {
+        // Alteração deve ser executada na UI Thread
+        Handler(Looper.getMainLooper()).post {
+            if (progressDialog == null) {
+                progressDialog = ProgressDialog(instance)
+                progressDialog!!.setCancelable(false)
+                progressDialog!!.setMessage("Buscando...")
+                progressDialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+                progressDialog!!.isIndeterminate = true
+            }
+            if (show) {
+                progressDialog!!.show()
+            } else {
+                progressDialog!!.dismiss()
+            }
+        }
     }
 }
