@@ -27,6 +27,7 @@ import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.presenter.utils.PreferencesClass
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.activity.MainActivity.Companion.instance
+import com.daniel.ramos.projetotcc.view.dialogs.CustomProgressDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.takusemba.spotlight.OnTargetListener
 import com.takusemba.spotlight.Spotlight
@@ -43,7 +44,7 @@ class ConfigurarAppFragment : Fragment() {
     private var _binding: FragmentConfigurarAppBinding? = null
     private val binding get() = _binding!!
     private lateinit var presenter: ConfigurarAppPresenter
-    private var progressDialog: ProgressDialog? = null
+    private var progressDialog: CustomProgressDialog? = null
 
     private lateinit var deviceListPairedAdapter: DeviceListPairedAdapter
     private lateinit var deviceListAdapter: DeviceListAdapter
@@ -212,7 +213,7 @@ class ConfigurarAppFragment : Fragment() {
             for (device in pairedDevice) {
                 //TODO: Adicionar a validação de ser fitspot
 //                if (device.name.startsWith("FitSpot"))
-                    mPairedDeviceList.add(device)
+                mPairedDeviceList.add(device)
             }
         }
         binding.rvDispositivosPareados.recycledViewPool.clear()
@@ -255,11 +256,7 @@ class ConfigurarAppFragment : Fragment() {
         // Alteração deve ser executada na UI Thread
         Handler(Looper.getMainLooper()).post {
             if (progressDialog == null) {
-                progressDialog = ProgressDialog(instance)
-                progressDialog!!.setCancelable(false)
-                progressDialog!!.setMessage("Buscando...")
-                progressDialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-                progressDialog!!.isIndeterminate = true
+                progressDialog = CustomProgressDialog(requireContext())
             }
             if (show) {
                 progressDialog!!.show()
