@@ -28,8 +28,11 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
 //            val resultado = Resultado()
 //            resultado.id = UUID.randomUUID().toString()
 //            resultado.paciente_id = paciente!!.id
-//            resultado.exercicio_id = "8fd7b0fc-0c02-4fac-b357-f23aacebac11"
-//            resultado.tempo_total = 2.5.toString()
+//            resultado.exercicio_id = UUID.randomUUID().toString()
+//            resultado.exercicio_tipo_id = "8fd7b0fc-0c02-4fac-b357-f23aacebac11"
+//            resultado.tempo_total = "2"
+//            resultado.acertos = "10"
+//            resultado.erros = "0"
 //            resultado.created = 1626095800097L
 //            resultadoModel.salvarResultado(resultado)
 //        }

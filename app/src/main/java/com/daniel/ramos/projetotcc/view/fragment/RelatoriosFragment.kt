@@ -81,6 +81,7 @@ class RelatoriosFragment : Fragment() {
     fun removerFiltros() {
         mAdapter.filtrarDados(null, null, null)
         binding.btnFiltro.visibility = View.GONE
+        binding.fabFiltrarPesquisa.visibility = View.VISIBLE
     }
 
     fun showEmptyView() {

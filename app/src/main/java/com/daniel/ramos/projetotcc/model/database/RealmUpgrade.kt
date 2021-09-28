@@ -12,13 +12,14 @@ import io.realm.RealmMigration
  */
 
 const val NEXT_VERSION: Int = 0
-class RealmUpgrade : RealmMigration{
+
+class RealmUpgrade : RealmMigration {
     override fun migrate(realm: DynamicRealm, oldVersion: Long, newVersion: Long) {
         val schema = realm.schema
         var oldVersion = oldVersion.toInt()
         var newVersion = newVersion.toInt()
 
-        while(oldVersion < newVersion) {
+        while (oldVersion < newVersion) {
             when (oldVersion) {
 
             }
@@ -30,7 +31,8 @@ class RealmUpgrade : RealmMigration{
             return RealmConfiguration.Builder()
                 .schemaVersion(NEXT_VERSION.toLong())
                 .name("healthfit.realm")
-                .migration(RealmUpgrade())
+                //TODO: CORRIGIR
+                .deleteRealmIfMigrationNeeded()
                 .build()
         }
 
