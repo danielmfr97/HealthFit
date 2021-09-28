@@ -17,6 +17,7 @@ class ResultadoModel {
                 val resultado = resultadoRepository.novo(UUID.randomUUID().toString())
                 resultado.paciente_id = resultadoDado.paciente_id
                 resultado.exercicio_id = resultadoDado.exercicio_id
+                resultado.exercicio_tipo_id = resultadoDado.exercicio_tipo_id
                 resultado.acertos = resultadoDado.acertos
                 resultado.erros = resultadoDado.erros
                 resultado.tempo_total = resultadoDado.tempo_total
