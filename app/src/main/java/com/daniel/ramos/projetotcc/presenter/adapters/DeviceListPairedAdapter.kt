@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.daniel.ramos.projetotcc.databinding.RowPairedDeviceInfoBinding
 import com.daniel.ramos.projetotcc.model.factories.ModelFactory
 
-class DeviceListPairedAdapter(private val context: Context, private var deviceList: List<BluetoothDevice>) : RecyclerView.Adapter<DeviceListPairedAdapter.ViewHolder>() {
+class DeviceListPairedAdapter(
+    private val context: Context,
+    private var deviceList: MutableList<BluetoothDevice>
+) : RecyclerView.Adapter<DeviceListPairedAdapter.ViewHolder>() {
     private var _binding: RowPairedDeviceInfoBinding? = null
     private val binding get() = _binding!!
     private val bluetoothServiceA = ModelFactory.getBluetoothServiceA
@@ -20,9 +23,11 @@ class DeviceListPairedAdapter(private val context: Context, private var deviceLi
         val btnConectar = binding.btnConectar
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceListPairedAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DeviceListPairedAdapter.ViewHolder {
         _binding = RowPairedDeviceInfoBinding.inflate(LayoutInflater.from(context), parent, false)
-        deviceList = deviceList.distinct()
         return ViewHolder(binding.root)
     }
 

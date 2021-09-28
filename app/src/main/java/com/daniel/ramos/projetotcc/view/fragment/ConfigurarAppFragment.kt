@@ -14,7 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.view.doOnPreDraw
@@ -186,6 +185,7 @@ class ConfigurarAppFragment : Fragment() {
         binding.buscarDispositivos.setOnClickListener {
             btAdapter.cancelDiscovery()
             getListDispositivosDisponiveis()
+            atualizarDispositivosPareados()
         }
     }
 
@@ -216,7 +216,11 @@ class ConfigurarAppFragment : Fragment() {
             }
         }
         binding.rvDispositivosPareados.recycledViewPool.clear()
-        deviceListPairedAdapter.notifyDataSetChanged()
+        binding.rvDispositivosPareados.adapter!!.notifyDataSetChanged()
+    }
+
+    fun atualizarListaPareados() {
+        binding.rvDispositivosPareados.adapter!!.notifyDataSetChanged()
     }
 
     private fun inicializarBroadcasts() {

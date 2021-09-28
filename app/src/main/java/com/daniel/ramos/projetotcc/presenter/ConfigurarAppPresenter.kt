@@ -79,7 +79,7 @@ class ConfigurarAppPresenter(private val view: ConfigurarAppFragment?) {
                         Log.d(TAG, "BroadcastReceiver: BOND_BONDED")
                         //TODO: Editar
                         view?.mPairedDeviceList?.add(device)
-                        view?.atualizarDispositivosPareados()
+                        view?.atualizarListaPareados()
                     }
                     BluetoothDevice.BOND_BONDING -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_BONDING")
