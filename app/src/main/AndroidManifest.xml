@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.daniel.ramos.projetotcc">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
@@ -19,7 +21,6 @@
         android:theme="@style/Theme.ProjetoTCC">
         <activity
             android:name=".view.activity.MainActivity"
-            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
 
             <intent-filter>

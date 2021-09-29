@@ -184,7 +184,6 @@ class ConfigurarAppFragment : Fragment() {
 
     private fun configurarBotoes() {
         binding.buscarDispositivos.setOnClickListener {
-            btAdapter.cancelDiscovery()
             getListDispositivosDisponiveis()
             atualizarDispositivosPareados()
         }
