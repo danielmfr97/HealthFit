@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.daniel.ramos.projetotcc.view.activity.MainActivity
 import com.daniel.ramos.projetotcc.view.fragment.ConfigurarAppFragment
 
 private const val TAG = "ConfigurarAppPresenter"
@@ -83,7 +84,7 @@ class ConfigurarAppPresenter(private val view: ConfigurarAppFragment?) {
                     }
                     BluetoothDevice.BOND_BONDING -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_BONDING")
-//                        habilitarDiscoverableBluetooth()
+                        MainActivity.openToastShort("${device.name} adicionado a lista de FitSpots pareados.")
                     }
                     BluetoothDevice.BOND_NONE -> {
                         Log.d(TAG, "BroadcastReceiver: BOND_DONE")

@@ -293,6 +293,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Constants.MESSAGE_STATE_CHANGE -> when (msg.arg1) {
                     BluetoothServiceA.STATE_CONNECTED -> {
                         setStatus(getString(R.string.title_connected_to, deviceName))
+                        openToastShort("Conectado com sucesso!")
                         statusBlueDevice = BluetoothServiceA.STATE_CONNECTED
                     }
                     BluetoothServiceA.STATE_CONNECTING -> {
