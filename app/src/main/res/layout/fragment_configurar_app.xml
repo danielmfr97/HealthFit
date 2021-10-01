@@ -1,100 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <LinearLayout
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvPareados"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toTopOf="@id/mcvBluetooths"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/stroke_color"
+        app:strokeWidth="1dp">
 
-
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            app:cardElevation="8dp"
-            app:strokeColor="@color/stroke_color"
-            app:strokeWidth="1dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp">
 
-            <LinearLayout
+            <TextView
+                style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="6dp">
+                android:layout_height="wrap_content"
+                android:text="@string/fitspots_pareados"
+                android:textAlignment="center"
+                tools:text="FitSpots pareados" />
 
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/fitspots_pareados"
-                    android:textAlignment="center"
-                    tools:text="FitSpots pareados" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/black" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvDispositivosPareados"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="100dp" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="8dp"
-            app:strokeColor="@color/stroke_color"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="6dp">
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/black" />
 
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Dispositivos bluetooth encontrados"
-                    android:textAlignment="center"
-                    tools:text="Dispositivos bluetooth encontrados" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDispositivosPareados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/black" />
+        </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvDispositivosBlue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="100dp" />
+    </com.google.android.material.card.MaterialCardView>
 
-            </LinearLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvBluetooths"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mcvPareados"
+        app:strokeColor="@color/stroke_color"
+        app:strokeWidth="1dp">
 
-        </com.google.android.material.card.MaterialCardView>
-
-        <Button
-            android:id="@+id/buscarDispositivos"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/scan_devices" />
-    </LinearLayout>
-</ScrollView>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dispositivos bluetooth encontrados"
+                android:textAlignment="center"
+                tools:text="Dispositivos bluetooth encontrados" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDispositivosBlue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <Button
+        android:id="@+id/buscarDispositivos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="@string/scan_devices"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontalGuideline" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

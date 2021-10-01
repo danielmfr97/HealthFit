@@ -42,12 +42,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
+                    android:text="@string/tituloRelatorio"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/guidelineRelatorios"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivRelatorios"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.75"
-                    android:text="@string/tituloRelatorio"
                     tools:text="Relatórios" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -55,30 +56,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/ivRelatorios"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintGuide_percent="0.75"/>
+                    app:layout_constraintGuide_percent="0.50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivRelatorios" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintTop_toBottomOf="@id/ivRelatorios"
                     app:layout_constraintBottom_toTopOf="@id/tvRelatorioSub"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/ivRelatorios" />
 
                 <TextView
                     android:id="@+id/tvRelatorioSub"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/guidelineRelatorios"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text="@string/subtituloRelatorio"
-                    tools:text="Consulte os dados coletados para cada perfil criado no sistemas"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/guidelineRelatorios"
+                    tools:text="Consulte os dados coletados para cada perfil criado no sistemas" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,12 +114,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
+                    android:text="@string/tituloPacientes"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/guidelinePacientes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivPacientes"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.75"
-                    android:text="@string/tituloPacientes"
                     tools:text="Meus Pacientes" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -126,30 +128,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/ivPacientes"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintGuide_percent="0.75"/>
+                    app:layout_constraintGuide_percent="0.50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivPacientes" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintTop_toBottomOf="@id/ivPacientes"
                     app:layout_constraintBottom_toTopOf="@id/tvPacientesSub"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/ivPacientes" />
 
                 <TextView
                     android:id="@+id/tvPacientesSub"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/guidelinePacientes"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text="@string/subtituloPacientes"
-                    tools:text="Visualize o progresso de seus pacientes e adicione novos pacientes"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/guidelinePacientes"
+                    tools:text="Visualize o progresso de seus pacientes e adicione novos pacientes" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -171,8 +173,8 @@
                     android:id="@+id/ivExercicios"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/ic_exercise"
                     android:padding="10dp"
+                    android:src="@drawable/ic_exercise"
                     app:layout_constraintBottom_toTopOf="@id/guidelineExercicios"
                     app:layout_constraintEnd_toStartOf="@id/tvExercicios"
                     app:layout_constraintStart_toStartOf="parent"
@@ -184,12 +186,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
+                    android:text="@string/tituloExercicios"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/guidelineExercicios"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivExercicios"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.75"
-                    android:text="@string/tituloExercicios"
                     tools:text="Exercícios" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -197,30 +200,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/ivExercicios"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintGuide_percent="0.75"/>
+                    app:layout_constraintGuide_percent="0.50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivExercicios" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintTop_toBottomOf="@id/ivExercicios"
                     app:layout_constraintBottom_toTopOf="@id/tvExerciciosSub"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/ivExercicios" />
 
                 <TextView
                     android:id="@+id/tvExerciciosSub"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/guidelineExercicios"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text="@string/subtituloExercicio"
-                    tools:text="Configure e inicie exercícios para um paciente selecionado"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/guidelineExercicios"
+                    tools:text="Configure e inicie exercícios para um paciente selecionado" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -242,8 +245,8 @@
                     android:id="@+id/ivConfigurar"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/ic_bluetooth"
                     android:padding="10dp"
+                    android:src="@drawable/ic_bluetooth"
                     app:layout_constraintBottom_toTopOf="@id/guidelineConfigurar"
                     app:layout_constraintEnd_toStartOf="@id/tvConfigurar"
                     app:layout_constraintStart_toStartOf="parent"
@@ -255,12 +258,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
+                    android:text="@string/tituloConfigurar"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/guidelineConfigurar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivConfigurar"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.75"
-                    android:text="@string/tituloConfigurar"
                     tools:text="Configurar aplicação" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -268,30 +272,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/ivConfigurar"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintGuide_percent="0.75"/>
+                    app:layout_constraintGuide_percent="0.50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivConfigurar" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray"
-                    app:layout_constraintTop_toBottomOf="@id/ivConfigurar"
                     app:layout_constraintBottom_toTopOf="@id/tvConfigurarSub"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/ivConfigurar" />
 
                 <TextView
                     android:id="@+id/tvConfigurarSub"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/guidelineConfigurar"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text="@string/subtituloConfigurar"
-                    tools:text="Faça a configuração do aplicativo com o dispositivo de treino"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/guidelineConfigurar"
+                    tools:text="Faça a configuração do aplicativo com o dispositivo de treino" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
