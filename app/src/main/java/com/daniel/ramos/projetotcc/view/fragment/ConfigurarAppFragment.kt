@@ -211,8 +211,8 @@ class ConfigurarAppFragment : Fragment() {
         if (pairedDevice.isNotEmpty()) {
             for (device in pairedDevice) {
                 //TODO: Adicionar a validação de ser fitspot
-//                if (device.name.startsWith("FitSpot"))
-                mPairedDeviceList.add(device)
+                if (device.name.startsWith("FitSpot"))
+                    mPairedDeviceList.add(device)
             }
         }
         binding.rvDispositivosPareados.recycledViewPool.clear()
