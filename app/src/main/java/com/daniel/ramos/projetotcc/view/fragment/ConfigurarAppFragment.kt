@@ -71,13 +71,16 @@ class ConfigurarAppFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        atualizarDispositivosPareados()
+        if (!sharedPrefs.getFirstRunSpotlight())
+            atualizarDispositivosPareados()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.root.doOnPreDraw {
-            if (sharedPrefs.getFirstRunSpotlight())
+            if (sharedPrefs.getFirstRunSpotlight()) {
+                switchClickableViewsOnFragment(false)
                 initSpotlight()
+            }
         }
     }
 
@@ -154,6 +157,8 @@ class ConfigurarAppFragment : Fragment() {
                 }
 
                 override fun onEnded() {
+                    atualizarDispositivosPareados()
+                    switchClickableViewsOnFragment(true)
                     // Evita que o spotlight rode novamente
                     sharedPrefs.setFirstRunSpotlight(false)
                 }
@@ -249,6 +254,18 @@ class ConfigurarAppFragment : Fragment() {
         MainActivity.context.startActivity(intent)
         val intentFilter = IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)
         MainActivity.context.registerReceiver(presenter.broadcastDiscoverable, intentFilter)
+    }
+
+    private fun switchClickableViewsOnFragment(isClickable: Boolean) {
+        val clickableCards = arrayListOf<View>(
+            binding.buscarDispositivos,
+            binding.rvDispositivosPareados,
+            binding.rvDispositivosBlue
+        )
+
+        clickableCards.forEach {
+            it.isClickable = isClickable
+        }
     }
 
     fun enableDisableProgress(show: Boolean) {

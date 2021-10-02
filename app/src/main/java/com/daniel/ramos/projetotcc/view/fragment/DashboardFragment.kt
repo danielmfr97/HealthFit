@@ -60,8 +60,10 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.doOnPreDraw {
-            if (sharedPrefs.getFirstRunDashboardSpotlight())
+            if (sharedPrefs.getFirstRunDashboardSpotlight()) {
+                switchClickableViewsOnFragment(false)
                 initSpotlight()
+            }
         }
     }
 
@@ -168,14 +170,15 @@ class DashboardFragment : Fragment(), View.OnClickListener {
                     targetFourOverlay.findViewById<TextView>(R.id.custom_text).apply {
                         setText(R.string.relatoriosAppDescriptionSpotlight)
                         updateLayoutParams<ConstraintLayout.LayoutParams> {
-                            topToBottom = targetFourOverlay.findViewById<TextView>(R.id.custom_title).id
+                            topToBottom =
+                                targetFourOverlay.findViewById<TextView>(R.id.custom_title).id
                         }
                     }
 
                 }
 
                 override fun onEnded() {
-                    // Evita que o spotlight rode novamente
+                    switchClickableViewsOnFragment(true)
                     sharedPrefs.setFirstRunDashboardSpotlight(false)
                 }
             })
@@ -268,6 +271,18 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     private val onBluetoothAtivado = object : OnBluetoothAtivado {
         override fun ativarBroadcastReceiver(bluetoothFilter: IntentFilter) {
             MainActivity.context.registerReceiver(broadcastReceiverOnOffBT, bluetoothFilter)
+        }
+    }
+
+    private fun switchClickableViewsOnFragment(isClickable: Boolean) {
+        val clickableCards = arrayListOf<View>(
+            binding.cvRelatorios,
+            binding.cvPacientes,
+            binding.cvConfigurarApp,
+            binding.cvExercicios
+        )
+        clickableCards.forEach {
+            it.isClickable = isClickable
         }
     }
 
