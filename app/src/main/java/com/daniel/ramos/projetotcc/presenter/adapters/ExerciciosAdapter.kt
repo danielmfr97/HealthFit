@@ -102,6 +102,7 @@ class ExerciciosAdapter(val exercicios: RealmResults<Exercicio>, autoUpdate: Boo
                     }
                 })
                 notifyItemRemoved(position)
+                notifyItemRangeChanged(position, itemCount)
                 dialogInterface.dismiss()
             }
             .setNegativeButton(R.string.cancelar) { dialogInterface, i ->

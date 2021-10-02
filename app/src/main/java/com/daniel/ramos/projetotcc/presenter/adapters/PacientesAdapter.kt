@@ -64,6 +64,7 @@ class PacientesAdapter(private val pacientes: RealmResults<Paciente>, autoUpdate
                     }
                 })
                 notifyItemRemoved(position)
+                notifyItemRangeChanged(position, itemCount)
                 dialogInterface.dismiss()
             }
             .setNegativeButton(R.string.cancelar) { dialogInterface, i ->

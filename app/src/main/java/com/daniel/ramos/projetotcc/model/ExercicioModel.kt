@@ -3,6 +3,7 @@ package com.daniel.ramos.projetotcc.model
 import com.daniel.ramos.projetotcc.model.entities.Exercicio
 import com.daniel.ramos.projetotcc.model.repositories.ExercicioRepository
 import com.daniel.ramos.projetotcc.model.repositories.RealmRepository
+import io.realm.RealmResults
 import java.lang.Exception
 import java.util.*
 
@@ -37,5 +38,9 @@ class ExercicioModel {
 
     fun getExercicioPorId(exercicioId: String?): Exercicio? {
         return exercicioRepository.procurarPorId(exercicioId)
+    }
+
+    fun getExercicioSortedByName(): RealmResults<Exercicio> {
+        return exercicioRepository.getExerciciosSortedByName()
     }
 }

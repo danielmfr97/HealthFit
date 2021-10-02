@@ -14,7 +14,7 @@ class ExerciciosPresenter(private val view: ExerciciosFragment) {
     private val exercicioModel = ModelFactory.getExercicioModel
 
     fun getAdapterExercicios(): ExerciciosAdapter {
-        return ExerciciosAdapter(exercicioModel.all, true, onExercicioIniciado)
+        return ExerciciosAdapter(exercicioModel.getExercicioSortedByName(), true, onExercicioIniciado)
     }
 
     private val onExercicioIniciado = object : OnExercicioIniciado {
