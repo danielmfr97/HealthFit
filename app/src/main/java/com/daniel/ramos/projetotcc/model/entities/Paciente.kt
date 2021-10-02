@@ -9,4 +9,5 @@ open class Paciente : RealmObject() {
     var nome: String = ""
     var sexo: String = ""
     var dataNascimento: String = ""
+    var created: Long = 0
 }

@@ -3,12 +3,17 @@ package com.daniel.ramos.projetotcc.model
 import com.daniel.ramos.projetotcc.model.entities.Paciente
 import com.daniel.ramos.projetotcc.model.repositories.PacienteRepository
 import com.daniel.ramos.projetotcc.model.repositories.RealmRepository
+import io.realm.RealmResults
 import java.util.*
 
 class PacienteModel {
     private val pacienteRepository = PacienteRepository()
 
     val all get() = pacienteRepository.procurarTodos()
+
+    fun getAllSortedByDateCreated(): RealmResults<Paciente> {
+        return pacienteRepository.getAllSortedByDate()
+    }
 
     fun salvarPaciente(pacienteDados: Paciente) {
         pacienteRepository.atualizarObject(object : RealmRepository.AtualizarListener {
@@ -17,6 +22,7 @@ class PacienteModel {
                 paciente.nome = pacienteDados.nome
                 paciente.dataNascimento = pacienteDados.dataNascimento
                 paciente.sexo = pacienteDados.sexo
+                paciente.created = System.currentTimeMillis()
             }
         })
     }
