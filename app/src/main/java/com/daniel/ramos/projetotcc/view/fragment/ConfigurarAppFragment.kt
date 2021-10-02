@@ -18,15 +18,16 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.FragmentConfigurarAppBinding
+import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
 import com.daniel.ramos.projetotcc.presenter.ConfigurarAppPresenter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListAdapter
 import com.daniel.ramos.projetotcc.presenter.adapters.DeviceListPairedAdapter
 import com.daniel.ramos.projetotcc.presenter.utils.PreferencesClass
 import com.daniel.ramos.projetotcc.view.activity.MainActivity
-import com.daniel.ramos.projetotcc.view.activity.MainActivity.Companion.instance
 import com.daniel.ramos.projetotcc.view.dialogs.CustomProgressDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.takusemba.spotlight.OnTargetListener
@@ -71,8 +72,16 @@ class ConfigurarAppFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        subscribeObserver()
         if (!sharedPrefs.getFirstRunSpotlight())
             atualizarDispositivosPareados()
+    }
+
+    private fun subscribeObserver() {
+        MainActivity.statusBlueDevice.observe(viewLifecycleOwner, Observer {
+            if (it == BluetoothServiceA.STATE_CONNECTED || it == BluetoothServiceA.STATE_NONE)
+                atualizarDispositivosPareados()
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
