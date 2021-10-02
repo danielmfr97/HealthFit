@@ -6,7 +6,7 @@ import io.realm.Sort
 
 class ResultadoRepository: RealmRepository<Resultado>(Resultado::class.java)  {
     fun getResultadorPorPacienteId(id: String): RealmResults<Resultado> {
-        return realm.where(clazz).equalTo("paciente_id", id).findAll()
+        return realm.where(clazz).equalTo("paciente_id", id).findAll().sort("created", Sort.DESCENDING)
     }
 
     fun queryResultados(queryTipoExercicio: String?, queryDataInicio: Long?, queryDataFim: Long?): RealmResults<Resultado> {
@@ -14,7 +14,7 @@ class ResultadoRepository: RealmRepository<Resultado>(Resultado::class.java)  {
         if (queryTipoExercicio.isNullOrEmpty() || queryDataInicio == null || queryDataFim == null)
             resultados = realm.where(clazz).findAll()
         else
-            resultados = realm.where(clazz).contains("exercicio_tipo_id", queryTipoExercicio).between("created", queryDataInicio!!, queryDataFim!!).sort("created", Sort.DESCENDING).findAll()
+            resultados = realm.where(clazz).contains("exercicio_tipo_id", queryTipoExercicio).and().between("created", queryDataInicio!!, queryDataFim!!).sort("created", Sort.DESCENDING).findAll()
         return resultados
     }
 }
