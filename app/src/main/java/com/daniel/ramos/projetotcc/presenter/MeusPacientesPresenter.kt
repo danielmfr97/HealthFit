@@ -15,7 +15,7 @@ class MeusPacientesPresenter(private val view: MeusPacientesFragment) {
     }
 
     fun getPacientesAdapter(): PacientesAdapter {
-        return PacientesAdapter(pacienteModel.getAllSortedByDateCreated(), true)
+        return PacientesAdapter(pacienteModel.getAllSortedByName(), true)
     }
 
     private val onPacienteAdicionado = object : OnPacienteAdicionado {

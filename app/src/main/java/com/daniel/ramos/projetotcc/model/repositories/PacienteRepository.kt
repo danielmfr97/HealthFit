@@ -9,5 +9,9 @@ class PacienteRepository: RealmRepository<Paciente>(Paciente::class.java) {
         return realm.where(clazz).findAll().sort("created", Sort.ASCENDING)
     }
 
+    fun getAllSortedByName(): RealmResults<Paciente> {
+        return realm.where(clazz).findAll().sort("nome", Sort.ASCENDING)
+    }
+
 
 }

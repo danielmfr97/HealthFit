@@ -15,6 +15,10 @@ class PacienteModel {
         return pacienteRepository.getAllSortedByDate()
     }
 
+    fun getAllSortedByName(): RealmResults<Paciente> {
+        return  pacienteRepository.getAllSortedByName()
+    }
+
     fun salvarPaciente(pacienteDados: Paciente) {
         pacienteRepository.atualizarObject(object : RealmRepository.AtualizarListener {
             override fun atualizar() {
