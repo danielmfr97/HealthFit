@@ -47,7 +47,7 @@ class RelatoriosPresenter(private val view: RelatoriosFragment) {
     }
 
     fun getAdapterSpinner(): ArrayAdapter<Paciente> {
-        val items = pacienteModel.all
+        val items = pacienteModel.getAllSortedByName()
         val adapter = PacientesArrayAdapter(view.requireContext(), R.layout.list_pacientes, items, onPacienteSelecionado)
         return adapter
     }

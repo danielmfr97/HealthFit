@@ -33,7 +33,7 @@ class DialogIniciarExercicioView {
 
 
     private fun configurarSpinnerPaciente(onPacienteSelecionado: OnPacienteSelecionado) {
-        val adapter = PacientesArrayAdapter(context, R.layout.list_pacientes, pacienteModel.all, onPacienteSelecionado)
+        val adapter = PacientesArrayAdapter(context, R.layout.list_pacientes, pacienteModel.getAllSortedByName(), onPacienteSelecionado)
         (binding.spPacientes.editText as MaterialAutoCompleteTextView).setAdapter(adapter)
     }
 
