@@ -73,6 +73,7 @@ class NovoExercicioFragment : Fragment() {
     private fun configurarExercicioSequencia() {
         binding.ciclosExercicio.root.visibility = View.VISIBLE
         binding.tempoRandom.visibility = View.GONE
+        numeroCiclos = 0
         desabilitarRadioGroup(true)
         habilitarTodosFitSpots(true)
     }
@@ -158,7 +159,7 @@ class NovoExercicioFragment : Fragment() {
         return numeroExercicio
     }
 
-    fun getNumeroCiclos(): Int? {
+    fun getNumeroCiclos(): Int {
         return numeroCiclos
     }
 
@@ -210,7 +211,7 @@ class NovoExercicioFragment : Fragment() {
         }
 
         // Validar número de ciclos
-        if (getNumeroCiclos() == 0 && binding.autocompelteTipoExercicio.text.equals(TipoExercicio.SEQUENCIA.nome)) {
+        if (getNumeroCiclos() == 0 && binding.autocompelteTipoExercicio.text.toString() == TipoExercicio.SEQUENCIA.nome) {
             isValido = false
             binding.ciclosExercicio.tvHeader.error = "Informe um valor maior que 0"
         }
