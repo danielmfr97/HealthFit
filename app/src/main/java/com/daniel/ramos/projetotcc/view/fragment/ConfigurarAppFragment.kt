@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color.argb
@@ -46,6 +47,7 @@ class ConfigurarAppFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var presenter: ConfigurarAppPresenter
     private var progressDialog: CustomProgressDialog? = null
+    private lateinit var mContext: Context
 
     private lateinit var deviceListPairedAdapter: DeviceListPairedAdapter
     private lateinit var deviceListAdapter: DeviceListAdapter
@@ -62,12 +64,17 @@ class ConfigurarAppFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentConfigurarAppBinding.inflate(layoutInflater, container, false)
-        sharedPrefs = PreferencesClass(requireContext())
+        sharedPrefs = PreferencesClass(mContext)
         inicializarPresenter()
         configurarBotoes()
         configurarRecyclerView()
         inicializarBroadcasts()
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
     }
 
     override fun onStart() {
@@ -97,7 +104,7 @@ class ConfigurarAppFragment : Fragment() {
     private fun initSpotlight() {
         val targets = ArrayList<Target>()
 
-        val targetOneLayout = FrameLayout(requireContext())
+        val targetOneLayout = FrameLayout(mContext)
         val targetOneOverlay = layoutInflater.inflate(R.layout.layout_target, targetOneLayout)
         val targetOne = Target.Builder()
             .setAnchor(requireView().findViewById<View>(R.id.buscarDispositivos))
@@ -123,7 +130,7 @@ class ConfigurarAppFragment : Fragment() {
             })
             .build()
 
-        val targetTwoLayout = FrameLayout(requireContext())
+        val targetTwoLayout = FrameLayout(mContext)
         val targetTwoOverlay = layoutInflater.inflate(R.layout.layout_target, targetTwoLayout)
         val targetTwo = Target.Builder()
             .setAnchor(requireView().findViewById<View>(R.id.rvDispositivosBlue))
@@ -146,7 +153,7 @@ class ConfigurarAppFragment : Fragment() {
             })
             .build()
 
-        val targetThreeLayout = FrameLayout(requireContext())
+        val targetThreeLayout = FrameLayout(mContext)
         val targetThreeOverlay = layoutInflater.inflate(R.layout.layout_target, targetThreeLayout)
         val targetThree = Target.Builder()
             .setAnchor(requireView().findViewById<View>(R.id.rvDispositivosPareados))
@@ -204,8 +211,8 @@ class ConfigurarAppFragment : Fragment() {
     }
 
     private fun configurarRecyclerView() {
-        deviceListAdapter = DeviceListAdapter(requireContext(), mDeviceList)
-        deviceListPairedAdapter = DeviceListPairedAdapter(requireContext(), mPairedDeviceList)
+        deviceListAdapter = DeviceListAdapter(mContext, mDeviceList)
+        deviceListPairedAdapter = DeviceListPairedAdapter(mContext, mPairedDeviceList)
         binding.rvDispositivosPareados.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -281,7 +288,7 @@ class ConfigurarAppFragment : Fragment() {
         // Alteração deve ser executada na UI Thread
         Handler(Looper.getMainLooper()).post {
             if (progressDialog == null) {
-                progressDialog = CustomProgressDialog(requireContext())
+                progressDialog = CustomProgressDialog(mContext)
             }
             if (show) {
                 progressDialog!!.show()
