@@ -97,4 +97,6 @@
     <string name="relatoriosAppDescriptionSpotlight">No menu \'Relatórios\' você terá acesso aos resultados coletados em cada exercício, separados por paciente. Podendo ainda filtrar por data e tipo de exercício.</string>
     <string name="toolbarAppTitleSpotlight">Estou conectado?</string>
     <string name="toolbarAppDescriptionSpotlight">Na barra superior podemos ver o nome da tela que estamos e o status de conexão do aplicativo com o FitSpot. Note que para iniciar um exercício você deve estar conectado a um FitSpot.</string>
+    <string name="Conectar">Conectar</string>
+    <string name="Desconectar">Desconectar</string>
 </resources>

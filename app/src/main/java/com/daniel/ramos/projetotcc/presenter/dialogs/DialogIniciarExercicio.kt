@@ -20,8 +20,8 @@ class DialogIniciarExercicio(
     private val onButtonClick = DialogInterface.OnClickListener { dialog, which ->
         if (which == DialogInterface.BUTTON_POSITIVE){
             if (view.isPacienteSelecionado()) {
-                val blueStatus = MainActivity.statusBlueDevice
-                if (blueStatus != BluetoothServiceA.STATE_NONE && blueStatus != BluetoothServiceA.STATE_LISTEN) {
+                val blueStatus = MainActivity.statusBlueDevice.value
+                if (blueStatus == BluetoothServiceA.STATE_CONNECTED) {
                     onExercicioIniciado.iniciar(exercicio, view.getPacienteSelecionado())
                     dialog.dismiss()
                 } else {

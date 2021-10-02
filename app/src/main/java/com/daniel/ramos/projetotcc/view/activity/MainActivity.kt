@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -294,15 +295,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     BluetoothServiceA.STATE_CONNECTED -> {
                         setStatus(getString(R.string.title_connected_to, deviceName))
                         openToastShort("Conectado com sucesso!")
-                        statusBlueDevice = BluetoothServiceA.STATE_CONNECTED
+                        statusBlueDevice.value = BluetoothServiceA.STATE_CONNECTED
                     }
                     BluetoothServiceA.STATE_CONNECTING -> {
                         setStatus(getString(R.string.title_connecting))
-                        statusBlueDevice = BluetoothServiceA.STATE_CONNECTING
+                        statusBlueDevice.value = BluetoothServiceA.STATE_CONNECTING
                     }
                     BluetoothServiceA.STATE_LISTEN, BluetoothServiceA.STATE_NONE -> {
                         setStatus(getString(R.string.title_not_connected))
-                        statusBlueDevice = BluetoothServiceA.STATE_LISTEN
+                        statusBlueDevice.value = BluetoothServiceA.STATE_LISTEN
                     }
                 }
                 Constants.MESSAGE_DEVICE_NAME -> {
@@ -311,6 +312,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 Constants.MESSAGE_TOAST -> {
                     val string = msg.data.getString(Constants.TOAST).toString()
+                    statusBlueDevice.value = BluetoothServiceA.STATE_NONE
                     openToastShort("Falha: $string")
                 }
                 Constants.MESSAGE_DEVICE_OFFLINE -> {
@@ -334,7 +336,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                  * 2 - Iniciando a comunicação
                  * 3 - Conectado a um dispositivo
                  */
-        var statusBlueDevice: Int = 0
+        var statusBlueDevice: MutableLiveData<Int> = MutableLiveData(0)
 
         @JvmStatic
         val context: Context

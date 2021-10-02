@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.daniel.ramos.projetotcc.R
 import com.daniel.ramos.projetotcc.databinding.RowPairedDeviceInfoBinding
 import com.daniel.ramos.projetotcc.model.factories.ModelFactory
+import com.daniel.ramos.projetotcc.presenter.BluetoothServiceA
+import com.daniel.ramos.projetotcc.view.activity.MainActivity
+
 
 class DeviceListPairedAdapter(
     private val context: Context,
@@ -39,8 +43,14 @@ class DeviceListPairedAdapter(
         val deviceInfoModel = deviceList[position]
         holder.textName.text = deviceInfoModel.name
         holder.textAddress.text = deviceInfoModel.address
-        holder.btnConectar.setOnClickListener {
-            bluetoothServiceA.connect(deviceList[position], true)
+        if (MainActivity.statusBlueDevice.value == BluetoothServiceA.STATE_CONNECTED && deviceInfoModel.name.startsWith("FitSpot")) {
+            holder.btnConectar.setText(R.string.Desconectar)
+            holder.btnConectar.setOnClickListener { bluetoothServiceA.stop() }
+        }
+        else {
+            holder.btnConectar.setText(R.string.Conectar)
+            holder.btnConectar.setOnClickListener { bluetoothServiceA.connect(deviceInfoModel, true)}
         }
     }
+
 }
