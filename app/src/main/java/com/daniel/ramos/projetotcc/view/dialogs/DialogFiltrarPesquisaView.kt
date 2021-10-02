@@ -100,6 +100,8 @@ class DialogFiltrarPesquisaView {
     }
 
     fun getDataFim(): Long? {
+        //Adiciona (24*60*60*1000) para adicionar mais um dia e contabilizar até 00 do dia subsequente a query
+        _dataFim = _dataFim?.plus((24*60*60*1000))
         return _dataFim
     }
 
