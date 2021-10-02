@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/custom_loading.xml" value="0.33" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/dialog_filtrar_pesquisa.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/fragment_about_us.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/fragment_configurar_app.xml" value="0.33" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/fragment_dashboard.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/fragment_relatorios.xml" value="0.36666666666666664" />
@@ -15,6 +16,7 @@
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/row_device_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/row_paired_device_info.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/layout/row_resultado.xml" value="0.36102564102564105" />
+        <entry key="..\:/Users/Daniel/Desktop/Repositorios/HealthFit/app/src/main/res/menu/drawer_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

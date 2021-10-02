@@ -251,7 +251,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_meus_pacientes -> navController.navigate(R.id.meusPacientesFragment)
             R.id.nav_reports -> navController.navigate(R.id.relatoriosFragment)
             R.id.nav_exercicios -> navController.navigate(R.id.exerciciosFragment)
-//            R.id.nav_aboutus -> navController.navigate(R.id.)
+            R.id.nav_aboutus -> navController.navigate(R.id.aboutUsFragment)
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true

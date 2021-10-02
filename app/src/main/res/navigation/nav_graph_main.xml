@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_exerciciosFragment"
             app:destination="@id/exerciciosFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
     </fragment>
 
     <fragment
@@ -66,5 +69,10 @@
         tools:layout="@layout/fragment_exercicio_iniciado">
 
     </fragment>
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.daniel.ramos.projetotcc.view.fragment.AboutUsFragment"
+        android:label="Sobre Nós"
+        tools:layout="@layout/fragment_about_us" />
 
 </navigation>

@@ -99,4 +99,7 @@
     <string name="toolbarAppDescriptionSpotlight">Na barra superior podemos ver o nome da tela que estamos e o status de conexão do aplicativo com o FitSpot. Note que para iniciar um exercício você deve estar conectado a um FitSpot.</string>
     <string name="Conectar">Conectar</string>
     <string name="Desconectar">Desconectar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sobreNos">Este aplicativo foi desenvolvido para a obtenção do título de bacharel em Engenharia da Computação pela Universidade Federal do Pará (UFPA). O intuito desta aplicação é atuar tanto como uma ferramenta para o fisioterapeuta, como uma forma de possibilitar a implementação de competitividade nos treinos realizados pelo usuário.</string>
 </resources>
